@@ -1,0 +1,9 @@
+.venv/
+data/
+__pycache__/
+
+impl_linen/
+impl_linen/data/
+
+impl_nnx/slurm_logs/
+impl_nnx/data/
