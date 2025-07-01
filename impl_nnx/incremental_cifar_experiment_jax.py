@@ -178,10 +178,6 @@ class IncrementalCIFARExperiment(Experiment):
         self.running_avg_window = 25
         self.current_running_avg_step, self.running_loss, self.running_accuracy = (0, 0.0, 0.0)
         self._initialize_summaries()
-        
-        # Performance monitoring
-        self.step_times = []
-        self.compile_times = []
 
     # ------------------------------ Methods for initializing the experiment ------------------------------#
     def _initialize_summaries(self):
@@ -345,7 +341,7 @@ class IncrementalCIFARExperiment(Experiment):
         val_data, val_dataloader = self.get_data(train=True, validation=True)
         test_data, test_dataloader = self.get_data(train=False)
         # load checkpoint if one is available
-        self.load_experiment_checkpoint()
+        # self.load_experiment_checkpoint()
         # train network
         self.train(train_dataloader=training_dataloader, test_dataloader=test_dataloader, val_dataloader=val_dataloader,
                    test_data=test_data, training_data=training_data, val_data=val_data)

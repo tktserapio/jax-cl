@@ -1,0 +1,85 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 11908064
+##  Job Name : run_incremental_cifar_sap
+##  Nodelist : gpu2264
+##      CPUs : 
+##  Mem/Node : 65536 MB
+## Directory : /oscar/home/tserapio/jax_cl/impl_nnx
+##   Job Started : Mon Jun 30 06:44:48 PM EDT 2025
+###############################################################################
+Config file successfully stored!
+✅ JAX is using GPU: cuda:0
+   Available GPU devices: 1
+   GPU 0: cuda:0
+JAX backend: gpu
+JAX version: 0.5.0
+All available JAX devices: [CudaDevice(id=0)]
+	Epoch number: 1
+	Task boundary: LR reset to 0.10000 (preserving momentum = MOMENTUM SHOCK)
+	Current stepsize: 0.10000
+		Step Number: 25
+		Online accuracy: 0.27
+		test accuracy: 0.3420
+		validation accuracy: 0.3360
+		Epoch run time in seconds: 34.9371
+	Epoch number: 2
+		Step Number: 25
+		Online accuracy: 0.43
+		test accuracy: 0.4720
+		validation accuracy: 0.5000
+		Epoch run time in seconds: 15.6368
+	Epoch number: 3
+		Step Number: 25
+		Online accuracy: 0.54
+		test accuracy: 0.4860
+		validation accuracy: 0.5120
+		Epoch run time in seconds: 15.5196
+	Epoch number: 4
+		Step Number: 25
+		Online accuracy: 0.58
+		test accuracy: 0.5480
+		validation accuracy: 0.6400
+		Epoch run time in seconds: 15.6714
+	Epoch number: 5
+		Step Number: 25
+		Online accuracy: 0.62
+		test accuracy: 0.6080
+		validation accuracy: 0.6720
+		Epoch run time in seconds: 15.4550
+	Epoch number: 6
+		Step Number: 25
+		Online accuracy: 0.64
+		test accuracy: 0.6060
+		validation accuracy: 0.6840
+		Epoch run time in seconds: 15.2079
+	Epoch number: 7
+		Step Number: 25
+		Online accuracy: 0.67
+		test accuracy: 0.6480
+		validation accuracy: 0.7240
+		Epoch run time in seconds: 15.2213
+	Epoch number: 8
+		Step Number: 25
+		Online accuracy: 0.69
+		test accuracy: 0.6560
+		validation accuracy: 0.7040
+		Epoch run time in seconds: 14.8782
+	Epoch number: 9
+		Step Number: 25
+		Online accuracy: 0.72
+		test accuracy: 0.6920
+		validation accuracy: 0.7640
+		Epoch run time in seconds: 15.0814
+	Epoch number: 10
+		Step Number: 25
+		Online accuracy: 0.74
+		test accuracy: 0.6880
+		validation accuracy: 0.7320
+		Epoch run time in seconds: 14.7187
+	Epoch number: 11
+		Step Number: 25
+		Online accuracy: 0.74
+		test accuracy: 0.6780
+		validation accuracy: 0.7160
+		Epoch run time in seconds: 14.9441
+	Epoch number: 12
