@@ -2,8 +2,12 @@
 data/
 __pycache__/
 
-impl_linen/
 impl_linen/data/
+impl_linen/slurm_logs_bdl/
+impl_linen/results/
 
 impl_nnx/slurm_logs/
 impl_nnx/data/
+impl_nnx/results/base_deep_learning_system/
+impl_nnx/slurm_logs_sap/
+impl_nnx/results_archive/
