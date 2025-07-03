@@ -15,4 +15,4 @@ module load cuda cudnn
 module load python/3.11.0s-ixrhc3q
 source ../.venv/bin/activate
 # run
-python3 incremental_cifar_experiment_linen_refactored.py --config ./cfg/base_deep_learning_system.json --verbose --experiment-index 0
+python3 incremental_cifar_experiment_linen.py --config ./cfg/base_deep_learning_system.json --verbose --experiment-index 0

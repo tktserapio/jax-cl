@@ -27,7 +27,7 @@ from mlproj_manager.util.data_preprocessing_and_transformations import ToTensor,
 from mlproj_manager.file_management.file_and_directory_management import store_object_with_several_attempts
 
 # updated imports with jax implementations
-from torchvision_modified_resnet_jax import build_resnet18
+from modified_resnet_nnx import build_resnet18
 from res_gnt_jax import ResGnT
 
 class JAXCompose:

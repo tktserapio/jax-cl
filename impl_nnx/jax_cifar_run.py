@@ -233,9 +233,6 @@ def repeat_expr(params: {}):
         #     # This would need to be implemented based on ResNet18 structure
         #     pass
 
-
-       
-
         for epoch_idx in tqdm(range(num_epochs)):
             new_train_accuracies = []
             for start_idx in range(0, examples_per_epoch, mini_batch_size):

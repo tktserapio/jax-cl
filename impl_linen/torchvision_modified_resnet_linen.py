@@ -252,14 +252,3 @@ class ResNet(nn.Module):
 def build_resnet18(num_classes: int = 1000, norm_layer=nn.BatchNorm, **kwargs) -> ResNet:
     """Build ResNet-18 with specified parameters"""
     return ResNet(BasicBlock, layers=[2, 2, 2, 2], norm_layer=norm_layer, num_classes=num_classes, **kwargs)
-
-
-def kaiming_init_resnet_module(params):
-    """
-    Apply Kaiming initialization to ResNet parameters (Flax/JAX version).
-    This is a simplified version that works with JAX parameter trees.
-    """
-    # For JAX/Flax, the conv layers already use kaiming_normal() initialization
-    # by default, so we can return the parameters as-is
-    # In the future, you might want to add custom initialization logic here
-    return params
