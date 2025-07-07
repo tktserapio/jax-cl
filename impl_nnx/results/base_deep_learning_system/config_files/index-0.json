@@ -16,5 +16,9 @@
  "_comment_5_": "Network resetting parameters",
  "reset_head": false,
  "reset_network": false,
- "early_stopping": true
+ "early_stopping": true,
+ "_comment_6_": "Hessian computation parameters",
+ "compute_hessian": false,
+ "compute_hessian_size": 100,
+ "compute_hessian_interval": 1
 }

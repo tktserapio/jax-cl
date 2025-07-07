@@ -30,6 +30,13 @@ from mlproj_manager.file_management.file_and_directory_management import store_o
 from modified_resnet_nnx import build_resnet18
 from res_gnt_jax import ResGnT
 
+# for hessian computation at the start and end of each task 
+from utils.hessian_computation import get_hvp_fn
+from utils.lanczos import lanczos_alg
+from utils.density import tridiag_to_density
+from utils.optimizer import l2_regularization, adam_with_param_counts
+from utils.file_system import get_results_path, numpyify, plot_hessian_spectrum
+
 class JAXCompose:
     def __init__(self, transforms):
         self.transforms = transforms
@@ -80,12 +87,6 @@ class IncrementalCIFARExperiment(Experiment):
             self.device = jax.devices("cpu")[0]
             print(f"⚠️  JAX is using CPU: {self.device}")
             print(f"   GPU detection failed: {e}")
-        
-        # Print additional JAX device information
-        print(f"JAX backend: {jax.lib.xla_bridge.get_backend().platform}")
-        print(f"JAX version: {jax.__version__}")
-        all_devices = jax.devices()
-        print(f"All available JAX devices: {all_devices}")
 
         # disable tqdm if verbose is enabled
         tqdm.__init__ = partialmethod(tqdm.__init__, disable=self.verbose)
@@ -136,8 +137,7 @@ class IncrementalCIFARExperiment(Experiment):
         """ Network set up """
         # initialize network with proper JAX rngs
         rngs = nnx.Rngs(self.random_seed)
-        self.net = build_resnet18(num_classes=self.num_classes, norm_layer=nnx.BatchNorm, rngs=rngs)
-        # already initialized with kaiming init in the torchvision_modified_resnet_jax.py file
+        self.net = build_resnet18(num_classes=self.num_classes, rngs=rngs)
 
         # initialize optimizer - JAX/Optax style
         self.optim = optax.sgd(learning_rate=self.stepsize, momentum=self.momentum)
@@ -178,6 +178,10 @@ class IncrementalCIFARExperiment(Experiment):
         self.running_avg_window = 25
         self.current_running_avg_step, self.running_loss, self.running_accuracy = (0, 0.0, 0.0)
         self._initialize_summaries()
+
+        self.compute_hessian          = access_dict(exp_params, "compute_hessian", default=False,  val_type=bool)
+        self.compute_hessian_interval = access_dict(exp_params, "compute_hessian_interval", default=1, val_type=int)
+        self.compute_hessian_size     = access_dict(exp_params, "compute_hessian_size",     default=512, val_type=int)
 
     # ------------------------------ Methods for initializing the experiment ------------------------------#
     def _initialize_summaries(self):
@@ -422,13 +426,20 @@ class IncrementalCIFARExperiment(Experiment):
     def train(self, train_dataloader : DataLoader, test_dataloader : DataLoader, val_dataloader : DataLoader,
           test_data: CifarDataSet, training_data: CifarDataSet, val_data: CifarDataSet):
 
-        training_data.select_new_partition(self.all_classes[:self.current_num_classes])
-        test_data.select_new_partition(self.all_classes[:self.current_num_classes])
-        val_data.select_new_partition(self.all_classes[:self.current_num_classes])
+        training_data.select_new_partition(self.all_classes[:self.current_num_classes]) # example [23, 45, 67, 89...]
+        test_data.select_new_partition(self.all_classes[:self.current_num_classes]) # now the dataset only contains samples from the current active classes
+        val_data.select_new_partition(self.all_classes[:self.current_num_classes]) # same for validation 
         self._save_model_parameters()
 
+        # start of task 0 - initial Hessian computation
+        if self.current_epoch == 0 and 0 % self.compute_hessian_interval == 0:
+            self._compute_hessian(tag="start",
+                          train_loader=train_dataloader,
+                          eval_loader=val_dataloader,
+                          task_id=0)
+
         # Pre-compile JIT functions outside the loop for better performance
-        @jax.jit
+        @nnx.jit
         def train_step_jit(net_state, opt_state, images, labels, class_indices):
             def loss_fn(params):
                 # Reconstruct network from graph definition and parameters
@@ -515,11 +526,30 @@ class IncrementalCIFARExperiment(Experiment):
                     self._store_training_summaries()
 
             epoch_end_time = time.perf_counter()
-            self._store_test_summaries(test_dataloader, val_dataloader, epoch_number=e,
+            self._store_test_summaries(test_dataloader, val_dataloader, epoch_number=self.current_epoch,
                                     epoch_runtime=epoch_end_time - epoch_start_time)
 
+            
+            if ((self.current_epoch + 1) % self.class_increase_frequency == 0 and (self.current_epoch + 1) // self.class_increase_frequency % self.compute_hessian_interval == 0):
+                self._compute_hessian(tag="end",
+                                      train_loader=train_dataloader,
+                                      eval_loader=val_dataloader,
+                                      task_id=(self.current_epoch + 1) // self.class_increase_frequency - 1)
+
+            # Check if we're starting a new task (after incrementing)
+            is_new_task = ((self.current_epoch + 1) % self.class_increase_frequency) == 0
+            
             self.current_epoch += 1
+            
+            # Extend classes for new task
             self.extend_classes(training_data, test_data, val_data)
+            
+            # start of new task - compute Hessian after extending classes
+            if is_new_task and (self.current_epoch // self.class_increase_frequency) % self.compute_hessian_interval == 0:
+                self._compute_hessian(tag="start",
+                              train_loader=train_dataloader,
+                              eval_loader=val_dataloader,
+                              task_id=self.current_epoch // self.class_increase_frequency)
 
             if self.current_epoch % self.checkpoint_save_frequency == 0:
                 self.save_experiment_checkpoint()
@@ -592,6 +622,126 @@ class IncrementalCIFARExperiment(Experiment):
         
         noisy_state = add_noise_to_layer(current_state)
         nnx.update(self.net, noisy_state)
+
+    def _compute_hessian(self, tag: str,
+                     train_loader: DataLoader,
+                     eval_loader: DataLoader,
+                     task_id: int):
+        """
+        Compute Hessian spectrum using Lanczos algorithm for loss landscape analysis.
+        This helps analyze loss of plasticity in continual learning.
+        
+        Args:
+            tag: "start" or "end" to indicate when in the task this is computed
+            train_loader: Training data loader
+            eval_loader: Evaluation data loader  
+            task_id: Current task ID for logging and seeding
+        """
+
+        if not self.compute_hessian:                  # early-out if disabled
+            return
+
+        # -------- pick a small batch (train + eval) ----------
+        train_sample = next(iter(train_loader))
+        eval_sample = next(iter(eval_loader))
+
+        x_train = train_sample["image"]
+        y_train = train_sample["label"]
+        x_eval = eval_sample["image"]
+        y_eval = eval_sample["label"]
+
+        # keep only the first N examples
+        N = self.compute_hessian_size
+        x_train, y_train = x_train[:N], y_train[:N]
+        x_eval, y_eval = x_eval[:N], y_eval[:N]
+
+        # convert to JAX arrays and NHWC
+        x_train = jnp.array(x_train.numpy())
+        y_train = jnp.array(y_train.numpy())
+        x_eval = jnp.array(x_eval.numpy()) 
+        y_eval = jnp.array(y_eval.numpy())
+
+        # Handle NCHW -> NHWC conversion
+        if len(x_train.shape) == 4 and x_train.shape[1] == 3:
+            x_train = jnp.transpose(x_train, (0, 2, 3, 1))
+        if len(x_eval.shape) == 4 and x_eval.shape[1] == 3:
+            x_eval = jnp.transpose(x_eval, (0, 2, 3, 1))
+
+        # Convert one-hot labels to integers for loss function
+        y_train_int = jnp.argmax(y_train, axis=1)
+        y_eval_int = jnp.argmax(y_eval, axis=1)
+
+        # --------------- build loss function for HVP ----------------
+        # The get_hvp_fn utility expects loss functions with signature: loss(params, x_batch, y_batch)
+        def loss_fn_train(params, x_batch, y_batch):
+            net_tmp = nnx.merge(nnx.graphdef(self.net), params)
+            logits = net_tmp(x_batch)[:, self.all_classes[:self.current_num_classes]]
+            return optax.softmax_cross_entropy_with_integer_labels(logits, y_batch).mean()
+
+        def loss_fn_eval(params, x_batch, y_batch):
+            net_tmp = nnx.merge(nnx.graphdef(self.net), params)
+            logits = net_tmp(x_batch)[:, self.all_classes[:self.current_num_classes]]
+            return optax.softmax_cross_entropy_with_integer_labels(logits, y_batch).mean()
+
+        # Create HVP functions with correct API
+        hvp_fn_train, unravel, num_params = get_hvp_fn(
+            loss_fn_train,
+            nnx.state(self.net), 
+            (x_train, y_train_int)
+        )
+        hvp_fn_eval, _, _ = get_hvp_fn(
+            loss_fn_eval,
+            nnx.state(self.net), 
+            (x_eval, y_eval_int)
+        )
+
+        # Create pure linear operators for Lanczos
+        hvp_train = lambda v: hvp_fn_train(nnx.state(self.net), v)
+        hvp_eval = lambda v: hvp_fn_eval(nnx.state(self.net), v)
+
+        # --------------- Lanczos 100 steps --------------------
+        # Use different random keys for train and eval to avoid identical results
+        rng_key_train = jax.random.PRNGKey(self.random_seed + task_id * 1000)
+        rng_key_eval = jax.random.PRNGKey(self.random_seed + task_id * 1000 + 1)
+        
+        tri_train, _ = lanczos_alg(hvp_train, num_params, order=100, rng_key=rng_key_train)
+        tri_eval, _ = lanczos_alg(hvp_eval, num_params, order=100, rng_key=rng_key_eval)
+
+        # Convert to spectral density
+        dens_train, grid_train = tridiag_to_density([tri_train], grid_len=10_000, sigma_squared=1e-5)
+        dens_eval, grid_eval = tridiag_to_density([tri_eval], grid_len=10_000, sigma_squared=1e-5)
+
+        # Store results and create plots
+        at_init = (tag == "start")
+        
+        # Use JAX debug callback for plotting (follows MNIST pattern)
+        jax.debug.callback(
+            plot_hessian_spectrum,
+            grid_train, dens_train, grid_eval, dens_eval,
+            task_id, "cifar_jax", at_init=at_init
+        )
+
+        # Log summary information
+        max_eig_train = grid_train[dens_train.argmax()]
+        max_eig_eval = grid_eval[dens_eval.argmax()]
+        
+        self._print(f"[Hessian-{tag}] Task {task_id} — "
+                   f"top-eigenvalue(train) ≈ {max_eig_train:.3g}, "
+                   f"top-eigenvalue(eval) ≈ {max_eig_eval:.3g}")
+        
+        # Optional: Store results in experiment results for later analysis
+        if not hasattr(self, 'hessian_results'):
+            self.hessian_results = {}
+        
+        key = f"task_{task_id}_{tag}"
+        self.hessian_results[key] = {
+            'train_eigenvalues': grid_train,
+            'train_density': dens_train,
+            'eval_eigenvalues': grid_eval,
+            'eval_density': dens_eval,
+            'max_eig_train': float(max_eig_train),
+            'max_eig_eval': float(max_eig_eval)
+        }
 
     def extend_classes(self, training_data: CifarDataSet, test_data: CifarDataSet, val_data: CifarDataSet):
         """
@@ -677,10 +827,8 @@ class IncrementalCIFARExperiment(Experiment):
         network_key = jax.random.PRNGKey(self.random_seed + self.current_num_classes + 1000)
         
         # Rebuild the entire network with new random keys
-        from torchvision_modified_resnet_jax import build_resnet18
         self.net = build_resnet18(
-            num_classes=self.num_classes, 
-            norm_layer=nnx.BatchNorm, 
+            num_classes=self.num_classes,
             rngs=nnx.Rngs(network_key)
         )
         

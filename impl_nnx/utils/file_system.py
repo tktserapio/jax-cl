@@ -177,7 +177,7 @@ def plot_hessian_spectrum(grids_train, density_train, grids_test, density_test, 
     density_np_test = np.array(density_test)
 
     out_dir = Path("hessian", agent_name)
-    out_dir.mkdir(exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     if at_init:
         fname   = out_dir / f"hessian_task_{task_num}_at_init.png"
     else:

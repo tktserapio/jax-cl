@@ -1,0 +1,6160 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 11952933
+##  Job Name : run_incremental_cifar_bdl_l2
+##  Nodelist : gpu2264
+##      CPUs : 
+##  Mem/Node : 65536 MB
+## Directory : /oscar/home/tserapio/jax_cl/impl_nnx
+##   Job Started : Sun Jul  6 10:48:01 PM EDT 2025
+###############################################################################
+Loaded config from ./cfg/base_deep_learning_system.json
+Running experiment 0
+Config loaded from: ./cfg/base_deep_learning_system.json
+Experiment Configuration:
+  Learning rate (stepsize): 0.1
+  Momentum: 0.9
+  Weight decay: 0.0005
+  Noise std: 0.0
+  Data path: ./data
+  Results dir: ./results
+  Experiment name: base_deep_learning_system
+  Use CBP: False
+  Compute Hessian: False
+	Epoch number: 1
+		Step Number: 25
+		Online accuracy: 0.29
+		train accuracy: 0.2938 (best: 0.2938)
+		test accuracy: 0.2760 (best: 0.2760)
+		validation accuracy: 0.2480 (best: 0.2480)
+		Epoch run time in seconds: 24.2574
+	Epoch number: 2
+		Step Number: 25
+		Online accuracy: 0.36
+		train accuracy: 0.3587 (best: 0.3587)
+		test accuracy: 0.4000 (best: 0.4000)
+		validation accuracy: 0.4080 (best: 0.4080)
+		Epoch run time in seconds: 2.1241
+	Epoch number: 3
+		Step Number: 25
+		Online accuracy: 0.43
+		train accuracy: 0.4262 (best: 0.4262)
+		test accuracy: 0.4980 (best: 0.4980)
+		validation accuracy: 0.5000 (best: 0.5000)
+		Epoch run time in seconds: 2.1348
+	Epoch number: 4
+		Step Number: 25
+		Online accuracy: 0.50
+		train accuracy: 0.4991 (best: 0.4991)
+		test accuracy: 0.5480 (best: 0.5480)
+		validation accuracy: 0.5400 (best: 0.5400)
+		Epoch run time in seconds: 2.2792
+	Epoch number: 5
+		Step Number: 25
+		Online accuracy: 0.54
+		train accuracy: 0.5413 (best: 0.5413)
+		test accuracy: 0.5440 (best: 0.5480)
+		validation accuracy: 0.5320 (best: 0.5400)
+		Epoch run time in seconds: 2.1378
+	Epoch number: 6
+		Step Number: 25
+		Online accuracy: 0.56
+		train accuracy: 0.5591 (best: 0.5591)
+		test accuracy: 0.6120 (best: 0.6120)
+		validation accuracy: 0.5480 (best: 0.5480)
+		Epoch run time in seconds: 2.1246
+	Epoch number: 7
+		Step Number: 25
+		Online accuracy: 0.57
+		train accuracy: 0.5707 (best: 0.5707)
+		test accuracy: 0.5460 (best: 0.6120)
+		validation accuracy: 0.5600 (best: 0.5600)
+		Epoch run time in seconds: 2.1615
+	Epoch number: 8
+		Step Number: 25
+		Online accuracy: 0.60
+		train accuracy: 0.5956 (best: 0.5956)
+		test accuracy: 0.6400 (best: 0.6400)
+		validation accuracy: 0.5800 (best: 0.5800)
+		Epoch run time in seconds: 2.1425
+	Epoch number: 9
+		Step Number: 25
+		Online accuracy: 0.61
+		train accuracy: 0.6093 (best: 0.6093)
+		test accuracy: 0.6520 (best: 0.6520)
+		validation accuracy: 0.5840 (best: 0.5840)
+		Epoch run time in seconds: 2.3719
+	Epoch number: 10
+		Step Number: 25
+		Online accuracy: 0.62
+		train accuracy: 0.6236 (best: 0.6236)
+		test accuracy: 0.6100 (best: 0.6520)
+		validation accuracy: 0.5680 (best: 0.5840)
+		Epoch run time in seconds: 2.1421
+	Epoch number: 11
+		Step Number: 25
+		Online accuracy: 0.64
+		train accuracy: 0.6364 (best: 0.6364)
+		test accuracy: 0.6440 (best: 0.6520)
+		validation accuracy: 0.6000 (best: 0.6000)
+		Epoch run time in seconds: 2.1860
+	Epoch number: 12
+		Step Number: 25
+		Online accuracy: 0.65
+		train accuracy: 0.6538 (best: 0.6538)
+		test accuracy: 0.6620 (best: 0.6620)
+		validation accuracy: 0.6520 (best: 0.6520)
+		Epoch run time in seconds: 2.1614
+	Epoch number: 13
+		Step Number: 25
+		Online accuracy: 0.67
+		train accuracy: 0.6658 (best: 0.6658)
+		test accuracy: 0.6700 (best: 0.6700)
+		validation accuracy: 0.6320 (best: 0.6520)
+		Epoch run time in seconds: 2.1520
+	Epoch number: 14
+		Step Number: 25
+		Online accuracy: 0.65
+		train accuracy: 0.6529 (best: 0.6658)
+		test accuracy: 0.6800 (best: 0.6800)
+		validation accuracy: 0.6000 (best: 0.6520)
+		Epoch run time in seconds: 2.2140
+	Epoch number: 15
+		Step Number: 25
+		Online accuracy: 0.66
+		train accuracy: 0.6640 (best: 0.6658)
+		test accuracy: 0.6860 (best: 0.6860)
+		validation accuracy: 0.6520 (best: 0.6520)
+		Epoch run time in seconds: 2.1326
+	Epoch number: 16
+		Step Number: 25
+		Online accuracy: 0.68
+		train accuracy: 0.6782 (best: 0.6782)
+		test accuracy: 0.6600 (best: 0.6860)
+		validation accuracy: 0.6200 (best: 0.6520)
+		Epoch run time in seconds: 2.1664
+	Epoch number: 17
+		Step Number: 25
+		Online accuracy: 0.68
+		train accuracy: 0.6778 (best: 0.6782)
+		test accuracy: 0.6780 (best: 0.6860)
+		validation accuracy: 0.6280 (best: 0.6520)
+		Epoch run time in seconds: 2.1908
+	Epoch number: 18
+		Step Number: 25
+		Online accuracy: 0.70
+		train accuracy: 0.7022 (best: 0.7022)
+		test accuracy: 0.6720 (best: 0.6860)
+		validation accuracy: 0.6720 (best: 0.6720)
+		Epoch run time in seconds: 2.1029
+	Epoch number: 19
+		Step Number: 25
+		Online accuracy: 0.71
+		train accuracy: 0.7076 (best: 0.7076)
+		test accuracy: 0.7000 (best: 0.7000)
+		validation accuracy: 0.6600 (best: 0.6720)
+		Epoch run time in seconds: 2.3009
+	Epoch number: 20
+		Step Number: 25
+		Online accuracy: 0.71
+		train accuracy: 0.7120 (best: 0.7120)
+		test accuracy: 0.6780 (best: 0.7000)
+		validation accuracy: 0.6440 (best: 0.6720)
+		Epoch run time in seconds: 2.1770
+	Epoch number: 21
+		Step Number: 25
+		Online accuracy: 0.73
+		train accuracy: 0.7302 (best: 0.7302)
+		test accuracy: 0.7120 (best: 0.7120)
+		validation accuracy: 0.6760 (best: 0.6760)
+		Epoch run time in seconds: 2.1358
+	Epoch number: 22
+		Step Number: 25
+		Online accuracy: 0.71
+		train accuracy: 0.7116 (best: 0.7302)
+		test accuracy: 0.6980 (best: 0.7120)
+		validation accuracy: 0.6320 (best: 0.6760)
+		Epoch run time in seconds: 2.2622
+	Epoch number: 23
+		Step Number: 25
+		Online accuracy: 0.73
+		train accuracy: 0.7316 (best: 0.7316)
+		test accuracy: 0.7440 (best: 0.7440)
+		validation accuracy: 0.7000 (best: 0.7000)
+		Epoch run time in seconds: 2.1670
+	Epoch number: 24
+		Step Number: 25
+		Online accuracy: 0.73
+		train accuracy: 0.7302 (best: 0.7316)
+		test accuracy: 0.7120 (best: 0.7440)
+		validation accuracy: 0.6560 (best: 0.7000)
+		Epoch run time in seconds: 2.1481
+	Epoch number: 25
+		Step Number: 25
+		Online accuracy: 0.75
+		train accuracy: 0.7480 (best: 0.7480)
+		test accuracy: 0.7300 (best: 0.7440)
+		validation accuracy: 0.6800 (best: 0.7000)
+		Epoch run time in seconds: 2.1654
+	Epoch number: 26
+		Step Number: 25
+		Online accuracy: 0.75
+		train accuracy: 0.7498 (best: 0.7498)
+		test accuracy: 0.6980 (best: 0.7440)
+		validation accuracy: 0.6760 (best: 0.7000)
+		Epoch run time in seconds: 2.1388
+	Epoch number: 27
+		Step Number: 25
+		Online accuracy: 0.74
+		train accuracy: 0.7449 (best: 0.7498)
+		test accuracy: 0.7300 (best: 0.7440)
+		validation accuracy: 0.7120 (best: 0.7120)
+		Epoch run time in seconds: 2.1551
+	Epoch number: 28
+		Step Number: 25
+		Online accuracy: 0.77
+		train accuracy: 0.7707 (best: 0.7707)
+		test accuracy: 0.7300 (best: 0.7440)
+		validation accuracy: 0.6680 (best: 0.7120)
+		Epoch run time in seconds: 2.2020
+	Epoch number: 29
+		Step Number: 25
+		Online accuracy: 0.76
+		train accuracy: 0.7622 (best: 0.7707)
+		test accuracy: 0.7180 (best: 0.7440)
+		validation accuracy: 0.7360 (best: 0.7360)
+		Epoch run time in seconds: 2.1773
+	Epoch number: 30
+		Step Number: 25
+		Online accuracy: 0.77
+		train accuracy: 0.7684 (best: 0.7707)
+		test accuracy: 0.7340 (best: 0.7440)
+		validation accuracy: 0.7280 (best: 0.7360)
+		Epoch run time in seconds: 2.2101
+	Epoch number: 31
+		Step Number: 25
+		Online accuracy: 0.78
+		train accuracy: 0.7769 (best: 0.7769)
+		test accuracy: 0.7040 (best: 0.7440)
+		validation accuracy: 0.7040 (best: 0.7360)
+		Epoch run time in seconds: 2.1324
+	Epoch number: 32
+		Step Number: 25
+		Online accuracy: 0.78
+		train accuracy: 0.7778 (best: 0.7778)
+		test accuracy: 0.7340 (best: 0.7440)
+		validation accuracy: 0.6840 (best: 0.7360)
+		Epoch run time in seconds: 2.1264
+	Epoch number: 33
+		Step Number: 25
+		Online accuracy: 0.79
+		train accuracy: 0.7862 (best: 0.7862)
+		test accuracy: 0.7100 (best: 0.7440)
+		validation accuracy: 0.6760 (best: 0.7360)
+		Epoch run time in seconds: 2.1185
+	Epoch number: 34
+		Step Number: 25
+		Online accuracy: 0.80
+		train accuracy: 0.7991 (best: 0.7991)
+		test accuracy: 0.7580 (best: 0.7580)
+		validation accuracy: 0.7200 (best: 0.7360)
+		Epoch run time in seconds: 2.1585
+	Epoch number: 35
+		Step Number: 25
+		Online accuracy: 0.81
+		train accuracy: 0.8071 (best: 0.8071)
+		test accuracy: 0.7520 (best: 0.7580)
+		validation accuracy: 0.7080 (best: 0.7360)
+		Epoch run time in seconds: 2.2032
+	Epoch number: 36
+		Step Number: 25
+		Online accuracy: 0.80
+		train accuracy: 0.8044 (best: 0.8071)
+		test accuracy: 0.7540 (best: 0.7580)
+		validation accuracy: 0.7600 (best: 0.7600)
+		Epoch run time in seconds: 2.2339
+	Epoch number: 37
+		Step Number: 25
+		Online accuracy: 0.79
+		train accuracy: 0.7907 (best: 0.8071)
+		test accuracy: 0.7340 (best: 0.7580)
+		validation accuracy: 0.7120 (best: 0.7600)
+		Epoch run time in seconds: 2.1054
+	Epoch number: 38
+		Step Number: 25
+		Online accuracy: 0.81
+		train accuracy: 0.8089 (best: 0.8089)
+		test accuracy: 0.7580 (best: 0.7580)
+		validation accuracy: 0.7280 (best: 0.7600)
+		Epoch run time in seconds: 2.1347
+	Epoch number: 39
+		Step Number: 25
+		Online accuracy: 0.83
+		train accuracy: 0.8271 (best: 0.8271)
+		test accuracy: 0.7420 (best: 0.7580)
+		validation accuracy: 0.7160 (best: 0.7600)
+		Epoch run time in seconds: 2.1723
+	Epoch number: 40
+		Step Number: 25
+		Online accuracy: 0.80
+		train accuracy: 0.8044 (best: 0.8271)
+		test accuracy: 0.7460 (best: 0.7580)
+		validation accuracy: 0.7200 (best: 0.7600)
+		Epoch run time in seconds: 2.1660
+	Epoch number: 41
+		Step Number: 25
+		Online accuracy: 0.80
+		train accuracy: 0.7987 (best: 0.8271)
+		test accuracy: 0.7480 (best: 0.7580)
+		validation accuracy: 0.7200 (best: 0.7600)
+		Epoch run time in seconds: 2.1525
+	Epoch number: 42
+		Step Number: 25
+		Online accuracy: 0.82
+		train accuracy: 0.8173 (best: 0.8271)
+		test accuracy: 0.7540 (best: 0.7580)
+		validation accuracy: 0.7400 (best: 0.7600)
+		Epoch run time in seconds: 2.1435
+	Epoch number: 43
+		Step Number: 25
+		Online accuracy: 0.82
+		train accuracy: 0.8249 (best: 0.8271)
+		test accuracy: 0.7500 (best: 0.7580)
+		validation accuracy: 0.7440 (best: 0.7600)
+		Epoch run time in seconds: 2.1474
+	Epoch number: 44
+		Step Number: 25
+		Online accuracy: 0.83
+		train accuracy: 0.8267 (best: 0.8271)
+		test accuracy: 0.7760 (best: 0.7760)
+		validation accuracy: 0.7640 (best: 0.7640)
+		Epoch run time in seconds: 2.0928
+	Epoch number: 45
+		Step Number: 25
+		Online accuracy: 0.83
+		train accuracy: 0.8258 (best: 0.8271)
+		test accuracy: 0.7340 (best: 0.7760)
+		validation accuracy: 0.7360 (best: 0.7640)
+		Epoch run time in seconds: 2.1884
+	Epoch number: 46
+		Step Number: 25
+		Online accuracy: 0.84
+		train accuracy: 0.8391 (best: 0.8391)
+		test accuracy: 0.7740 (best: 0.7760)
+		validation accuracy: 0.7120 (best: 0.7640)
+		Epoch run time in seconds: 2.1373
+	Epoch number: 47
+		Step Number: 25
+		Online accuracy: 0.84
+		train accuracy: 0.8431 (best: 0.8431)
+		test accuracy: 0.8080 (best: 0.8080)
+		validation accuracy: 0.7360 (best: 0.7640)
+		Epoch run time in seconds: 2.1444
+	Epoch number: 48
+		Step Number: 25
+		Online accuracy: 0.85
+		train accuracy: 0.8467 (best: 0.8467)
+		test accuracy: 0.7620 (best: 0.8080)
+		validation accuracy: 0.7360 (best: 0.7640)
+		Epoch run time in seconds: 2.1366
+	Epoch number: 49
+		Step Number: 25
+		Online accuracy: 0.86
+		train accuracy: 0.8600 (best: 0.8600)
+		test accuracy: 0.7920 (best: 0.8080)
+		validation accuracy: 0.7960 (best: 0.7960)
+		Epoch run time in seconds: 2.1833
+	Epoch number: 50
+		Step Number: 25
+		Online accuracy: 0.85
+		train accuracy: 0.8542 (best: 0.8600)
+		test accuracy: 0.7500 (best: 0.8080)
+		validation accuracy: 0.7200 (best: 0.7960)
+		Epoch run time in seconds: 2.1750
+	Epoch number: 51
+		Step Number: 25
+		Online accuracy: 0.85
+		train accuracy: 0.8538 (best: 0.8600)
+		test accuracy: 0.7960 (best: 0.8080)
+		validation accuracy: 0.7640 (best: 0.7960)
+		Epoch run time in seconds: 2.2237
+	Epoch number: 52
+		Step Number: 25
+		Online accuracy: 0.86
+		train accuracy: 0.8631 (best: 0.8631)
+		test accuracy: 0.7480 (best: 0.8080)
+		validation accuracy: 0.7760 (best: 0.7960)
+		Epoch run time in seconds: 2.1742
+	Epoch number: 53
+		Step Number: 25
+		Online accuracy: 0.86
+		train accuracy: 0.8556 (best: 0.8631)
+		test accuracy: 0.7320 (best: 0.8080)
+		validation accuracy: 0.7040 (best: 0.7960)
+		Epoch run time in seconds: 2.2606
+	Epoch number: 54
+		Step Number: 25
+		Online accuracy: 0.86
+		train accuracy: 0.8587 (best: 0.8631)
+		test accuracy: 0.7660 (best: 0.8080)
+		validation accuracy: 0.7640 (best: 0.7960)
+		Epoch run time in seconds: 2.1840
+	Epoch number: 55
+		Step Number: 25
+		Online accuracy: 0.86
+		train accuracy: 0.8600 (best: 0.8631)
+		test accuracy: 0.7760 (best: 0.8080)
+		validation accuracy: 0.7600 (best: 0.7960)
+		Epoch run time in seconds: 2.0999
+	Epoch number: 56
+		Step Number: 25
+		Online accuracy: 0.88
+		train accuracy: 0.8782 (best: 0.8782)
+		test accuracy: 0.7860 (best: 0.8080)
+		validation accuracy: 0.7960 (best: 0.7960)
+		Epoch run time in seconds: 2.1667
+	Epoch number: 57
+		Step Number: 25
+		Online accuracy: 0.87
+		train accuracy: 0.8716 (best: 0.8782)
+		test accuracy: 0.7700 (best: 0.8080)
+		validation accuracy: 0.7680 (best: 0.7960)
+		Epoch run time in seconds: 2.1887
+	Epoch number: 58
+		Step Number: 25
+		Online accuracy: 0.87
+		train accuracy: 0.8693 (best: 0.8782)
+		test accuracy: 0.7800 (best: 0.8080)
+		validation accuracy: 0.7680 (best: 0.7960)
+		Epoch run time in seconds: 2.1737
+	Epoch number: 59
+		Step Number: 25
+		Online accuracy: 0.88
+		train accuracy: 0.8827 (best: 0.8827)
+		test accuracy: 0.8000 (best: 0.8080)
+		validation accuracy: 0.7640 (best: 0.7960)
+		Epoch run time in seconds: 2.1527
+	Epoch number: 60
+		Step Number: 25
+		Online accuracy: 0.89
+		train accuracy: 0.8898 (best: 0.8898)
+		test accuracy: 0.7500 (best: 0.8080)
+		validation accuracy: 0.8120 (best: 0.8120)
+		Epoch run time in seconds: 2.1648
+	Epoch number: 61
+		Step Number: 25
+		Online accuracy: 0.91
+		train accuracy: 0.9124 (best: 0.9124)
+		test accuracy: 0.8220 (best: 0.8220)
+		validation accuracy: 0.8120 (best: 0.8120)
+		Epoch run time in seconds: 2.1700
+	Epoch number: 62
+		Step Number: 25
+		Online accuracy: 0.95
+		train accuracy: 0.9484 (best: 0.9484)
+		test accuracy: 0.8260 (best: 0.8260)
+		validation accuracy: 0.8120 (best: 0.8120)
+		Epoch run time in seconds: 2.1524
+	Epoch number: 63
+		Step Number: 25
+		Online accuracy: 0.95
+		train accuracy: 0.9511 (best: 0.9511)
+		test accuracy: 0.8140 (best: 0.8260)
+		validation accuracy: 0.8080 (best: 0.8120)
+		Epoch run time in seconds: 2.1287
+	Epoch number: 64
+		Step Number: 25
+		Online accuracy: 0.95
+		train accuracy: 0.9507 (best: 0.9511)
+		test accuracy: 0.8240 (best: 0.8260)
+		validation accuracy: 0.8000 (best: 0.8120)
+		Epoch run time in seconds: 2.1336
+	Epoch number: 65
+		Step Number: 25
+		Online accuracy: 0.96
+		train accuracy: 0.9622 (best: 0.9622)
+		test accuracy: 0.8040 (best: 0.8260)
+		validation accuracy: 0.8280 (best: 0.8280)
+		Epoch run time in seconds: 2.1820
+	Epoch number: 66
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9658 (best: 0.9658)
+		test accuracy: 0.8220 (best: 0.8260)
+		validation accuracy: 0.7720 (best: 0.8280)
+		Epoch run time in seconds: 2.1482
+	Epoch number: 67
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9680 (best: 0.9680)
+		test accuracy: 0.8240 (best: 0.8260)
+		validation accuracy: 0.7720 (best: 0.8280)
+		Epoch run time in seconds: 2.1503
+	Epoch number: 68
+		Step Number: 25
+		Online accuracy: 0.96
+		train accuracy: 0.9627 (best: 0.9680)
+		test accuracy: 0.8000 (best: 0.8260)
+		validation accuracy: 0.8120 (best: 0.8280)
+		Epoch run time in seconds: 2.1652
+	Epoch number: 69
+		Step Number: 25
+		Online accuracy: 0.96
+		train accuracy: 0.9649 (best: 0.9680)
+		test accuracy: 0.8180 (best: 0.8260)
+		validation accuracy: 0.7920 (best: 0.8280)
+		Epoch run time in seconds: 2.1468
+	Epoch number: 70
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9676 (best: 0.9680)
+		test accuracy: 0.8140 (best: 0.8260)
+		validation accuracy: 0.8160 (best: 0.8280)
+		Epoch run time in seconds: 2.1476
+	Epoch number: 71
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9684 (best: 0.9684)
+		test accuracy: 0.8100 (best: 0.8260)
+		validation accuracy: 0.8000 (best: 0.8280)
+		Epoch run time in seconds: 2.0886
+	Epoch number: 72
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9689 (best: 0.9689)
+		test accuracy: 0.8120 (best: 0.8260)
+		validation accuracy: 0.7960 (best: 0.8280)
+		Epoch run time in seconds: 2.1087
+	Epoch number: 73
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9769 (best: 0.9769)
+		test accuracy: 0.7920 (best: 0.8260)
+		validation accuracy: 0.8120 (best: 0.8280)
+		Epoch run time in seconds: 2.2222
+	Epoch number: 74
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9716 (best: 0.9769)
+		test accuracy: 0.8280 (best: 0.8280)
+		validation accuracy: 0.7920 (best: 0.8280)
+		Epoch run time in seconds: 2.1420
+	Epoch number: 75
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9711 (best: 0.9769)
+		test accuracy: 0.8240 (best: 0.8280)
+		validation accuracy: 0.8000 (best: 0.8280)
+		Epoch run time in seconds: 2.2363
+	Epoch number: 76
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9773 (best: 0.9773)
+		test accuracy: 0.8280 (best: 0.8280)
+		validation accuracy: 0.8120 (best: 0.8280)
+		Epoch run time in seconds: 2.1338
+	Epoch number: 77
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9769 (best: 0.9773)
+		test accuracy: 0.8360 (best: 0.8360)
+		validation accuracy: 0.8120 (best: 0.8280)
+		Epoch run time in seconds: 2.1814
+	Epoch number: 78
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9796 (best: 0.9796)
+		test accuracy: 0.7860 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8280)
+		Epoch run time in seconds: 2.1727
+	Epoch number: 79
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9782 (best: 0.9796)
+		test accuracy: 0.8240 (best: 0.8360)
+		validation accuracy: 0.8080 (best: 0.8280)
+		Epoch run time in seconds: 2.2109
+	Epoch number: 80
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9813 (best: 0.9813)
+		test accuracy: 0.8180 (best: 0.8360)
+		validation accuracy: 0.8080 (best: 0.8280)
+		Epoch run time in seconds: 2.1822
+	Epoch number: 81
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9738 (best: 0.9813)
+		test accuracy: 0.8040 (best: 0.8360)
+		validation accuracy: 0.8000 (best: 0.8280)
+		Epoch run time in seconds: 2.1219
+	Epoch number: 82
+		Step Number: 25
+		Online accuracy: 0.97
+		train accuracy: 0.9747 (best: 0.9813)
+		test accuracy: 0.7940 (best: 0.8360)
+		validation accuracy: 0.8200 (best: 0.8280)
+		Epoch run time in seconds: 2.1849
+	Epoch number: 83
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9840 (best: 0.9840)
+		test accuracy: 0.8240 (best: 0.8360)
+		validation accuracy: 0.8160 (best: 0.8280)
+		Epoch run time in seconds: 2.1901
+	Epoch number: 84
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9791 (best: 0.9840)
+		test accuracy: 0.8120 (best: 0.8360)
+		validation accuracy: 0.7880 (best: 0.8280)
+		Epoch run time in seconds: 2.1995
+	Epoch number: 85
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9800 (best: 0.9840)
+		test accuracy: 0.8200 (best: 0.8360)
+		validation accuracy: 0.7920 (best: 0.8280)
+		Epoch run time in seconds: 2.2026
+	Epoch number: 86
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9876 (best: 0.9876)
+		test accuracy: 0.8100 (best: 0.8360)
+		validation accuracy: 0.8040 (best: 0.8280)
+		Epoch run time in seconds: 2.2292
+	Epoch number: 87
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9769 (best: 0.9876)
+		test accuracy: 0.8300 (best: 0.8360)
+		validation accuracy: 0.8400 (best: 0.8400)
+		Epoch run time in seconds: 2.2000
+	Epoch number: 88
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9862 (best: 0.9876)
+		test accuracy: 0.7940 (best: 0.8360)
+		validation accuracy: 0.8080 (best: 0.8400)
+		Epoch run time in seconds: 2.1199
+	Epoch number: 89
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9796 (best: 0.9876)
+		test accuracy: 0.8220 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.6749
+	Epoch number: 90
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9898 (best: 0.9898)
+		test accuracy: 0.8200 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.1718
+	Epoch number: 91
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9884 (best: 0.9898)
+		test accuracy: 0.8180 (best: 0.8360)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.2301
+	Epoch number: 92
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9871 (best: 0.9898)
+		test accuracy: 0.8260 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.1786
+	Epoch number: 93
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9813 (best: 0.9898)
+		test accuracy: 0.8260 (best: 0.8360)
+		validation accuracy: 0.8160 (best: 0.8400)
+		Epoch run time in seconds: 2.2493
+	Epoch number: 94
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9827 (best: 0.9898)
+		test accuracy: 0.8120 (best: 0.8360)
+		validation accuracy: 0.8080 (best: 0.8400)
+		Epoch run time in seconds: 2.2570
+	Epoch number: 95
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9871 (best: 0.9898)
+		test accuracy: 0.8120 (best: 0.8360)
+		validation accuracy: 0.8200 (best: 0.8400)
+		Epoch run time in seconds: 2.2339
+	Epoch number: 96
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9880 (best: 0.9898)
+		test accuracy: 0.8200 (best: 0.8360)
+		validation accuracy: 0.8000 (best: 0.8400)
+		Epoch run time in seconds: 2.2389
+	Epoch number: 97
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9902 (best: 0.9902)
+		test accuracy: 0.8180 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.2283
+	Epoch number: 98
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9871 (best: 0.9902)
+		test accuracy: 0.8120 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.1620
+	Epoch number: 99
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9853 (best: 0.9902)
+		test accuracy: 0.8000 (best: 0.8360)
+		validation accuracy: 0.7680 (best: 0.8400)
+		Epoch run time in seconds: 2.1485
+	Epoch number: 100
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9804 (best: 0.9902)
+		test accuracy: 0.7960 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.2149
+	Epoch number: 101
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9813 (best: 0.9902)
+		test accuracy: 0.8300 (best: 0.8360)
+		validation accuracy: 0.8280 (best: 0.8400)
+		Epoch run time in seconds: 2.3422
+	Epoch number: 102
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9907 (best: 0.9907)
+		test accuracy: 0.8080 (best: 0.8360)
+		validation accuracy: 0.7760 (best: 0.8400)
+		Epoch run time in seconds: 2.3985
+	Epoch number: 103
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9871 (best: 0.9907)
+		test accuracy: 0.7840 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.3606
+	Epoch number: 104
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9867 (best: 0.9907)
+		test accuracy: 0.8140 (best: 0.8360)
+		validation accuracy: 0.8200 (best: 0.8400)
+		Epoch run time in seconds: 2.3087
+	Epoch number: 105
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9880 (best: 0.9907)
+		test accuracy: 0.8120 (best: 0.8360)
+		validation accuracy: 0.8200 (best: 0.8400)
+		Epoch run time in seconds: 2.3579
+	Epoch number: 106
+		Step Number: 25
+		Online accuracy: 0.98
+		train accuracy: 0.9844 (best: 0.9907)
+		test accuracy: 0.8120 (best: 0.8360)
+		validation accuracy: 0.8280 (best: 0.8400)
+		Epoch run time in seconds: 2.2863
+	Epoch number: 107
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9893 (best: 0.9907)
+		test accuracy: 0.8200 (best: 0.8360)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.3133
+	Epoch number: 108
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9867 (best: 0.9907)
+		test accuracy: 0.8020 (best: 0.8360)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.2240
+	Epoch number: 109
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9907 (best: 0.9907)
+		test accuracy: 0.8180 (best: 0.8360)
+		validation accuracy: 0.8320 (best: 0.8400)
+		Epoch run time in seconds: 2.2818
+	Epoch number: 110
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9902 (best: 0.9907)
+		test accuracy: 0.8100 (best: 0.8360)
+		validation accuracy: 0.8000 (best: 0.8400)
+		Epoch run time in seconds: 2.3494
+	Epoch number: 111
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9920 (best: 0.9920)
+		test accuracy: 0.7840 (best: 0.8360)
+		validation accuracy: 0.8080 (best: 0.8400)
+		Epoch run time in seconds: 2.2826
+	Epoch number: 112
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9898 (best: 0.9920)
+		test accuracy: 0.8360 (best: 0.8360)
+		validation accuracy: 0.8200 (best: 0.8400)
+		Epoch run time in seconds: 2.2675
+	Epoch number: 113
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9916 (best: 0.9920)
+		test accuracy: 0.7980 (best: 0.8360)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.3050
+	Epoch number: 114
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9853 (best: 0.9920)
+		test accuracy: 0.8320 (best: 0.8360)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.3225
+	Epoch number: 115
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9924 (best: 0.9924)
+		test accuracy: 0.8240 (best: 0.8360)
+		validation accuracy: 0.7760 (best: 0.8400)
+		Epoch run time in seconds: 2.2221
+	Epoch number: 116
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9862 (best: 0.9924)
+		test accuracy: 0.8100 (best: 0.8360)
+		validation accuracy: 0.8320 (best: 0.8400)
+		Epoch run time in seconds: 2.2323
+	Epoch number: 117
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9871 (best: 0.9924)
+		test accuracy: 0.8400 (best: 0.8400)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.1331
+	Epoch number: 118
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9911 (best: 0.9924)
+		test accuracy: 0.8320 (best: 0.8400)
+		validation accuracy: 0.7920 (best: 0.8400)
+		Epoch run time in seconds: 2.2319
+	Epoch number: 119
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9898 (best: 0.9924)
+		test accuracy: 0.8040 (best: 0.8400)
+		validation accuracy: 0.7680 (best: 0.8400)
+		Epoch run time in seconds: 2.1710
+	Epoch number: 120
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9889 (best: 0.9924)
+		test accuracy: 0.8180 (best: 0.8400)
+		validation accuracy: 0.8000 (best: 0.8400)
+		Epoch run time in seconds: 2.2001
+	Epoch number: 121
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9902 (best: 0.9924)
+		test accuracy: 0.8280 (best: 0.8400)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.1740
+	Epoch number: 122
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9960 (best: 0.9960)
+		test accuracy: 0.8280 (best: 0.8400)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.1120
+	Epoch number: 123
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9964)
+		test accuracy: 0.8360 (best: 0.8400)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.2345
+	Epoch number: 124
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9973)
+		test accuracy: 0.8200 (best: 0.8400)
+		validation accuracy: 0.8280 (best: 0.8400)
+		Epoch run time in seconds: 2.1952
+	Epoch number: 125
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9973)
+		test accuracy: 0.8260 (best: 0.8400)
+		validation accuracy: 0.8400 (best: 0.8400)
+		Epoch run time in seconds: 2.1602
+	Epoch number: 126
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9973)
+		test accuracy: 0.8120 (best: 0.8400)
+		validation accuracy: 0.8160 (best: 0.8400)
+		Epoch run time in seconds: 2.2120
+	Epoch number: 127
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9982)
+		test accuracy: 0.8420 (best: 0.8420)
+		validation accuracy: 0.8280 (best: 0.8400)
+		Epoch run time in seconds: 2.1835
+	Epoch number: 128
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9960 (best: 0.9982)
+		test accuracy: 0.8300 (best: 0.8420)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.1602
+	Epoch number: 129
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9987)
+		test accuracy: 0.8340 (best: 0.8420)
+		validation accuracy: 0.8080 (best: 0.8400)
+		Epoch run time in seconds: 2.1215
+	Epoch number: 130
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9987)
+		test accuracy: 0.8180 (best: 0.8420)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.1760
+	Epoch number: 131
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9987)
+		test accuracy: 0.8340 (best: 0.8420)
+		validation accuracy: 0.8160 (best: 0.8400)
+		Epoch run time in seconds: 2.1299
+	Epoch number: 132
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9951 (best: 0.9987)
+		test accuracy: 0.8320 (best: 0.8420)
+		validation accuracy: 0.8080 (best: 0.8400)
+		Epoch run time in seconds: 2.1663
+	Epoch number: 133
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9987)
+		test accuracy: 0.8280 (best: 0.8420)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.1295
+	Epoch number: 134
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9987)
+		test accuracy: 0.8380 (best: 0.8420)
+		validation accuracy: 0.8080 (best: 0.8400)
+		Epoch run time in seconds: 2.1251
+	Epoch number: 135
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9987)
+		test accuracy: 0.8280 (best: 0.8420)
+		validation accuracy: 0.7960 (best: 0.8400)
+		Epoch run time in seconds: 2.1430
+	Epoch number: 136
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9987)
+		test accuracy: 0.8180 (best: 0.8420)
+		validation accuracy: 0.8280 (best: 0.8400)
+		Epoch run time in seconds: 2.1806
+	Epoch number: 137
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9956 (best: 0.9987)
+		test accuracy: 0.8140 (best: 0.8420)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.1118
+	Epoch number: 138
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9987)
+		test accuracy: 0.8220 (best: 0.8420)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.1945
+	Epoch number: 139
+		Step Number: 25
+		Online accuracy: 0.99
+		train accuracy: 0.9942 (best: 0.9987)
+		test accuracy: 0.8380 (best: 0.8420)
+		validation accuracy: 0.8200 (best: 0.8400)
+		Epoch run time in seconds: 2.1353
+	Epoch number: 140
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9987)
+		test accuracy: 0.8300 (best: 0.8420)
+		validation accuracy: 0.8000 (best: 0.8400)
+		Epoch run time in seconds: 2.1858
+	Epoch number: 141
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 1.0000 (best: 1.0000)
+		test accuracy: 0.8420 (best: 0.8420)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.2096
+	Epoch number: 142
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 1.0000)
+		test accuracy: 0.8420 (best: 0.8420)
+		validation accuracy: 0.8280 (best: 0.8400)
+		Epoch run time in seconds: 2.1951
+	Epoch number: 143
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 1.0000)
+		test accuracy: 0.8220 (best: 0.8420)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.1388
+	Epoch number: 144
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 1.0000)
+		test accuracy: 0.8340 (best: 0.8420)
+		validation accuracy: 0.8240 (best: 0.8400)
+		Epoch run time in seconds: 2.3768
+	Epoch number: 145
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 1.0000)
+		test accuracy: 0.8220 (best: 0.8420)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.1524
+	Epoch number: 146
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8240 (best: 0.8420)
+		validation accuracy: 0.8120 (best: 0.8400)
+		Epoch run time in seconds: 2.1903
+	Epoch number: 147
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8280 (best: 0.8420)
+		validation accuracy: 0.8040 (best: 0.8400)
+		Epoch run time in seconds: 2.2772
+	Epoch number: 148
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8420)
+		validation accuracy: 0.8080 (best: 0.8400)
+		Epoch run time in seconds: 2.1443
+	Epoch number: 149
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8420 (best: 0.8420)
+		validation accuracy: 0.8120 (best: 0.8400)
+		Epoch run time in seconds: 2.1703
+	Epoch number: 150
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8340 (best: 0.8420)
+		validation accuracy: 0.8320 (best: 0.8400)
+		Epoch run time in seconds: 2.1486
+	Epoch number: 151
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8360 (best: 0.8420)
+		validation accuracy: 0.8200 (best: 0.8400)
+		Epoch run time in seconds: 2.1294
+	Epoch number: 152
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8220 (best: 0.8420)
+		validation accuracy: 0.8320 (best: 0.8400)
+		Epoch run time in seconds: 2.1909
+	Epoch number: 153
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8420)
+		validation accuracy: 0.8200 (best: 0.8400)
+		Epoch run time in seconds: 2.1857
+	Epoch number: 154
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8420)
+		validation accuracy: 0.8440 (best: 0.8440)
+		Epoch run time in seconds: 2.6495
+	Epoch number: 155
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 1.0000)
+		test accuracy: 0.8300 (best: 0.8420)
+		validation accuracy: 0.8400 (best: 0.8440)
+		Epoch run time in seconds: 2.1430
+	Epoch number: 156
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8100 (best: 0.8420)
+		validation accuracy: 0.8320 (best: 0.8440)
+		Epoch run time in seconds: 2.1573
+	Epoch number: 157
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8160 (best: 0.8420)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1545
+	Epoch number: 158
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8220 (best: 0.8420)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1107
+	Epoch number: 159
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8260 (best: 0.8420)
+		validation accuracy: 0.8120 (best: 0.8440)
+		Epoch run time in seconds: 2.2115
+	Epoch number: 160
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8420)
+		validation accuracy: 0.8240 (best: 0.8440)
+		Epoch run time in seconds: 2.1156
+	Epoch number: 161
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 1.0000)
+		test accuracy: 0.8400 (best: 0.8420)
+		validation accuracy: 0.8280 (best: 0.8440)
+		Epoch run time in seconds: 2.2138
+	Epoch number: 162
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8180 (best: 0.8420)
+		validation accuracy: 0.8000 (best: 0.8440)
+		Epoch run time in seconds: 2.1434
+	Epoch number: 163
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 1.0000)
+		test accuracy: 0.8180 (best: 0.8420)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1676
+	Epoch number: 164
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8420 (best: 0.8420)
+		validation accuracy: 0.8040 (best: 0.8440)
+		Epoch run time in seconds: 2.1559
+	Epoch number: 165
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8360 (best: 0.8420)
+		validation accuracy: 0.8120 (best: 0.8440)
+		Epoch run time in seconds: 2.2065
+	Epoch number: 166
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8340 (best: 0.8420)
+		validation accuracy: 0.8280 (best: 0.8440)
+		Epoch run time in seconds: 2.1679
+	Epoch number: 167
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8100 (best: 0.8420)
+		validation accuracy: 0.8160 (best: 0.8440)
+		Epoch run time in seconds: 2.2198
+	Epoch number: 168
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8440 (best: 0.8440)
+		validation accuracy: 0.8280 (best: 0.8440)
+		Epoch run time in seconds: 2.1063
+	Epoch number: 169
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 1.0000)
+		test accuracy: 0.8380 (best: 0.8440)
+		validation accuracy: 0.8280 (best: 0.8440)
+		Epoch run time in seconds: 2.1778
+	Epoch number: 170
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8060 (best: 0.8440)
+		validation accuracy: 0.8280 (best: 0.8440)
+		Epoch run time in seconds: 2.1243
+	Epoch number: 171
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8340 (best: 0.8440)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1468
+	Epoch number: 172
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8260 (best: 0.8440)
+		validation accuracy: 0.8320 (best: 0.8440)
+		Epoch run time in seconds: 2.1695
+	Epoch number: 173
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8260 (best: 0.8440)
+		validation accuracy: 0.8040 (best: 0.8440)
+		Epoch run time in seconds: 2.1547
+	Epoch number: 174
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 1.0000 (best: 1.0000)
+		test accuracy: 0.8420 (best: 0.8440)
+		validation accuracy: 0.8080 (best: 0.8440)
+		Epoch run time in seconds: 2.1472
+	Epoch number: 175
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8180 (best: 0.8440)
+		validation accuracy: 0.8120 (best: 0.8440)
+		Epoch run time in seconds: 2.1758
+	Epoch number: 176
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8380 (best: 0.8440)
+		validation accuracy: 0.8240 (best: 0.8440)
+		Epoch run time in seconds: 2.1992
+	Epoch number: 177
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 1.0000 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8440)
+		validation accuracy: 0.7960 (best: 0.8440)
+		Epoch run time in seconds: 2.2110
+	Epoch number: 178
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8360 (best: 0.8440)
+		validation accuracy: 0.8280 (best: 0.8440)
+		Epoch run time in seconds: 2.1730
+	Epoch number: 179
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 1.0000)
+		test accuracy: 0.8140 (best: 0.8440)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1544
+	Epoch number: 180
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 1.0000)
+		test accuracy: 0.8460 (best: 0.8460)
+		validation accuracy: 0.8160 (best: 0.8440)
+		Epoch run time in seconds: 2.1959
+	Epoch number: 181
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 1.0000 (best: 1.0000)
+		test accuracy: 0.8160 (best: 0.8460)
+		validation accuracy: 0.8080 (best: 0.8440)
+		Epoch run time in seconds: 2.1346
+	Epoch number: 182
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8240 (best: 0.8460)
+		validation accuracy: 0.7920 (best: 0.8440)
+		Epoch run time in seconds: 2.1463
+	Epoch number: 183
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8460)
+		validation accuracy: 0.8120 (best: 0.8440)
+		Epoch run time in seconds: 2.3514
+	Epoch number: 184
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8440 (best: 0.8460)
+		validation accuracy: 0.8160 (best: 0.8440)
+		Epoch run time in seconds: 2.1527
+	Epoch number: 185
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8240 (best: 0.8460)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1859
+	Epoch number: 186
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8420 (best: 0.8460)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1461
+	Epoch number: 187
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8460)
+		validation accuracy: 0.8200 (best: 0.8440)
+		Epoch run time in seconds: 2.1919
+	Epoch number: 188
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8260 (best: 0.8460)
+		validation accuracy: 0.8120 (best: 0.8440)
+		Epoch run time in seconds: 2.1736
+	Epoch number: 189
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8140 (best: 0.8460)
+		validation accuracy: 0.8080 (best: 0.8440)
+		Epoch run time in seconds: 2.1286
+	Epoch number: 190
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8540 (best: 0.8540)
+		validation accuracy: 0.8000 (best: 0.8440)
+		Epoch run time in seconds: 2.2414
+	Epoch number: 191
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8200 (best: 0.8540)
+		validation accuracy: 0.8120 (best: 0.8440)
+		Epoch run time in seconds: 2.2280
+	Epoch number: 192
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8160 (best: 0.8540)
+		validation accuracy: 0.8040 (best: 0.8440)
+		Epoch run time in seconds: 2.3348
+	Epoch number: 193
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8400 (best: 0.8540)
+		validation accuracy: 0.8040 (best: 0.8440)
+		Epoch run time in seconds: 2.2015
+	Epoch number: 194
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8320 (best: 0.8540)
+		validation accuracy: 0.8480 (best: 0.8480)
+		Epoch run time in seconds: 2.1833
+	Epoch number: 195
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8240 (best: 0.8540)
+		validation accuracy: 0.8280 (best: 0.8480)
+		Epoch run time in seconds: 2.1519
+	Epoch number: 196
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 1.0000)
+		test accuracy: 0.8180 (best: 0.8540)
+		validation accuracy: 0.8120 (best: 0.8480)
+		Epoch run time in seconds: 2.1904
+	Epoch number: 197
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 1.0000)
+		test accuracy: 0.8300 (best: 0.8540)
+		validation accuracy: 0.8240 (best: 0.8480)
+		Epoch run time in seconds: 2.2909
+	Epoch number: 198
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 1.0000)
+		test accuracy: 0.8200 (best: 0.8540)
+		validation accuracy: 0.8160 (best: 0.8480)
+		Epoch run time in seconds: 2.1780
+	Epoch number: 199
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 1.0000)
+		test accuracy: 0.8260 (best: 0.8540)
+		validation accuracy: 0.8400 (best: 0.8480)
+		Epoch run time in seconds: 2.2088
+	Epoch number: 200
+		Step Number: 25
+		Online accuracy: 1.00
+		train accuracy: 1.0000 (best: 1.0000)
+		test accuracy: 0.8280 (best: 0.8540)
+		validation accuracy: 0.8200 (best: 0.8480)
+		Epoch run time in seconds: 2.1683
+	New classes added... (resetting best accuracies)
+	Epoch number: 201
+		Step Number: 25
+		Online accuracy: 0.41
+		Step Number: 50
+		Online accuracy: 0.51
+		train accuracy: 0.4598 (best: 0.4598)
+		test accuracy: 0.5040 (best: 0.5040)
+		validation accuracy: 0.4820 (best: 0.4820)
+		Epoch run time in seconds: 12.3143
+	Epoch number: 202
+		Step Number: 25
+		Online accuracy: 0.52
+		Step Number: 50
+		Online accuracy: 0.56
+		train accuracy: 0.5404 (best: 0.5404)
+		test accuracy: 0.5790 (best: 0.5790)
+		validation accuracy: 0.5860 (best: 0.5860)
+		Epoch run time in seconds: 3.1385
+	Epoch number: 203
+		Step Number: 25
+		Online accuracy: 0.60
+		Step Number: 50
+		Online accuracy: 0.60
+		train accuracy: 0.6033 (best: 0.6033)
+		test accuracy: 0.5990 (best: 0.5990)
+		validation accuracy: 0.5820 (best: 0.5860)
+		Epoch run time in seconds: 3.0915
+	Epoch number: 204
+		Step Number: 25
+		Online accuracy: 0.63
+		Step Number: 50
+		Online accuracy: 0.64
+		train accuracy: 0.6338 (best: 0.6338)
+		test accuracy: 0.6060 (best: 0.6060)
+		validation accuracy: 0.6400 (best: 0.6400)
+		Epoch run time in seconds: 3.0895
+	Epoch number: 205
+		Step Number: 25
+		Online accuracy: 0.65
+		Step Number: 50
+		Online accuracy: 0.65
+		train accuracy: 0.6496 (best: 0.6496)
+		test accuracy: 0.6390 (best: 0.6390)
+		validation accuracy: 0.6020 (best: 0.6400)
+		Epoch run time in seconds: 3.1919
+	Epoch number: 206
+		Step Number: 25
+		Online accuracy: 0.67
+		Step Number: 50
+		Online accuracy: 0.67
+		train accuracy: 0.6709 (best: 0.6709)
+		test accuracy: 0.6390 (best: 0.6390)
+		validation accuracy: 0.6300 (best: 0.6400)
+		Epoch run time in seconds: 3.1332
+	Epoch number: 207
+		Step Number: 25
+		Online accuracy: 0.69
+		Step Number: 50
+		Online accuracy: 0.68
+		train accuracy: 0.6856 (best: 0.6856)
+		test accuracy: 0.6400 (best: 0.6400)
+		validation accuracy: 0.6620 (best: 0.6620)
+		Epoch run time in seconds: 3.1733
+	Epoch number: 208
+		Step Number: 25
+		Online accuracy: 0.68
+		Step Number: 50
+		Online accuracy: 0.71
+		train accuracy: 0.6956 (best: 0.6956)
+		test accuracy: 0.6620 (best: 0.6620)
+		validation accuracy: 0.6760 (best: 0.6760)
+		Epoch run time in seconds: 3.2140
+	Epoch number: 209
+		Step Number: 25
+		Online accuracy: 0.72
+		Step Number: 50
+		Online accuracy: 0.71
+		train accuracy: 0.7162 (best: 0.7162)
+		test accuracy: 0.6580 (best: 0.6620)
+		validation accuracy: 0.6540 (best: 0.6760)
+		Epoch run time in seconds: 3.1796
+	Epoch number: 210
+		Step Number: 25
+		Online accuracy: 0.72
+		Step Number: 50
+		Online accuracy: 0.72
+		train accuracy: 0.7244 (best: 0.7244)
+		test accuracy: 0.6460 (best: 0.6620)
+		validation accuracy: 0.6560 (best: 0.6760)
+		Epoch run time in seconds: 3.1549
+	Epoch number: 211
+		Step Number: 25
+		Online accuracy: 0.71
+		Step Number: 50
+		Online accuracy: 0.73
+		train accuracy: 0.7171 (best: 0.7244)
+		test accuracy: 0.6410 (best: 0.6620)
+		validation accuracy: 0.6940 (best: 0.6940)
+		Epoch run time in seconds: 3.2472
+	Epoch number: 212
+		Step Number: 25
+		Online accuracy: 0.74
+		Step Number: 50
+		Online accuracy: 0.73
+		train accuracy: 0.7362 (best: 0.7362)
+		test accuracy: 0.6540 (best: 0.6620)
+		validation accuracy: 0.6680 (best: 0.6940)
+		Epoch run time in seconds: 3.1566
+	Epoch number: 213
+		Step Number: 25
+		Online accuracy: 0.73
+		Step Number: 50
+		Online accuracy: 0.73
+		train accuracy: 0.7260 (best: 0.7362)
+		test accuracy: 0.6620 (best: 0.6620)
+		validation accuracy: 0.6980 (best: 0.6980)
+		Epoch run time in seconds: 3.2152
+	Epoch number: 214
+		Step Number: 25
+		Online accuracy: 0.76
+		Step Number: 50
+		Online accuracy: 0.73
+		train accuracy: 0.7444 (best: 0.7444)
+		test accuracy: 0.6790 (best: 0.6790)
+		validation accuracy: 0.6940 (best: 0.6980)
+		Epoch run time in seconds: 3.1850
+	Epoch number: 215
+		Step Number: 25
+		Online accuracy: 0.76
+		Step Number: 50
+		Online accuracy: 0.76
+		train accuracy: 0.7580 (best: 0.7580)
+		test accuracy: 0.6580 (best: 0.6790)
+		validation accuracy: 0.6980 (best: 0.6980)
+		Epoch run time in seconds: 3.1473
+	Epoch number: 216
+		Step Number: 25
+		Online accuracy: 0.76
+		Step Number: 50
+		Online accuracy: 0.74
+		train accuracy: 0.7502 (best: 0.7580)
+		test accuracy: 0.6480 (best: 0.6790)
+		validation accuracy: 0.6740 (best: 0.6980)
+		Epoch run time in seconds: 3.1323
+	Epoch number: 217
+		Step Number: 25
+		Online accuracy: 0.77
+		Step Number: 50
+		Online accuracy: 0.76
+		train accuracy: 0.7642 (best: 0.7642)
+		test accuracy: 0.6710 (best: 0.6790)
+		validation accuracy: 0.6840 (best: 0.6980)
+		Epoch run time in seconds: 3.2608
+	Epoch number: 218
+		Step Number: 25
+		Online accuracy: 0.78
+		Step Number: 50
+		Online accuracy: 0.78
+		train accuracy: 0.7771 (best: 0.7771)
+		test accuracy: 0.6810 (best: 0.6810)
+		validation accuracy: 0.7120 (best: 0.7120)
+		Epoch run time in seconds: 3.0824
+	Epoch number: 219
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.78
+		train accuracy: 0.7889 (best: 0.7889)
+		test accuracy: 0.6690 (best: 0.6810)
+		validation accuracy: 0.7040 (best: 0.7120)
+		Epoch run time in seconds: 3.1098
+	Epoch number: 220
+		Step Number: 25
+		Online accuracy: 0.77
+		Step Number: 50
+		Online accuracy: 0.79
+		train accuracy: 0.7782 (best: 0.7889)
+		test accuracy: 0.6820 (best: 0.6820)
+		validation accuracy: 0.7020 (best: 0.7120)
+		Epoch run time in seconds: 3.1089
+	Epoch number: 221
+		Step Number: 25
+		Online accuracy: 0.79
+		Step Number: 50
+		Online accuracy: 0.79
+		train accuracy: 0.7902 (best: 0.7902)
+		test accuracy: 0.6870 (best: 0.6870)
+		validation accuracy: 0.7220 (best: 0.7220)
+		Epoch run time in seconds: 3.1818
+	Epoch number: 222
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.80
+		train accuracy: 0.7987 (best: 0.7987)
+		test accuracy: 0.6700 (best: 0.6870)
+		validation accuracy: 0.7160 (best: 0.7220)
+		Epoch run time in seconds: 3.1604
+	Epoch number: 223
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.78
+		train accuracy: 0.7876 (best: 0.7987)
+		test accuracy: 0.6700 (best: 0.6870)
+		validation accuracy: 0.7280 (best: 0.7280)
+		Epoch run time in seconds: 3.0925
+	Epoch number: 224
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.80
+		train accuracy: 0.8051 (best: 0.8051)
+		test accuracy: 0.6990 (best: 0.6990)
+		validation accuracy: 0.7200 (best: 0.7280)
+		Epoch run time in seconds: 3.0812
+	Epoch number: 225
+		Step Number: 25
+		Online accuracy: 0.83
+		Step Number: 50
+		Online accuracy: 0.79
+		train accuracy: 0.8102 (best: 0.8102)
+		test accuracy: 0.6630 (best: 0.6990)
+		validation accuracy: 0.6900 (best: 0.7280)
+		Epoch run time in seconds: 3.1511
+	Epoch number: 226
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.79
+		train accuracy: 0.8009 (best: 0.8102)
+		test accuracy: 0.7050 (best: 0.7050)
+		validation accuracy: 0.7220 (best: 0.7280)
+		Epoch run time in seconds: 3.1843
+	Epoch number: 227
+		Step Number: 25
+		Online accuracy: 0.82
+		Step Number: 50
+		Online accuracy: 0.81
+		train accuracy: 0.8178 (best: 0.8178)
+		test accuracy: 0.6730 (best: 0.7050)
+		validation accuracy: 0.6920 (best: 0.7280)
+		Epoch run time in seconds: 3.1841
+	Epoch number: 228
+		Step Number: 25
+		Online accuracy: 0.82
+		Step Number: 50
+		Online accuracy: 0.80
+		train accuracy: 0.8091 (best: 0.8178)
+		test accuracy: 0.6780 (best: 0.7050)
+		validation accuracy: 0.7020 (best: 0.7280)
+		Epoch run time in seconds: 3.1055
+	Epoch number: 229
+		Step Number: 25
+		Online accuracy: 0.82
+		Step Number: 50
+		Online accuracy: 0.80
+		train accuracy: 0.8073 (best: 0.8178)
+		test accuracy: 0.7130 (best: 0.7130)
+		validation accuracy: 0.7380 (best: 0.7380)
+		Epoch run time in seconds: 3.1667
+	Epoch number: 230
+		Step Number: 25
+		Online accuracy: 0.82
+		Step Number: 50
+		Online accuracy: 0.81
+		train accuracy: 0.8180 (best: 0.8180)
+		test accuracy: 0.7170 (best: 0.7170)
+		validation accuracy: 0.7140 (best: 0.7380)
+		Epoch run time in seconds: 3.1072
+	Epoch number: 231
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.89
+		train accuracy: 0.8818 (best: 0.8818)
+		test accuracy: 0.7510 (best: 0.7510)
+		validation accuracy: 0.7700 (best: 0.7700)
+		Epoch run time in seconds: 3.0725
+	Epoch number: 232
+		Step Number: 25
+		Online accuracy: 0.92
+		Step Number: 50
+		Online accuracy: 0.91
+		train accuracy: 0.9156 (best: 0.9156)
+		test accuracy: 0.7510 (best: 0.7510)
+		validation accuracy: 0.7660 (best: 0.7700)
+		Epoch run time in seconds: 3.1251
+	Epoch number: 233
+		Step Number: 25
+		Online accuracy: 0.93
+		Step Number: 50
+		Online accuracy: 0.93
+		train accuracy: 0.9284 (best: 0.9284)
+		test accuracy: 0.7550 (best: 0.7550)
+		validation accuracy: 0.7660 (best: 0.7700)
+		Epoch run time in seconds: 3.0961
+	Epoch number: 234
+		Step Number: 25
+		Online accuracy: 0.94
+		Step Number: 50
+		Online accuracy: 0.94
+		train accuracy: 0.9380 (best: 0.9380)
+		test accuracy: 0.7600 (best: 0.7600)
+		validation accuracy: 0.7760 (best: 0.7760)
+		Epoch run time in seconds: 3.1716
+	Epoch number: 235
+		Step Number: 25
+		Online accuracy: 0.93
+		Step Number: 50
+		Online accuracy: 0.93
+		train accuracy: 0.9318 (best: 0.9380)
+		test accuracy: 0.7510 (best: 0.7600)
+		validation accuracy: 0.7800 (best: 0.7800)
+		Epoch run time in seconds: 3.1039
+	Epoch number: 236
+		Step Number: 25
+		Online accuracy: 0.95
+		Step Number: 50
+		Online accuracy: 0.95
+		train accuracy: 0.9467 (best: 0.9467)
+		test accuracy: 0.7590 (best: 0.7600)
+		validation accuracy: 0.7760 (best: 0.7800)
+		Epoch run time in seconds: 3.2002
+	Epoch number: 237
+		Step Number: 25
+		Online accuracy: 0.96
+		Step Number: 50
+		Online accuracy: 0.95
+		train accuracy: 0.9547 (best: 0.9547)
+		test accuracy: 0.7500 (best: 0.7600)
+		validation accuracy: 0.7460 (best: 0.7800)
+		Epoch run time in seconds: 3.1021
+	Epoch number: 238
+		Step Number: 25
+		Online accuracy: 0.96
+		Step Number: 50
+		Online accuracy: 0.95
+		train accuracy: 0.9540 (best: 0.9547)
+		test accuracy: 0.7450 (best: 0.7600)
+		validation accuracy: 0.7680 (best: 0.7800)
+		Epoch run time in seconds: 3.1217
+	Epoch number: 239
+		Step Number: 25
+		Online accuracy: 0.96
+		Step Number: 50
+		Online accuracy: 0.95
+		train accuracy: 0.9549 (best: 0.9549)
+		test accuracy: 0.7510 (best: 0.7600)
+		validation accuracy: 0.7860 (best: 0.7860)
+		Epoch run time in seconds: 3.1280
+	Epoch number: 240
+		Step Number: 25
+		Online accuracy: 0.96
+		Step Number: 50
+		Online accuracy: 0.96
+		train accuracy: 0.9596 (best: 0.9596)
+		test accuracy: 0.7460 (best: 0.7600)
+		validation accuracy: 0.7820 (best: 0.7860)
+		Epoch run time in seconds: 3.1556
+	Epoch number: 241
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.96
+		train accuracy: 0.9647 (best: 0.9647)
+		test accuracy: 0.7640 (best: 0.7640)
+		validation accuracy: 0.7700 (best: 0.7860)
+		Epoch run time in seconds: 3.1834
+	Epoch number: 242
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.96
+		train accuracy: 0.9700 (best: 0.9700)
+		test accuracy: 0.7420 (best: 0.7640)
+		validation accuracy: 0.7660 (best: 0.7860)
+		Epoch run time in seconds: 3.1525
+	Epoch number: 243
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.96
+		train accuracy: 0.9667 (best: 0.9700)
+		test accuracy: 0.7500 (best: 0.7640)
+		validation accuracy: 0.7600 (best: 0.7860)
+		Epoch run time in seconds: 3.0824
+	Epoch number: 244
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9698 (best: 0.9700)
+		test accuracy: 0.7610 (best: 0.7640)
+		validation accuracy: 0.7800 (best: 0.7860)
+		Epoch run time in seconds: 3.1431
+	Epoch number: 245
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9740 (best: 0.9740)
+		test accuracy: 0.7450 (best: 0.7640)
+		validation accuracy: 0.7560 (best: 0.7860)
+		Epoch run time in seconds: 3.1482
+	Epoch number: 246
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9709 (best: 0.9740)
+		test accuracy: 0.7570 (best: 0.7640)
+		validation accuracy: 0.7760 (best: 0.7860)
+		Epoch run time in seconds: 3.1089
+	Epoch number: 247
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9733 (best: 0.9740)
+		test accuracy: 0.7620 (best: 0.7640)
+		validation accuracy: 0.7640 (best: 0.7860)
+		Epoch run time in seconds: 3.1553
+	Epoch number: 248
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.96
+		train accuracy: 0.9660 (best: 0.9740)
+		test accuracy: 0.7390 (best: 0.7640)
+		validation accuracy: 0.7600 (best: 0.7860)
+		Epoch run time in seconds: 3.0889
+	Epoch number: 249
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9800 (best: 0.9800)
+		test accuracy: 0.7590 (best: 0.7640)
+		validation accuracy: 0.7760 (best: 0.7860)
+		Epoch run time in seconds: 3.1044
+	Epoch number: 250
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9764 (best: 0.9800)
+		test accuracy: 0.7330 (best: 0.7640)
+		validation accuracy: 0.7480 (best: 0.7860)
+		Epoch run time in seconds: 3.0552
+	Epoch number: 251
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9736 (best: 0.9800)
+		test accuracy: 0.7550 (best: 0.7640)
+		validation accuracy: 0.7540 (best: 0.7860)
+		Epoch run time in seconds: 3.1859
+	Epoch number: 252
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9727 (best: 0.9800)
+		test accuracy: 0.7500 (best: 0.7640)
+		validation accuracy: 0.7540 (best: 0.7860)
+		Epoch run time in seconds: 3.0781
+	Epoch number: 253
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9791 (best: 0.9800)
+		test accuracy: 0.7490 (best: 0.7640)
+		validation accuracy: 0.7520 (best: 0.7860)
+		Epoch run time in seconds: 3.0745
+	Epoch number: 254
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9764 (best: 0.9800)
+		test accuracy: 0.7560 (best: 0.7640)
+		validation accuracy: 0.7760 (best: 0.7860)
+		Epoch run time in seconds: 3.1178
+	Epoch number: 255
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9753 (best: 0.9800)
+		test accuracy: 0.7570 (best: 0.7640)
+		validation accuracy: 0.7940 (best: 0.7940)
+		Epoch run time in seconds: 3.0593
+	Epoch number: 256
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9822 (best: 0.9822)
+		test accuracy: 0.7430 (best: 0.7640)
+		validation accuracy: 0.7760 (best: 0.7940)
+		Epoch run time in seconds: 3.1090
+	Epoch number: 257
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9842 (best: 0.9842)
+		test accuracy: 0.7590 (best: 0.7640)
+		validation accuracy: 0.7500 (best: 0.7940)
+		Epoch run time in seconds: 3.1712
+	Epoch number: 258
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9818 (best: 0.9842)
+		test accuracy: 0.7500 (best: 0.7640)
+		validation accuracy: 0.7580 (best: 0.7940)
+		Epoch run time in seconds: 3.1168
+	Epoch number: 259
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9827 (best: 0.9842)
+		test accuracy: 0.7670 (best: 0.7670)
+		validation accuracy: 0.7580 (best: 0.7940)
+		Epoch run time in seconds: 3.1687
+	Epoch number: 260
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9840 (best: 0.9842)
+		test accuracy: 0.7350 (best: 0.7670)
+		validation accuracy: 0.7680 (best: 0.7940)
+		Epoch run time in seconds: 3.0599
+	Epoch number: 261
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9891 (best: 0.9891)
+		test accuracy: 0.7450 (best: 0.7670)
+		validation accuracy: 0.7760 (best: 0.7940)
+		Epoch run time in seconds: 3.1198
+	Epoch number: 262
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9918 (best: 0.9918)
+		test accuracy: 0.7660 (best: 0.7670)
+		validation accuracy: 0.7680 (best: 0.7940)
+		Epoch run time in seconds: 3.1475
+	Epoch number: 263
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9922 (best: 0.9922)
+		test accuracy: 0.7490 (best: 0.7670)
+		validation accuracy: 0.7940 (best: 0.7940)
+		Epoch run time in seconds: 3.1387
+	Epoch number: 264
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9951 (best: 0.9951)
+		test accuracy: 0.7670 (best: 0.7670)
+		validation accuracy: 0.7720 (best: 0.7940)
+		Epoch run time in seconds: 3.1071
+	Epoch number: 265
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9942 (best: 0.9951)
+		test accuracy: 0.7710 (best: 0.7710)
+		validation accuracy: 0.7860 (best: 0.7940)
+		Epoch run time in seconds: 3.1179
+	Epoch number: 266
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9951 (best: 0.9951)
+		test accuracy: 0.7510 (best: 0.7710)
+		validation accuracy: 0.7780 (best: 0.7940)
+		Epoch run time in seconds: 3.0868
+	Epoch number: 267
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9951 (best: 0.9951)
+		test accuracy: 0.7570 (best: 0.7710)
+		validation accuracy: 0.7800 (best: 0.7940)
+		Epoch run time in seconds: 3.0951
+	Epoch number: 268
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9956 (best: 0.9956)
+		test accuracy: 0.7660 (best: 0.7710)
+		validation accuracy: 0.7780 (best: 0.7940)
+		Epoch run time in seconds: 3.1855
+	Epoch number: 269
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9969)
+		test accuracy: 0.7580 (best: 0.7710)
+		validation accuracy: 0.7880 (best: 0.7940)
+		Epoch run time in seconds: 3.1767
+	Epoch number: 270
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9960 (best: 0.9969)
+		test accuracy: 0.7700 (best: 0.7710)
+		validation accuracy: 0.7920 (best: 0.7940)
+		Epoch run time in seconds: 3.1324
+	Epoch number: 271
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9951 (best: 0.9969)
+		test accuracy: 0.7760 (best: 0.7760)
+		validation accuracy: 0.7880 (best: 0.7940)
+		Epoch run time in seconds: 3.1409
+	Epoch number: 272
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9962 (best: 0.9969)
+		test accuracy: 0.7650 (best: 0.7760)
+		validation accuracy: 0.7880 (best: 0.7940)
+		Epoch run time in seconds: 3.1379
+	Epoch number: 273
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9969)
+		test accuracy: 0.7520 (best: 0.7760)
+		validation accuracy: 0.7800 (best: 0.7940)
+		Epoch run time in seconds: 3.3644
+	Epoch number: 274
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9962 (best: 0.9969)
+		test accuracy: 0.7690 (best: 0.7760)
+		validation accuracy: 0.7740 (best: 0.7940)
+		Epoch run time in seconds: 3.1182
+	Epoch number: 275
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9969)
+		test accuracy: 0.7690 (best: 0.7760)
+		validation accuracy: 0.7680 (best: 0.7940)
+		Epoch run time in seconds: 3.0925
+	Epoch number: 276
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9969)
+		test accuracy: 0.7650 (best: 0.7760)
+		validation accuracy: 0.7740 (best: 0.7940)
+		Epoch run time in seconds: 3.1036
+	Epoch number: 277
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9980 (best: 0.9980)
+		test accuracy: 0.7670 (best: 0.7760)
+		validation accuracy: 0.7840 (best: 0.7940)
+		Epoch run time in seconds: 3.0988
+	Epoch number: 278
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9971 (best: 0.9980)
+		test accuracy: 0.7720 (best: 0.7760)
+		validation accuracy: 0.7620 (best: 0.7940)
+		Epoch run time in seconds: 3.0975
+	Epoch number: 279
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9971 (best: 0.9980)
+		test accuracy: 0.7580 (best: 0.7760)
+		validation accuracy: 0.7880 (best: 0.7940)
+		Epoch run time in seconds: 3.1438
+	Epoch number: 280
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9980)
+		test accuracy: 0.7530 (best: 0.7760)
+		validation accuracy: 0.7760 (best: 0.7940)
+		Epoch run time in seconds: 3.1417
+	Epoch number: 281
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9980)
+		test accuracy: 0.7560 (best: 0.7760)
+		validation accuracy: 0.7820 (best: 0.7940)
+		Epoch run time in seconds: 3.1339
+	Epoch number: 282
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9980)
+		test accuracy: 0.7620 (best: 0.7760)
+		validation accuracy: 0.7860 (best: 0.7940)
+		Epoch run time in seconds: 3.1888
+	Epoch number: 283
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9980)
+		test accuracy: 0.7600 (best: 0.7760)
+		validation accuracy: 0.7780 (best: 0.7940)
+		Epoch run time in seconds: 3.1011
+	Epoch number: 284
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9980)
+		test accuracy: 0.7700 (best: 0.7760)
+		validation accuracy: 0.8000 (best: 0.8000)
+		Epoch run time in seconds: 3.1511
+	Epoch number: 285
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9980)
+		test accuracy: 0.7540 (best: 0.7760)
+		validation accuracy: 0.7920 (best: 0.8000)
+		Epoch run time in seconds: 3.0875
+	Epoch number: 286
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9980 (best: 0.9980)
+		test accuracy: 0.7740 (best: 0.7760)
+		validation accuracy: 0.7920 (best: 0.8000)
+		Epoch run time in seconds: 3.1312
+	Epoch number: 287
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9982)
+		test accuracy: 0.7640 (best: 0.7760)
+		validation accuracy: 0.7900 (best: 0.8000)
+		Epoch run time in seconds: 3.0303
+	Epoch number: 288
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9982)
+		test accuracy: 0.7680 (best: 0.7760)
+		validation accuracy: 0.7800 (best: 0.8000)
+		Epoch run time in seconds: 3.1549
+	Epoch number: 289
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9982)
+		test accuracy: 0.7570 (best: 0.7760)
+		validation accuracy: 0.7720 (best: 0.8000)
+		Epoch run time in seconds: 3.1549
+	Epoch number: 290
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9982)
+		test accuracy: 0.7640 (best: 0.7760)
+		validation accuracy: 0.7700 (best: 0.8000)
+		Epoch run time in seconds: 3.1293
+	Epoch number: 291
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9982)
+		test accuracy: 0.7560 (best: 0.7760)
+		validation accuracy: 0.7940 (best: 0.8000)
+		Epoch run time in seconds: 3.1807
+	Epoch number: 292
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9971 (best: 0.9982)
+		test accuracy: 0.7620 (best: 0.7760)
+		validation accuracy: 0.7800 (best: 0.8000)
+		Epoch run time in seconds: 3.1260
+	Epoch number: 293
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9982)
+		test accuracy: 0.7720 (best: 0.7760)
+		validation accuracy: 0.7740 (best: 0.8000)
+		Epoch run time in seconds: 3.1905
+	Epoch number: 294
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9982)
+		test accuracy: 0.7650 (best: 0.7760)
+		validation accuracy: 0.7780 (best: 0.8000)
+		Epoch run time in seconds: 3.1055
+	Epoch number: 295
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9982)
+		test accuracy: 0.7560 (best: 0.7760)
+		validation accuracy: 0.7780 (best: 0.8000)
+		Epoch run time in seconds: 3.1111
+	Epoch number: 296
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9989)
+		test accuracy: 0.7600 (best: 0.7760)
+		validation accuracy: 0.7820 (best: 0.8000)
+		Epoch run time in seconds: 3.1376
+	Epoch number: 297
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9989)
+		test accuracy: 0.7730 (best: 0.7760)
+		validation accuracy: 0.7740 (best: 0.8000)
+		Epoch run time in seconds: 3.3333
+	Epoch number: 298
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9989)
+		test accuracy: 0.7790 (best: 0.7790)
+		validation accuracy: 0.7880 (best: 0.8000)
+		Epoch run time in seconds: 3.1956
+	Epoch number: 299
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9989)
+		test accuracy: 0.7630 (best: 0.7790)
+		validation accuracy: 0.7740 (best: 0.8000)
+		Epoch run time in seconds: 3.2507
+	Epoch number: 300
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9989)
+		test accuracy: 0.7650 (best: 0.7790)
+		validation accuracy: 0.7920 (best: 0.8000)
+		Epoch run time in seconds: 3.1754
+	Epoch number: 301
+		Step Number: 25
+		Online accuracy: 0.91
+		Step Number: 50
+		Online accuracy: 0.65
+		train accuracy: 0.7789 (best: 0.9989)
+		test accuracy: 0.6330 (best: 0.7790)
+		validation accuracy: 0.6060 (best: 0.8000)
+		Epoch run time in seconds: 3.0811
+	Epoch number: 302
+		Step Number: 25
+		Online accuracy: 0.72
+		Step Number: 50
+		Online accuracy: 0.75
+		train accuracy: 0.7360 (best: 0.9989)
+		test accuracy: 0.6820 (best: 0.7790)
+		validation accuracy: 0.6900 (best: 0.8000)
+		Epoch run time in seconds: 3.1423
+	Epoch number: 303
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.79
+		train accuracy: 0.7907 (best: 0.9989)
+		test accuracy: 0.6980 (best: 0.7790)
+		validation accuracy: 0.7080 (best: 0.8000)
+		Epoch run time in seconds: 3.1752
+	Epoch number: 304
+		Step Number: 25
+		Online accuracy: 0.82
+		Step Number: 50
+		Online accuracy: 0.80
+		train accuracy: 0.8111 (best: 0.9989)
+		test accuracy: 0.6610 (best: 0.7790)
+		validation accuracy: 0.6820 (best: 0.8000)
+		Epoch run time in seconds: 3.0775
+	Epoch number: 305
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.81
+		train accuracy: 0.8058 (best: 0.9989)
+		test accuracy: 0.6750 (best: 0.7790)
+		validation accuracy: 0.7220 (best: 0.8000)
+		Epoch run time in seconds: 3.2073
+	Epoch number: 306
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.81
+		train accuracy: 0.8209 (best: 0.9989)
+		test accuracy: 0.7390 (best: 0.7790)
+		validation accuracy: 0.7060 (best: 0.8000)
+		Epoch run time in seconds: 3.3071
+	Epoch number: 307
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.84
+		train accuracy: 0.8431 (best: 0.9989)
+		test accuracy: 0.6900 (best: 0.7790)
+		validation accuracy: 0.7220 (best: 0.8000)
+		Epoch run time in seconds: 3.1929
+	Epoch number: 308
+		Step Number: 25
+		Online accuracy: 0.85
+		Step Number: 50
+		Online accuracy: 0.83
+		train accuracy: 0.8391 (best: 0.9989)
+		test accuracy: 0.6940 (best: 0.7790)
+		validation accuracy: 0.7140 (best: 0.8000)
+		Epoch run time in seconds: 3.0488
+	Epoch number: 309
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.83
+		train accuracy: 0.8380 (best: 0.9989)
+		test accuracy: 0.7050 (best: 0.7790)
+		validation accuracy: 0.7200 (best: 0.8000)
+		Epoch run time in seconds: 3.1082
+	Epoch number: 310
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.84
+		train accuracy: 0.8547 (best: 0.9989)
+		test accuracy: 0.7210 (best: 0.7790)
+		validation accuracy: 0.7100 (best: 0.8000)
+		Epoch run time in seconds: 3.1646
+	Epoch number: 311
+		Step Number: 25
+		Online accuracy: 0.85
+		Step Number: 50
+		Online accuracy: 0.84
+		train accuracy: 0.8438 (best: 0.9989)
+		test accuracy: 0.6970 (best: 0.7790)
+		validation accuracy: 0.7160 (best: 0.8000)
+		Epoch run time in seconds: 3.0995
+	Epoch number: 312
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.85
+		train accuracy: 0.8604 (best: 0.9989)
+		test accuracy: 0.7140 (best: 0.7790)
+		validation accuracy: 0.7300 (best: 0.8000)
+		Epoch run time in seconds: 3.0852
+	Epoch number: 313
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.86
+		train accuracy: 0.8564 (best: 0.9989)
+		test accuracy: 0.7070 (best: 0.7790)
+		validation accuracy: 0.7180 (best: 0.8000)
+		Epoch run time in seconds: 3.1277
+	Epoch number: 314
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.85
+		train accuracy: 0.8598 (best: 0.9989)
+		test accuracy: 0.7100 (best: 0.7790)
+		validation accuracy: 0.7340 (best: 0.8000)
+		Epoch run time in seconds: 3.1110
+	Epoch number: 315
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.86
+		train accuracy: 0.8684 (best: 0.9989)
+		test accuracy: 0.7570 (best: 0.7790)
+		validation accuracy: 0.7780 (best: 0.8000)
+		Epoch run time in seconds: 3.1350
+	Epoch number: 316
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.86
+		train accuracy: 0.8704 (best: 0.9989)
+		test accuracy: 0.7120 (best: 0.7790)
+		validation accuracy: 0.7400 (best: 0.8000)
+		Epoch run time in seconds: 3.1898
+	Epoch number: 317
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.86
+		train accuracy: 0.8711 (best: 0.9989)
+		test accuracy: 0.7130 (best: 0.7790)
+		validation accuracy: 0.7200 (best: 0.8000)
+		Epoch run time in seconds: 3.0685
+	Epoch number: 318
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.84
+		train accuracy: 0.8491 (best: 0.9989)
+		test accuracy: 0.7000 (best: 0.7790)
+		validation accuracy: 0.7020 (best: 0.8000)
+		Epoch run time in seconds: 3.0708
+	Epoch number: 319
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.88
+		train accuracy: 0.8687 (best: 0.9989)
+		test accuracy: 0.7130 (best: 0.7790)
+		validation accuracy: 0.7460 (best: 0.8000)
+		Epoch run time in seconds: 3.1081
+	Epoch number: 320
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.89
+		train accuracy: 0.8878 (best: 0.9989)
+		test accuracy: 0.7240 (best: 0.7790)
+		validation accuracy: 0.7440 (best: 0.8000)
+		Epoch run time in seconds: 3.1515
+	Epoch number: 321
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.86
+		train accuracy: 0.8742 (best: 0.9989)
+		test accuracy: 0.7370 (best: 0.7790)
+		validation accuracy: 0.7500 (best: 0.8000)
+		Epoch run time in seconds: 3.0722
+	Epoch number: 322
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.87
+		train accuracy: 0.8809 (best: 0.9989)
+		test accuracy: 0.7140 (best: 0.7790)
+		validation accuracy: 0.7480 (best: 0.8000)
+		Epoch run time in seconds: 3.1562
+	Epoch number: 323
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.88
+		train accuracy: 0.8896 (best: 0.9989)
+		test accuracy: 0.7070 (best: 0.7790)
+		validation accuracy: 0.7580 (best: 0.8000)
+		Epoch run time in seconds: 3.0880
+	Epoch number: 324
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.87
+		train accuracy: 0.8780 (best: 0.9989)
+		test accuracy: 0.7090 (best: 0.7790)
+		validation accuracy: 0.7080 (best: 0.8000)
+		Epoch run time in seconds: 3.1502
+	Epoch number: 325
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.88
+		train accuracy: 0.8856 (best: 0.9989)
+		test accuracy: 0.7060 (best: 0.7790)
+		validation accuracy: 0.7320 (best: 0.8000)
+		Epoch run time in seconds: 3.1837
+	Epoch number: 326
+		Step Number: 25
+		Online accuracy: 0.90
+		Step Number: 50
+		Online accuracy: 0.88
+		train accuracy: 0.8913 (best: 0.9989)
+		test accuracy: 0.7340 (best: 0.7790)
+		validation accuracy: 0.7720 (best: 0.8000)
+		Epoch run time in seconds: 3.1493
+	Epoch number: 327
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.89
+		train accuracy: 0.8913 (best: 0.9989)
+		test accuracy: 0.7190 (best: 0.7790)
+		validation accuracy: 0.7520 (best: 0.8000)
+		Epoch run time in seconds: 3.0585
+	Epoch number: 328
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.87
+		train accuracy: 0.8738 (best: 0.9989)
+		test accuracy: 0.7390 (best: 0.7790)
+		validation accuracy: 0.7240 (best: 0.8000)
+		Epoch run time in seconds: 3.1366
+	Epoch number: 329
+		Step Number: 25
+		Online accuracy: 0.90
+		Step Number: 50
+		Online accuracy: 0.89
+		train accuracy: 0.8927 (best: 0.9989)
+		test accuracy: 0.7180 (best: 0.7790)
+		validation accuracy: 0.7720 (best: 0.8000)
+		Epoch run time in seconds: 3.0483
+	Epoch number: 330
+		Step Number: 25
+		Online accuracy: 0.90
+		Step Number: 50
+		Online accuracy: 0.89
+		train accuracy: 0.8924 (best: 0.9989)
+		test accuracy: 0.7160 (best: 0.7790)
+		validation accuracy: 0.7300 (best: 0.8000)
+		Epoch run time in seconds: 3.1521
+	Epoch number: 331
+		Step Number: 25
+		Online accuracy: 0.92
+		Step Number: 50
+		Online accuracy: 0.96
+		train accuracy: 0.9393 (best: 0.9989)
+		test accuracy: 0.7750 (best: 0.7790)
+		validation accuracy: 0.7840 (best: 0.8000)
+		Epoch run time in seconds: 3.1030
+	Epoch number: 332
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		train accuracy: 0.9729 (best: 0.9989)
+		test accuracy: 0.7810 (best: 0.7810)
+		validation accuracy: 0.7780 (best: 0.8000)
+		Epoch run time in seconds: 3.1398
+	Epoch number: 333
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9796 (best: 0.9989)
+		test accuracy: 0.7700 (best: 0.7810)
+		validation accuracy: 0.8020 (best: 0.8020)
+		Epoch run time in seconds: 3.1199
+	Epoch number: 334
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9829 (best: 0.9989)
+		test accuracy: 0.7610 (best: 0.7810)
+		validation accuracy: 0.7940 (best: 0.8020)
+		Epoch run time in seconds: 3.1609
+	Epoch number: 335
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9849 (best: 0.9989)
+		test accuracy: 0.7690 (best: 0.7810)
+		validation accuracy: 0.8000 (best: 0.8020)
+		Epoch run time in seconds: 3.1143
+	Epoch number: 336
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		train accuracy: 0.9853 (best: 0.9989)
+		test accuracy: 0.7680 (best: 0.7810)
+		validation accuracy: 0.7860 (best: 0.8020)
+		Epoch run time in seconds: 3.0796
+	Epoch number: 337
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9871 (best: 0.9989)
+		test accuracy: 0.7590 (best: 0.7810)
+		validation accuracy: 0.7960 (best: 0.8020)
+		Epoch run time in seconds: 3.1378
+	Epoch number: 338
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9900 (best: 0.9989)
+		test accuracy: 0.7620 (best: 0.7810)
+		validation accuracy: 0.7880 (best: 0.8020)
+		Epoch run time in seconds: 3.1558
+	Epoch number: 339
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9927 (best: 0.9989)
+		test accuracy: 0.7620 (best: 0.7810)
+		validation accuracy: 0.8080 (best: 0.8080)
+		Epoch run time in seconds: 3.3487
+	Epoch number: 340
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9922 (best: 0.9989)
+		test accuracy: 0.7680 (best: 0.7810)
+		validation accuracy: 0.7860 (best: 0.8080)
+		Epoch run time in seconds: 3.2219
+	Epoch number: 341
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9887 (best: 0.9989)
+		test accuracy: 0.7880 (best: 0.7880)
+		validation accuracy: 0.7820 (best: 0.8080)
+		Epoch run time in seconds: 3.1873
+	Epoch number: 342
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9936 (best: 0.9989)
+		test accuracy: 0.7750 (best: 0.7880)
+		validation accuracy: 0.7940 (best: 0.8080)
+		Epoch run time in seconds: 3.1117
+	Epoch number: 343
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9918 (best: 0.9989)
+		test accuracy: 0.7810 (best: 0.7880)
+		validation accuracy: 0.8000 (best: 0.8080)
+		Epoch run time in seconds: 3.0571
+	Epoch number: 344
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9918 (best: 0.9989)
+		test accuracy: 0.7620 (best: 0.7880)
+		validation accuracy: 0.7880 (best: 0.8080)
+		Epoch run time in seconds: 3.1702
+	Epoch number: 345
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9933 (best: 0.9989)
+		test accuracy: 0.7650 (best: 0.7880)
+		validation accuracy: 0.8000 (best: 0.8080)
+		Epoch run time in seconds: 3.1343
+	Epoch number: 346
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9938 (best: 0.9989)
+		test accuracy: 0.7590 (best: 0.7880)
+		validation accuracy: 0.7780 (best: 0.8080)
+		Epoch run time in seconds: 3.0890
+	Epoch number: 347
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9953 (best: 0.9989)
+		test accuracy: 0.7710 (best: 0.7880)
+		validation accuracy: 0.8020 (best: 0.8080)
+		Epoch run time in seconds: 3.0936
+	Epoch number: 348
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9956 (best: 0.9989)
+		test accuracy: 0.7760 (best: 0.7880)
+		validation accuracy: 0.8000 (best: 0.8080)
+		Epoch run time in seconds: 3.1097
+	Epoch number: 349
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9951 (best: 0.9989)
+		test accuracy: 0.7710 (best: 0.7880)
+		validation accuracy: 0.8020 (best: 0.8080)
+		Epoch run time in seconds: 3.0543
+	Epoch number: 350
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9960 (best: 0.9989)
+		test accuracy: 0.7860 (best: 0.7880)
+		validation accuracy: 0.8160 (best: 0.8160)
+		Epoch run time in seconds: 3.0865
+	Epoch number: 351
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9960 (best: 0.9989)
+		test accuracy: 0.7780 (best: 0.7880)
+		validation accuracy: 0.8140 (best: 0.8160)
+		Epoch run time in seconds: 3.0567
+	Epoch number: 352
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		train accuracy: 0.9956 (best: 0.9989)
+		test accuracy: 0.7630 (best: 0.7880)
+		validation accuracy: 0.7960 (best: 0.8160)
+		Epoch run time in seconds: 3.1496
+	Epoch number: 353
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9944 (best: 0.9989)
+		test accuracy: 0.7850 (best: 0.7880)
+		validation accuracy: 0.8060 (best: 0.8160)
+		Epoch run time in seconds: 3.1910
+	Epoch number: 354
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9989)
+		test accuracy: 0.7830 (best: 0.7880)
+		validation accuracy: 0.8020 (best: 0.8160)
+		Epoch run time in seconds: 3.1224
+	Epoch number: 355
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9989)
+		test accuracy: 0.7700 (best: 0.7880)
+		validation accuracy: 0.8100 (best: 0.8160)
+		Epoch run time in seconds: 3.1157
+	Epoch number: 356
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9980 (best: 0.9989)
+		test accuracy: 0.7760 (best: 0.7880)
+		validation accuracy: 0.8000 (best: 0.8160)
+		Epoch run time in seconds: 3.1022
+	Epoch number: 357
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9989)
+		test accuracy: 0.7720 (best: 0.7880)
+		validation accuracy: 0.8140 (best: 0.8160)
+		Epoch run time in seconds: 3.1264
+	Epoch number: 358
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9989)
+		test accuracy: 0.7790 (best: 0.7880)
+		validation accuracy: 0.8000 (best: 0.8160)
+		Epoch run time in seconds: 3.1210
+	Epoch number: 359
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9956 (best: 0.9989)
+		test accuracy: 0.7800 (best: 0.7880)
+		validation accuracy: 0.8220 (best: 0.8220)
+		Epoch run time in seconds: 3.1336
+	Epoch number: 360
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9971 (best: 0.9989)
+		test accuracy: 0.7680 (best: 0.7880)
+		validation accuracy: 0.8140 (best: 0.8220)
+		Epoch run time in seconds: 3.1480
+	Epoch number: 361
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9989)
+		test accuracy: 0.7820 (best: 0.7880)
+		validation accuracy: 0.8120 (best: 0.8220)
+		Epoch run time in seconds: 3.0774
+	Epoch number: 362
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9971 (best: 0.9989)
+		test accuracy: 0.7750 (best: 0.7880)
+		validation accuracy: 0.8060 (best: 0.8220)
+		Epoch run time in seconds: 3.1024
+	Epoch number: 363
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9973 (best: 0.9989)
+		test accuracy: 0.7670 (best: 0.7880)
+		validation accuracy: 0.8060 (best: 0.8220)
+		Epoch run time in seconds: 3.3027
+	Epoch number: 364
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9989)
+		test accuracy: 0.7850 (best: 0.7880)
+		validation accuracy: 0.7980 (best: 0.8220)
+		Epoch run time in seconds: 3.1313
+	Epoch number: 365
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9989)
+		test accuracy: 0.7750 (best: 0.7880)
+		validation accuracy: 0.7980 (best: 0.8220)
+		Epoch run time in seconds: 3.0930
+	Epoch number: 366
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9980 (best: 0.9989)
+		test accuracy: 0.7720 (best: 0.7880)
+		validation accuracy: 0.7980 (best: 0.8220)
+		Epoch run time in seconds: 3.1539
+	Epoch number: 367
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9989)
+		test accuracy: 0.7650 (best: 0.7880)
+		validation accuracy: 0.8060 (best: 0.8220)
+		Epoch run time in seconds: 3.1355
+	Epoch number: 368
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9989)
+		test accuracy: 0.7620 (best: 0.7880)
+		validation accuracy: 0.8060 (best: 0.8220)
+		Epoch run time in seconds: 3.1270
+	Epoch number: 369
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9989)
+		test accuracy: 0.7800 (best: 0.7880)
+		validation accuracy: 0.8240 (best: 0.8240)
+		Epoch run time in seconds: 3.1045
+	Epoch number: 370
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9989)
+		test accuracy: 0.7730 (best: 0.7880)
+		validation accuracy: 0.8020 (best: 0.8240)
+		Epoch run time in seconds: 3.0528
+	Epoch number: 371
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9989)
+		test accuracy: 0.7890 (best: 0.7890)
+		validation accuracy: 0.8020 (best: 0.8240)
+		Epoch run time in seconds: 3.1017
+	Epoch number: 372
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9989)
+		test accuracy: 0.7740 (best: 0.7890)
+		validation accuracy: 0.8100 (best: 0.8240)
+		Epoch run time in seconds: 3.3626
+	Epoch number: 373
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9989)
+		test accuracy: 0.7900 (best: 0.7900)
+		validation accuracy: 0.8160 (best: 0.8240)
+		Epoch run time in seconds: 3.2920
+	Epoch number: 374
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9989)
+		test accuracy: 0.7710 (best: 0.7900)
+		validation accuracy: 0.8000 (best: 0.8240)
+		Epoch run time in seconds: 3.2065
+	Epoch number: 375
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9991)
+		test accuracy: 0.7680 (best: 0.7900)
+		validation accuracy: 0.8100 (best: 0.8240)
+		Epoch run time in seconds: 3.1775
+	Epoch number: 376
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9991)
+		test accuracy: 0.7800 (best: 0.7900)
+		validation accuracy: 0.8060 (best: 0.8240)
+		Epoch run time in seconds: 3.1872
+	Epoch number: 377
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9993 (best: 0.9993)
+		test accuracy: 0.7720 (best: 0.7900)
+		validation accuracy: 0.8240 (best: 0.8240)
+		Epoch run time in seconds: 3.1470
+	Epoch number: 378
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9993)
+		test accuracy: 0.7830 (best: 0.7900)
+		validation accuracy: 0.8160 (best: 0.8240)
+		Epoch run time in seconds: 3.1660
+	Epoch number: 379
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9980 (best: 0.9993)
+		test accuracy: 0.7790 (best: 0.7900)
+		validation accuracy: 0.8000 (best: 0.8240)
+		Epoch run time in seconds: 3.1695
+	Epoch number: 380
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9993)
+		test accuracy: 0.7630 (best: 0.7900)
+		validation accuracy: 0.8020 (best: 0.8240)
+		Epoch run time in seconds: 3.1590
+	Epoch number: 381
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9993 (best: 0.9993)
+		test accuracy: 0.7680 (best: 0.7900)
+		validation accuracy: 0.8020 (best: 0.8240)
+		Epoch run time in seconds: 3.3478
+	Epoch number: 382
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 0.9996)
+		test accuracy: 0.7730 (best: 0.7900)
+		validation accuracy: 0.8080 (best: 0.8240)
+		Epoch run time in seconds: 3.1645
+	Epoch number: 383
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9996)
+		test accuracy: 0.7780 (best: 0.7900)
+		validation accuracy: 0.8060 (best: 0.8240)
+		Epoch run time in seconds: 3.1272
+	Epoch number: 384
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9993 (best: 0.9996)
+		test accuracy: 0.7740 (best: 0.7900)
+		validation accuracy: 0.8200 (best: 0.8240)
+		Epoch run time in seconds: 3.1369
+	Epoch number: 385
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9996)
+		test accuracy: 0.7740 (best: 0.7900)
+		validation accuracy: 0.8140 (best: 0.8240)
+		Epoch run time in seconds: 3.1958
+	Epoch number: 386
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9996)
+		test accuracy: 0.7800 (best: 0.7900)
+		validation accuracy: 0.8100 (best: 0.8240)
+		Epoch run time in seconds: 3.2190
+	Epoch number: 387
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9996)
+		test accuracy: 0.7750 (best: 0.7900)
+		validation accuracy: 0.8200 (best: 0.8240)
+		Epoch run time in seconds: 3.2044
+	Epoch number: 388
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9996)
+		test accuracy: 0.7760 (best: 0.7900)
+		validation accuracy: 0.8200 (best: 0.8240)
+		Epoch run time in seconds: 3.1950
+	Epoch number: 389
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9996)
+		test accuracy: 0.7800 (best: 0.7900)
+		validation accuracy: 0.8080 (best: 0.8240)
+		Epoch run time in seconds: 3.1135
+	Epoch number: 390
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9996)
+		test accuracy: 0.7780 (best: 0.7900)
+		validation accuracy: 0.8120 (best: 0.8240)
+		Epoch run time in seconds: 3.2045
+	Epoch number: 391
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9996)
+		test accuracy: 0.7720 (best: 0.7900)
+		validation accuracy: 0.8060 (best: 0.8240)
+		Epoch run time in seconds: 3.1994
+	Epoch number: 392
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9993 (best: 0.9996)
+		test accuracy: 0.7800 (best: 0.7900)
+		validation accuracy: 0.8100 (best: 0.8240)
+		Epoch run time in seconds: 3.0729
+	Epoch number: 393
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9996)
+		test accuracy: 0.7630 (best: 0.7900)
+		validation accuracy: 0.8120 (best: 0.8240)
+		Epoch run time in seconds: 3.1937
+	Epoch number: 394
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9996)
+		test accuracy: 0.7730 (best: 0.7900)
+		validation accuracy: 0.8080 (best: 0.8240)
+		Epoch run time in seconds: 3.1849
+	Epoch number: 395
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9996)
+		test accuracy: 0.7760 (best: 0.7900)
+		validation accuracy: 0.8200 (best: 0.8240)
+		Epoch run time in seconds: 3.1732
+	Epoch number: 396
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9996 (best: 0.9996)
+		test accuracy: 0.7820 (best: 0.7900)
+		validation accuracy: 0.8080 (best: 0.8240)
+		Epoch run time in seconds: 3.1879
+	Epoch number: 397
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9996)
+		test accuracy: 0.7830 (best: 0.7900)
+		validation accuracy: 0.8060 (best: 0.8240)
+		Epoch run time in seconds: 3.1911
+	Epoch number: 398
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9998 (best: 0.9998)
+		test accuracy: 0.7690 (best: 0.7900)
+		validation accuracy: 0.8060 (best: 0.8240)
+		Epoch run time in seconds: 3.0574
+	Epoch number: 399
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9989 (best: 0.9998)
+		test accuracy: 0.7690 (best: 0.7900)
+		validation accuracy: 0.8160 (best: 0.8240)
+		Epoch run time in seconds: 3.1452
+	Epoch number: 400
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		train accuracy: 0.9980 (best: 0.9998)
+		test accuracy: 0.7680 (best: 0.7900)
+		validation accuracy: 0.8040 (best: 0.8240)
+		Epoch run time in seconds: 3.1897
+	New classes added... (resetting best accuracies)
+	Epoch number: 401
+		Step Number: 25
+		Online accuracy: 0.59
+		Step Number: 50
+		Online accuracy: 0.60
+		Step Number: 75
+		Online accuracy: 0.63
+		train accuracy: 0.6059 (best: 0.6059)
+		test accuracy: 0.6220 (best: 0.6220)
+		validation accuracy: 0.6427 (best: 0.6427)
+		Epoch run time in seconds: 13.5815
+	Epoch number: 402
+		Step Number: 25
+		Online accuracy: 0.70
+		Step Number: 50
+		Online accuracy: 0.72
+		Step Number: 75
+		Online accuracy: 0.72
+		train accuracy: 0.7142 (best: 0.7142)
+		test accuracy: 0.6453 (best: 0.6453)
+		validation accuracy: 0.6453 (best: 0.6453)
+		Epoch run time in seconds: 4.2049
+	Epoch number: 403
+		Step Number: 25
+		Online accuracy: 0.73
+		Step Number: 50
+		Online accuracy: 0.75
+		Step Number: 75
+		Online accuracy: 0.74
+		train accuracy: 0.7396 (best: 0.7396)
+		test accuracy: 0.6627 (best: 0.6627)
+		validation accuracy: 0.6587 (best: 0.6587)
+		Epoch run time in seconds: 4.1455
+	Epoch number: 404
+		Step Number: 25
+		Online accuracy: 0.77
+		Step Number: 50
+		Online accuracy: 0.76
+		Step Number: 75
+		Online accuracy: 0.77
+		train accuracy: 0.7681 (best: 0.7681)
+		test accuracy: 0.6833 (best: 0.6833)
+		validation accuracy: 0.6587 (best: 0.6587)
+		Epoch run time in seconds: 4.1598
+	Epoch number: 405
+		Step Number: 25
+		Online accuracy: 0.79
+		Step Number: 50
+		Online accuracy: 0.77
+		Step Number: 75
+		Online accuracy: 0.76
+		train accuracy: 0.7702 (best: 0.7702)
+		test accuracy: 0.6980 (best: 0.6980)
+		validation accuracy: 0.7173 (best: 0.7173)
+		Epoch run time in seconds: 4.1460
+	Epoch number: 406
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.80
+		Step Number: 75
+		Online accuracy: 0.77
+		train accuracy: 0.7905 (best: 0.7905)
+		test accuracy: 0.6820 (best: 0.6980)
+		validation accuracy: 0.6800 (best: 0.7173)
+		Epoch run time in seconds: 4.0964
+	Epoch number: 407
+		Step Number: 25
+		Online accuracy: 0.79
+		Step Number: 50
+		Online accuracy: 0.81
+		Step Number: 75
+		Online accuracy: 0.79
+		train accuracy: 0.7954 (best: 0.7954)
+		test accuracy: 0.6840 (best: 0.6980)
+		validation accuracy: 0.6947 (best: 0.7173)
+		Epoch run time in seconds: 4.1259
+	Epoch number: 408
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.80
+		Step Number: 75
+		Online accuracy: 0.80
+		train accuracy: 0.8009 (best: 0.8009)
+		test accuracy: 0.7087 (best: 0.7087)
+		validation accuracy: 0.7293 (best: 0.7293)
+		Epoch run time in seconds: 4.0458
+	Epoch number: 409
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.81
+		Step Number: 75
+		Online accuracy: 0.82
+		train accuracy: 0.8105 (best: 0.8105)
+		test accuracy: 0.6900 (best: 0.7087)
+		validation accuracy: 0.7293 (best: 0.7293)
+		Epoch run time in seconds: 4.0324
+	Epoch number: 410
+		Step Number: 25
+		Online accuracy: 0.83
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.81
+		train accuracy: 0.8249 (best: 0.8249)
+		test accuracy: 0.7013 (best: 0.7087)
+		validation accuracy: 0.7053 (best: 0.7293)
+		Epoch run time in seconds: 3.9976
+	Epoch number: 411
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.82
+		Step Number: 75
+		Online accuracy: 0.82
+		train accuracy: 0.8241 (best: 0.8249)
+		test accuracy: 0.6967 (best: 0.7087)
+		validation accuracy: 0.7093 (best: 0.7293)
+		Epoch run time in seconds: 4.0841
+	Epoch number: 412
+		Step Number: 25
+		Online accuracy: 0.83
+		Step Number: 50
+		Online accuracy: 0.83
+		Step Number: 75
+		Online accuracy: 0.82
+		train accuracy: 0.8281 (best: 0.8281)
+		test accuracy: 0.7213 (best: 0.7213)
+		validation accuracy: 0.7360 (best: 0.7360)
+		Epoch run time in seconds: 4.2885
+	Epoch number: 413
+		Step Number: 25
+		Online accuracy: 0.85
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.81
+		train accuracy: 0.8353 (best: 0.8353)
+		test accuracy: 0.7113 (best: 0.7213)
+		validation accuracy: 0.7360 (best: 0.7360)
+		Epoch run time in seconds: 4.1380
+	Epoch number: 414
+		Step Number: 25
+		Online accuracy: 0.85
+		Step Number: 50
+		Online accuracy: 0.83
+		Step Number: 75
+		Online accuracy: 0.82
+		train accuracy: 0.8319 (best: 0.8353)
+		test accuracy: 0.7153 (best: 0.7213)
+		validation accuracy: 0.7400 (best: 0.7400)
+		Epoch run time in seconds: 4.0186
+	Epoch number: 415
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.83
+		Step Number: 75
+		Online accuracy: 0.82
+		train accuracy: 0.8313 (best: 0.8353)
+		test accuracy: 0.7327 (best: 0.7327)
+		validation accuracy: 0.7240 (best: 0.7400)
+		Epoch run time in seconds: 4.1199
+	Epoch number: 416
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.83
+		Step Number: 75
+		Online accuracy: 0.84
+		train accuracy: 0.8404 (best: 0.8404)
+		test accuracy: 0.7127 (best: 0.7327)
+		validation accuracy: 0.7413 (best: 0.7413)
+		Epoch run time in seconds: 4.1909
+	Epoch number: 417
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.83
+		Step Number: 75
+		Online accuracy: 0.84
+		train accuracy: 0.8348 (best: 0.8404)
+		test accuracy: 0.6887 (best: 0.7327)
+		validation accuracy: 0.7093 (best: 0.7413)
+		Epoch run time in seconds: 4.1546
+	Epoch number: 418
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.84
+		train accuracy: 0.8499 (best: 0.8499)
+		test accuracy: 0.7133 (best: 0.7327)
+		validation accuracy: 0.7080 (best: 0.7413)
+		Epoch run time in seconds: 4.0083
+	Epoch number: 419
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.85
+		train accuracy: 0.8516 (best: 0.8516)
+		test accuracy: 0.7113 (best: 0.7327)
+		validation accuracy: 0.7253 (best: 0.7413)
+		Epoch run time in seconds: 4.1335
+	Epoch number: 420
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.87
+		Step Number: 75
+		Online accuracy: 0.85
+		train accuracy: 0.8600 (best: 0.8600)
+		test accuracy: 0.7220 (best: 0.7327)
+		validation accuracy: 0.7347 (best: 0.7413)
+		Epoch run time in seconds: 4.0851
+	Epoch number: 421
+		Step Number: 25
+		Online accuracy: 0.90
+		Step Number: 50
+		Online accuracy: 0.93
+		Step Number: 75
+		Online accuracy: 0.92
+		train accuracy: 0.9148 (best: 0.9148)
+		test accuracy: 0.7780 (best: 0.7780)
+		validation accuracy: 0.7773 (best: 0.7773)
+		Epoch run time in seconds: 4.0465
+	Epoch number: 422
+		Step Number: 25
+		Online accuracy: 0.95
+		Step Number: 50
+		Online accuracy: 0.95
+		Step Number: 75
+		Online accuracy: 0.95
+		train accuracy: 0.9513 (best: 0.9513)
+		test accuracy: 0.7873 (best: 0.7873)
+		validation accuracy: 0.7973 (best: 0.7973)
+		Epoch run time in seconds: 4.1911
+	Epoch number: 423
+		Step Number: 25
+		Online accuracy: 0.96
+		Step Number: 50
+		Online accuracy: 0.96
+		Step Number: 75
+		Online accuracy: 0.96
+		train accuracy: 0.9625 (best: 0.9625)
+		test accuracy: 0.7720 (best: 0.7873)
+		validation accuracy: 0.7987 (best: 0.7987)
+		Epoch run time in seconds: 4.3960
+	Epoch number: 424
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.97
+		Step Number: 75
+		Online accuracy: 0.97
+		train accuracy: 0.9684 (best: 0.9684)
+		test accuracy: 0.7733 (best: 0.7873)
+		validation accuracy: 0.7933 (best: 0.7987)
+		Epoch run time in seconds: 4.1337
+	Epoch number: 425
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9763 (best: 0.9763)
+		test accuracy: 0.7773 (best: 0.7873)
+		validation accuracy: 0.7987 (best: 0.7987)
+		Epoch run time in seconds: 4.0765
+	Epoch number: 426
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9778 (best: 0.9778)
+		test accuracy: 0.7713 (best: 0.7873)
+		validation accuracy: 0.8027 (best: 0.8027)
+		Epoch run time in seconds: 4.1433
+	Epoch number: 427
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9793 (best: 0.9793)
+		test accuracy: 0.7740 (best: 0.7873)
+		validation accuracy: 0.7920 (best: 0.8027)
+		Epoch run time in seconds: 4.0171
+	Epoch number: 428
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9828 (best: 0.9828)
+		test accuracy: 0.7787 (best: 0.7873)
+		validation accuracy: 0.7987 (best: 0.8027)
+		Epoch run time in seconds: 4.1619
+	Epoch number: 429
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9827 (best: 0.9828)
+		test accuracy: 0.7840 (best: 0.7873)
+		validation accuracy: 0.7840 (best: 0.8027)
+		Epoch run time in seconds: 4.1407
+	Epoch number: 430
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9830 (best: 0.9830)
+		test accuracy: 0.7953 (best: 0.7953)
+		validation accuracy: 0.8027 (best: 0.8027)
+		Epoch run time in seconds: 4.1024
+	Epoch number: 431
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9856 (best: 0.9856)
+		test accuracy: 0.7880 (best: 0.7953)
+		validation accuracy: 0.8187 (best: 0.8187)
+		Epoch run time in seconds: 4.1533
+	Epoch number: 432
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9856 (best: 0.9856)
+		test accuracy: 0.7747 (best: 0.7953)
+		validation accuracy: 0.8040 (best: 0.8187)
+		Epoch run time in seconds: 4.1607
+	Epoch number: 433
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9889 (best: 0.9889)
+		test accuracy: 0.7840 (best: 0.7953)
+		validation accuracy: 0.8013 (best: 0.8187)
+		Epoch run time in seconds: 4.1459
+	Epoch number: 434
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9873 (best: 0.9889)
+		test accuracy: 0.7693 (best: 0.7953)
+		validation accuracy: 0.8080 (best: 0.8187)
+		Epoch run time in seconds: 4.3425
+	Epoch number: 435
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9907 (best: 0.9907)
+		test accuracy: 0.7713 (best: 0.7953)
+		validation accuracy: 0.8187 (best: 0.8187)
+		Epoch run time in seconds: 4.1160
+	Epoch number: 436
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9895 (best: 0.9907)
+		test accuracy: 0.7880 (best: 0.7953)
+		validation accuracy: 0.7920 (best: 0.8187)
+		Epoch run time in seconds: 4.1792
+	Epoch number: 437
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9913 (best: 0.9913)
+		test accuracy: 0.7813 (best: 0.7953)
+		validation accuracy: 0.8093 (best: 0.8187)
+		Epoch run time in seconds: 4.0992
+	Epoch number: 438
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9913 (best: 0.9913)
+		test accuracy: 0.7807 (best: 0.7953)
+		validation accuracy: 0.7987 (best: 0.8187)
+		Epoch run time in seconds: 4.3424
+	Epoch number: 439
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9933 (best: 0.9933)
+		test accuracy: 0.7887 (best: 0.7953)
+		validation accuracy: 0.8000 (best: 0.8187)
+		Epoch run time in seconds: 4.0906
+	Epoch number: 440
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9862 (best: 0.9933)
+		test accuracy: 0.7753 (best: 0.7953)
+		validation accuracy: 0.8027 (best: 0.8187)
+		Epoch run time in seconds: 4.2269
+	Epoch number: 441
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9924 (best: 0.9933)
+		test accuracy: 0.7740 (best: 0.7953)
+		validation accuracy: 0.8027 (best: 0.8187)
+		Epoch run time in seconds: 4.1372
+	Epoch number: 442
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9948 (best: 0.9948)
+		test accuracy: 0.7867 (best: 0.7953)
+		validation accuracy: 0.8040 (best: 0.8187)
+		Epoch run time in seconds: 4.0171
+	Epoch number: 443
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9956 (best: 0.9956)
+		test accuracy: 0.7953 (best: 0.7953)
+		validation accuracy: 0.8120 (best: 0.8187)
+		Epoch run time in seconds: 4.1771
+	Epoch number: 444
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9963 (best: 0.9963)
+		test accuracy: 0.7880 (best: 0.7953)
+		validation accuracy: 0.7867 (best: 0.8187)
+		Epoch run time in seconds: 4.1194
+	Epoch number: 445
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9963 (best: 0.9963)
+		test accuracy: 0.7913 (best: 0.7953)
+		validation accuracy: 0.8053 (best: 0.8187)
+		Epoch run time in seconds: 4.0157
+	Epoch number: 446
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9967)
+		test accuracy: 0.7840 (best: 0.7953)
+		validation accuracy: 0.8107 (best: 0.8187)
+		Epoch run time in seconds: 4.4072
+	Epoch number: 447
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9960 (best: 0.9967)
+		test accuracy: 0.7873 (best: 0.7953)
+		validation accuracy: 0.8053 (best: 0.8187)
+		Epoch run time in seconds: 4.0502
+	Epoch number: 448
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9967)
+		test accuracy: 0.7860 (best: 0.7953)
+		validation accuracy: 0.7973 (best: 0.8187)
+		Epoch run time in seconds: 4.1244
+	Epoch number: 449
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9975 (best: 0.9975)
+		test accuracy: 0.7827 (best: 0.7953)
+		validation accuracy: 0.8093 (best: 0.8187)
+		Epoch run time in seconds: 4.1291
+	Epoch number: 450
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9975)
+		test accuracy: 0.7860 (best: 0.7953)
+		validation accuracy: 0.7920 (best: 0.8187)
+		Epoch run time in seconds: 4.1408
+	Epoch number: 451
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9975 (best: 0.9975)
+		test accuracy: 0.7867 (best: 0.7953)
+		validation accuracy: 0.8067 (best: 0.8187)
+		Epoch run time in seconds: 4.1132
+	Epoch number: 452
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9966 (best: 0.9975)
+		test accuracy: 0.7787 (best: 0.7953)
+		validation accuracy: 0.8147 (best: 0.8187)
+		Epoch run time in seconds: 4.0909
+	Epoch number: 453
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9978)
+		test accuracy: 0.7833 (best: 0.7953)
+		validation accuracy: 0.7987 (best: 0.8187)
+		Epoch run time in seconds: 4.0793
+	Epoch number: 454
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9970 (best: 0.9978)
+		test accuracy: 0.7927 (best: 0.7953)
+		validation accuracy: 0.8027 (best: 0.8187)
+		Epoch run time in seconds: 4.1602
+	Epoch number: 455
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9960 (best: 0.9978)
+		test accuracy: 0.7860 (best: 0.7953)
+		validation accuracy: 0.8080 (best: 0.8187)
+		Epoch run time in seconds: 4.1398
+	Epoch number: 456
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9979 (best: 0.9979)
+		test accuracy: 0.8000 (best: 0.8000)
+		validation accuracy: 0.8067 (best: 0.8187)
+		Epoch run time in seconds: 4.1219
+	Epoch number: 457
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9979)
+		test accuracy: 0.7933 (best: 0.8000)
+		validation accuracy: 0.8107 (best: 0.8187)
+		Epoch run time in seconds: 4.1622
+	Epoch number: 458
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9975 (best: 0.9979)
+		test accuracy: 0.8013 (best: 0.8013)
+		validation accuracy: 0.8040 (best: 0.8187)
+		Epoch run time in seconds: 4.0683
+	Epoch number: 459
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9982)
+		test accuracy: 0.7887 (best: 0.8013)
+		validation accuracy: 0.8173 (best: 0.8187)
+		Epoch run time in seconds: 4.0422
+	Epoch number: 460
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9982)
+		test accuracy: 0.7887 (best: 0.8013)
+		validation accuracy: 0.8147 (best: 0.8187)
+		Epoch run time in seconds: 4.0110
+	Epoch number: 461
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9975 (best: 0.9982)
+		test accuracy: 0.7920 (best: 0.8013)
+		validation accuracy: 0.8053 (best: 0.8187)
+		Epoch run time in seconds: 4.1152
+	Epoch number: 462
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9979 (best: 0.9982)
+		test accuracy: 0.7940 (best: 0.8013)
+		validation accuracy: 0.8093 (best: 0.8187)
+		Epoch run time in seconds: 4.0966
+	Epoch number: 463
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9982)
+		test accuracy: 0.7867 (best: 0.8013)
+		validation accuracy: 0.8053 (best: 0.8187)
+		Epoch run time in seconds: 4.1910
+	Epoch number: 464
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9975 (best: 0.9982)
+		test accuracy: 0.7940 (best: 0.8013)
+		validation accuracy: 0.8107 (best: 0.8187)
+		Epoch run time in seconds: 4.1430
+	Epoch number: 465
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9982)
+		test accuracy: 0.7860 (best: 0.8013)
+		validation accuracy: 0.8107 (best: 0.8187)
+		Epoch run time in seconds: 4.1155
+	Epoch number: 466
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9975 (best: 0.9982)
+		test accuracy: 0.7907 (best: 0.8013)
+		validation accuracy: 0.8040 (best: 0.8187)
+		Epoch run time in seconds: 4.0852
+	Epoch number: 467
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.97
+		train accuracy: 0.9895 (best: 0.9982)
+		test accuracy: 0.7240 (best: 0.8013)
+		validation accuracy: 0.7467 (best: 0.8187)
+		Epoch run time in seconds: 4.1670
+	Epoch number: 468
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.72
+		Step Number: 75
+		Online accuracy: 0.74
+		train accuracy: 0.7519 (best: 0.9982)
+		test accuracy: 0.6800 (best: 0.8013)
+		validation accuracy: 0.6853 (best: 0.8187)
+		Epoch run time in seconds: 4.1425
+	Epoch number: 469
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.82
+		Step Number: 75
+		Online accuracy: 0.80
+		train accuracy: 0.8104 (best: 0.9982)
+		test accuracy: 0.7047 (best: 0.8013)
+		validation accuracy: 0.7467 (best: 0.8187)
+		Epoch run time in seconds: 4.2580
+	Epoch number: 470
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.82
+		Step Number: 75
+		Online accuracy: 0.82
+		train accuracy: 0.8289 (best: 0.9982)
+		test accuracy: 0.6860 (best: 0.8013)
+		validation accuracy: 0.7147 (best: 0.8187)
+		Epoch run time in seconds: 4.1568
+	Epoch number: 471
+		Step Number: 25
+		Online accuracy: 0.83
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.82
+		train accuracy: 0.8304 (best: 0.9982)
+		test accuracy: 0.7127 (best: 0.8013)
+		validation accuracy: 0.7347 (best: 0.8187)
+		Epoch run time in seconds: 4.2453
+	Epoch number: 472
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.83
+		train accuracy: 0.8415 (best: 0.9982)
+		test accuracy: 0.7353 (best: 0.8013)
+		validation accuracy: 0.7333 (best: 0.8187)
+		Epoch run time in seconds: 4.1377
+	Epoch number: 473
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.86
+		Step Number: 75
+		Online accuracy: 0.86
+		train accuracy: 0.8588 (best: 0.9982)
+		test accuracy: 0.7167 (best: 0.8013)
+		validation accuracy: 0.7360 (best: 0.8187)
+		Epoch run time in seconds: 4.1221
+	Epoch number: 474
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.85
+		train accuracy: 0.8609 (best: 0.9982)
+		test accuracy: 0.7240 (best: 0.8013)
+		validation accuracy: 0.7360 (best: 0.8187)
+		Epoch run time in seconds: 4.0776
+	Epoch number: 475
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.85
+		train accuracy: 0.8588 (best: 0.9982)
+		test accuracy: 0.7340 (best: 0.8013)
+		validation accuracy: 0.7467 (best: 0.8187)
+		Epoch run time in seconds: 4.0956
+	Epoch number: 476
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.83
+		train accuracy: 0.8649 (best: 0.9982)
+		test accuracy: 0.7147 (best: 0.8013)
+		validation accuracy: 0.7267 (best: 0.8187)
+		Epoch run time in seconds: 4.1079
+	Epoch number: 477
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.87
+		Step Number: 75
+		Online accuracy: 0.84
+		train accuracy: 0.8612 (best: 0.9982)
+		test accuracy: 0.7287 (best: 0.8013)
+		validation accuracy: 0.7373 (best: 0.8187)
+		Epoch run time in seconds: 4.1627
+	Epoch number: 478
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.87
+		Step Number: 75
+		Online accuracy: 0.86
+		train accuracy: 0.8686 (best: 0.9982)
+		test accuracy: 0.7240 (best: 0.8013)
+		validation accuracy: 0.7440 (best: 0.8187)
+		Epoch run time in seconds: 4.1293
+	Epoch number: 479
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.87
+		train accuracy: 0.8717 (best: 0.9982)
+		test accuracy: 0.7373 (best: 0.8013)
+		validation accuracy: 0.7707 (best: 0.8187)
+		Epoch run time in seconds: 4.2810
+	Epoch number: 480
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.87
+		Step Number: 75
+		Online accuracy: 0.86
+		train accuracy: 0.8729 (best: 0.9982)
+		test accuracy: 0.7407 (best: 0.8013)
+		validation accuracy: 0.7587 (best: 0.8187)
+		Epoch run time in seconds: 4.3016
+	Epoch number: 481
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.86
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8733 (best: 0.9982)
+		test accuracy: 0.7387 (best: 0.8013)
+		validation accuracy: 0.7440 (best: 0.8187)
+		Epoch run time in seconds: 4.1527
+	Epoch number: 482
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8816 (best: 0.9982)
+		test accuracy: 0.7373 (best: 0.8013)
+		validation accuracy: 0.7507 (best: 0.8187)
+		Epoch run time in seconds: 4.1361
+	Epoch number: 483
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8828 (best: 0.9982)
+		test accuracy: 0.7273 (best: 0.8013)
+		validation accuracy: 0.7627 (best: 0.8187)
+		Epoch run time in seconds: 4.0491
+	Epoch number: 484
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.89
+		train accuracy: 0.8874 (best: 0.9982)
+		test accuracy: 0.7453 (best: 0.8013)
+		validation accuracy: 0.7427 (best: 0.8187)
+		Epoch run time in seconds: 4.3588
+	Epoch number: 485
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8827 (best: 0.9982)
+		test accuracy: 0.7320 (best: 0.8013)
+		validation accuracy: 0.7533 (best: 0.8187)
+		Epoch run time in seconds: 4.1337
+	Epoch number: 486
+		Step Number: 25
+		Online accuracy: 0.91
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8879 (best: 0.9982)
+		test accuracy: 0.7580 (best: 0.8013)
+		validation accuracy: 0.7747 (best: 0.8187)
+		Epoch run time in seconds: 4.0653
+	Epoch number: 487
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.91
+		train accuracy: 0.8945 (best: 0.9982)
+		test accuracy: 0.7680 (best: 0.8013)
+		validation accuracy: 0.7893 (best: 0.8187)
+		Epoch run time in seconds: 4.1213
+	Epoch number: 488
+		Step Number: 25
+		Online accuracy: 0.96
+		Step Number: 50
+		Online accuracy: 0.97
+		Step Number: 75
+		Online accuracy: 0.96
+		train accuracy: 0.9600 (best: 0.9982)
+		test accuracy: 0.7840 (best: 0.8013)
+		validation accuracy: 0.8000 (best: 0.8187)
+		Epoch run time in seconds: 4.1470
+	Epoch number: 489
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9781 (best: 0.9982)
+		test accuracy: 0.7927 (best: 0.8013)
+		validation accuracy: 0.8000 (best: 0.8187)
+		Epoch run time in seconds: 4.1719
+	Epoch number: 490
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		train accuracy: 0.9833 (best: 0.9982)
+		test accuracy: 0.7960 (best: 0.8013)
+		validation accuracy: 0.7840 (best: 0.8187)
+		Epoch run time in seconds: 4.0204
+	Epoch number: 491
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9853 (best: 0.9982)
+		test accuracy: 0.7900 (best: 0.8013)
+		validation accuracy: 0.8093 (best: 0.8187)
+		Epoch run time in seconds: 4.0883
+	Epoch number: 492
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9864 (best: 0.9982)
+		test accuracy: 0.8073 (best: 0.8073)
+		validation accuracy: 0.7987 (best: 0.8187)
+		Epoch run time in seconds: 4.3981
+	Epoch number: 493
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9884 (best: 0.9982)
+		test accuracy: 0.7980 (best: 0.8073)
+		validation accuracy: 0.8040 (best: 0.8187)
+		Epoch run time in seconds: 4.1447
+	Epoch number: 494
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9913 (best: 0.9982)
+		test accuracy: 0.8067 (best: 0.8073)
+		validation accuracy: 0.8120 (best: 0.8187)
+		Epoch run time in seconds: 4.2531
+	Epoch number: 495
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9923 (best: 0.9982)
+		test accuracy: 0.7980 (best: 0.8073)
+		validation accuracy: 0.7960 (best: 0.8187)
+		Epoch run time in seconds: 4.1842
+	Epoch number: 496
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9917 (best: 0.9982)
+		test accuracy: 0.7947 (best: 0.8073)
+		validation accuracy: 0.8040 (best: 0.8187)
+		Epoch run time in seconds: 4.0633
+	Epoch number: 497
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9914 (best: 0.9982)
+		test accuracy: 0.7880 (best: 0.8073)
+		validation accuracy: 0.8080 (best: 0.8187)
+		Epoch run time in seconds: 4.1591
+	Epoch number: 498
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9919 (best: 0.9982)
+		test accuracy: 0.7980 (best: 0.8073)
+		validation accuracy: 0.8053 (best: 0.8187)
+		Epoch run time in seconds: 4.1302
+	Epoch number: 499
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9930 (best: 0.9982)
+		test accuracy: 0.7860 (best: 0.8073)
+		validation accuracy: 0.8067 (best: 0.8187)
+		Epoch run time in seconds: 4.1468
+	Epoch number: 500
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9920 (best: 0.9982)
+		test accuracy: 0.7993 (best: 0.8073)
+		validation accuracy: 0.8053 (best: 0.8187)
+		Epoch run time in seconds: 4.1061
+	Epoch number: 501
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9941 (best: 0.9982)
+		test accuracy: 0.8027 (best: 0.8073)
+		validation accuracy: 0.8093 (best: 0.8187)
+		Epoch run time in seconds: 4.2070
+	Epoch number: 502
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9954 (best: 0.9982)
+		test accuracy: 0.7860 (best: 0.8073)
+		validation accuracy: 0.8040 (best: 0.8187)
+		Epoch run time in seconds: 4.1187
+	Epoch number: 503
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9982)
+		test accuracy: 0.8080 (best: 0.8080)
+		validation accuracy: 0.7987 (best: 0.8187)
+		Epoch run time in seconds: 4.3010
+	Epoch number: 504
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9950 (best: 0.9982)
+		test accuracy: 0.7913 (best: 0.8080)
+		validation accuracy: 0.8120 (best: 0.8187)
+		Epoch run time in seconds: 4.1853
+	Epoch number: 505
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9941 (best: 0.9982)
+		test accuracy: 0.7900 (best: 0.8080)
+		validation accuracy: 0.8107 (best: 0.8187)
+		Epoch run time in seconds: 4.1389
+	Epoch number: 506
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9954 (best: 0.9982)
+		test accuracy: 0.7993 (best: 0.8080)
+		validation accuracy: 0.8120 (best: 0.8187)
+		Epoch run time in seconds: 4.1050
+	Epoch number: 507
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9982)
+		test accuracy: 0.7987 (best: 0.8080)
+		validation accuracy: 0.8027 (best: 0.8187)
+		Epoch run time in seconds: 4.0196
+	Epoch number: 508
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9982)
+		test accuracy: 0.7973 (best: 0.8080)
+		validation accuracy: 0.8013 (best: 0.8187)
+		Epoch run time in seconds: 4.1203
+	Epoch number: 509
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9969 (best: 0.9982)
+		test accuracy: 0.8053 (best: 0.8080)
+		validation accuracy: 0.8120 (best: 0.8187)
+		Epoch run time in seconds: 4.1083
+	Epoch number: 510
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9982)
+		test accuracy: 0.7913 (best: 0.8080)
+		validation accuracy: 0.8093 (best: 0.8187)
+		Epoch run time in seconds: 4.0859
+	Epoch number: 511
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9985 (best: 0.9985)
+		test accuracy: 0.8080 (best: 0.8080)
+		validation accuracy: 0.8147 (best: 0.8187)
+		Epoch run time in seconds: 4.1999
+	Epoch number: 512
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9985)
+		test accuracy: 0.8033 (best: 0.8080)
+		validation accuracy: 0.8067 (best: 0.8187)
+		Epoch run time in seconds: 4.1332
+	Epoch number: 513
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9976 (best: 0.9985)
+		test accuracy: 0.8067 (best: 0.8080)
+		validation accuracy: 0.8120 (best: 0.8187)
+		Epoch run time in seconds: 4.0607
+	Epoch number: 514
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9990 (best: 0.9990)
+		test accuracy: 0.7947 (best: 0.8080)
+		validation accuracy: 0.8107 (best: 0.8187)
+		Epoch run time in seconds: 4.3244
+	Epoch number: 515
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9990)
+		test accuracy: 0.7980 (best: 0.8080)
+		validation accuracy: 0.8107 (best: 0.8187)
+		Epoch run time in seconds: 4.0640
+	Epoch number: 516
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9990)
+		test accuracy: 0.7953 (best: 0.8080)
+		validation accuracy: 0.8173 (best: 0.8187)
+		Epoch run time in seconds: 4.1043
+	Epoch number: 517
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9990)
+		test accuracy: 0.8033 (best: 0.8080)
+		validation accuracy: 0.8080 (best: 0.8187)
+		Epoch run time in seconds: 4.0581
+	Epoch number: 518
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9981 (best: 0.9990)
+		test accuracy: 0.7967 (best: 0.8080)
+		validation accuracy: 0.8120 (best: 0.8187)
+		Epoch run time in seconds: 4.3673
+	Epoch number: 519
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9990)
+		test accuracy: 0.8127 (best: 0.8127)
+		validation accuracy: 0.8093 (best: 0.8187)
+		Epoch run time in seconds: 4.0880
+	Epoch number: 520
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9988 (best: 0.9990)
+		test accuracy: 0.8053 (best: 0.8127)
+		validation accuracy: 0.8227 (best: 0.8227)
+		Epoch run time in seconds: 4.1848
+	Epoch number: 521
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9975 (best: 0.9990)
+		test accuracy: 0.7953 (best: 0.8127)
+		validation accuracy: 0.8093 (best: 0.8227)
+		Epoch run time in seconds: 4.2119
+	Epoch number: 522
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9990)
+		test accuracy: 0.8047 (best: 0.8127)
+		validation accuracy: 0.8147 (best: 0.8227)
+		Epoch run time in seconds: 4.1105
+	Epoch number: 523
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9991)
+		test accuracy: 0.8000 (best: 0.8127)
+		validation accuracy: 0.7973 (best: 0.8227)
+		Epoch run time in seconds: 4.1562
+	Epoch number: 524
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9988 (best: 0.9991)
+		test accuracy: 0.7973 (best: 0.8127)
+		validation accuracy: 0.8160 (best: 0.8227)
+		Epoch run time in seconds: 4.2446
+	Epoch number: 525
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9991)
+		test accuracy: 0.8080 (best: 0.8127)
+		validation accuracy: 0.8173 (best: 0.8227)
+		Epoch run time in seconds: 4.1089
+	Epoch number: 526
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9991)
+		test accuracy: 0.8000 (best: 0.8127)
+		validation accuracy: 0.8120 (best: 0.8227)
+		Epoch run time in seconds: 4.2540
+	Epoch number: 527
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9991)
+		test accuracy: 0.8087 (best: 0.8127)
+		validation accuracy: 0.8067 (best: 0.8227)
+		Epoch run time in seconds: 4.0965
+	Epoch number: 528
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9981 (best: 0.9991)
+		test accuracy: 0.8087 (best: 0.8127)
+		validation accuracy: 0.8093 (best: 0.8227)
+		Epoch run time in seconds: 4.1562
+	Epoch number: 529
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9981 (best: 0.9991)
+		test accuracy: 0.8067 (best: 0.8127)
+		validation accuracy: 0.8147 (best: 0.8227)
+		Epoch run time in seconds: 4.1066
+	Epoch number: 530
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9988 (best: 0.9991)
+		test accuracy: 0.7987 (best: 0.8127)
+		validation accuracy: 0.8173 (best: 0.8227)
+		Epoch run time in seconds: 4.0853
+	Epoch number: 531
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9991)
+		test accuracy: 0.8080 (best: 0.8127)
+		validation accuracy: 0.8160 (best: 0.8227)
+		Epoch run time in seconds: 4.1090
+	Epoch number: 532
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9988 (best: 0.9991)
+		test accuracy: 0.8013 (best: 0.8127)
+		validation accuracy: 0.8067 (best: 0.8227)
+		Epoch run time in seconds: 4.0877
+	Epoch number: 533
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9991)
+		test accuracy: 0.8047 (best: 0.8127)
+		validation accuracy: 0.8160 (best: 0.8227)
+		Epoch run time in seconds: 4.0932
+	Epoch number: 534
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.95
+		train accuracy: 0.9822 (best: 0.9991)
+		test accuracy: 0.7287 (best: 0.8127)
+		validation accuracy: 0.7387 (best: 0.8227)
+		Epoch run time in seconds: 4.1532
+	Epoch number: 535
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.74
+		Step Number: 75
+		Online accuracy: 0.77
+		train accuracy: 0.7733 (best: 0.9991)
+		test accuracy: 0.7000 (best: 0.8127)
+		validation accuracy: 0.7387 (best: 0.8227)
+		Epoch run time in seconds: 4.0441
+	Epoch number: 536
+		Step Number: 25
+		Online accuracy: 0.83
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.84
+		train accuracy: 0.8367 (best: 0.9991)
+		test accuracy: 0.7267 (best: 0.8127)
+		validation accuracy: 0.7440 (best: 0.8227)
+		Epoch run time in seconds: 4.1713
+	Epoch number: 537
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.86
+		Step Number: 75
+		Online accuracy: 0.85
+		train accuracy: 0.8622 (best: 0.9991)
+		test accuracy: 0.7520 (best: 0.8127)
+		validation accuracy: 0.7293 (best: 0.8227)
+		Epoch run time in seconds: 4.8057
+	Epoch number: 538
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.86
+		Step Number: 75
+		Online accuracy: 0.84
+		train accuracy: 0.8501 (best: 0.9991)
+		test accuracy: 0.7060 (best: 0.8127)
+		validation accuracy: 0.7240 (best: 0.8227)
+		Epoch run time in seconds: 4.1282
+	Epoch number: 539
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.86
+		train accuracy: 0.8609 (best: 0.9991)
+		test accuracy: 0.7393 (best: 0.8127)
+		validation accuracy: 0.7440 (best: 0.8227)
+		Epoch run time in seconds: 4.2184
+	Epoch number: 540
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.87
+		train accuracy: 0.8772 (best: 0.9991)
+		test accuracy: 0.7280 (best: 0.8127)
+		validation accuracy: 0.7533 (best: 0.8227)
+		Epoch run time in seconds: 3.9903
+	Epoch number: 541
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.86
+		train accuracy: 0.8804 (best: 0.9991)
+		test accuracy: 0.7267 (best: 0.8127)
+		validation accuracy: 0.7347 (best: 0.8227)
+		Epoch run time in seconds: 4.1140
+	Epoch number: 542
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.87
+		Step Number: 75
+		Online accuracy: 0.85
+		train accuracy: 0.8659 (best: 0.9991)
+		test accuracy: 0.7167 (best: 0.8127)
+		validation accuracy: 0.7373 (best: 0.8227)
+		Epoch run time in seconds: 4.1259
+	Epoch number: 543
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.87
+		train accuracy: 0.8825 (best: 0.9991)
+		test accuracy: 0.7367 (best: 0.8127)
+		validation accuracy: 0.7440 (best: 0.8227)
+		Epoch run time in seconds: 4.0972
+	Epoch number: 544
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8830 (best: 0.9991)
+		test accuracy: 0.7227 (best: 0.8127)
+		validation accuracy: 0.7360 (best: 0.8227)
+		Epoch run time in seconds: 4.0451
+	Epoch number: 545
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8833 (best: 0.9991)
+		test accuracy: 0.7287 (best: 0.8127)
+		validation accuracy: 0.7400 (best: 0.8227)
+		Epoch run time in seconds: 4.0609
+	Epoch number: 546
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.89
+		train accuracy: 0.8896 (best: 0.9991)
+		test accuracy: 0.7540 (best: 0.8127)
+		validation accuracy: 0.7653 (best: 0.8227)
+		Epoch run time in seconds: 4.1363
+	Epoch number: 547
+		Step Number: 25
+		Online accuracy: 0.90
+		Step Number: 50
+		Online accuracy: 0.90
+		Step Number: 75
+		Online accuracy: 0.87
+		train accuracy: 0.8921 (best: 0.9991)
+		test accuracy: 0.7287 (best: 0.8127)
+		validation accuracy: 0.7373 (best: 0.8227)
+		Epoch run time in seconds: 4.1273
+	Epoch number: 548
+		Step Number: 25
+		Online accuracy: 0.88
+		Step Number: 50
+		Online accuracy: 0.89
+		Step Number: 75
+		Online accuracy: 0.87
+		train accuracy: 0.8834 (best: 0.9991)
+		test accuracy: 0.7407 (best: 0.8127)
+		validation accuracy: 0.7347 (best: 0.8227)
+		Epoch run time in seconds: 4.0462
+	Epoch number: 549
+		Step Number: 25
+		Online accuracy: 0.91
+		Step Number: 50
+		Online accuracy: 0.90
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8954 (best: 0.9991)
+		test accuracy: 0.7373 (best: 0.8127)
+		validation accuracy: 0.7400 (best: 0.8227)
+		Epoch run time in seconds: 4.2705
+	Epoch number: 550
+		Step Number: 25
+		Online accuracy: 0.90
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8867 (best: 0.9991)
+		test accuracy: 0.7333 (best: 0.8127)
+		validation accuracy: 0.7573 (best: 0.8227)
+		Epoch run time in seconds: 4.1531
+	Epoch number: 551
+		Step Number: 25
+		Online accuracy: 0.91
+		Step Number: 50
+		Online accuracy: 0.90
+		Step Number: 75
+		Online accuracy: 0.88
+		train accuracy: 0.8951 (best: 0.9991)
+		test accuracy: 0.7273 (best: 0.8127)
+		validation accuracy: 0.7427 (best: 0.8227)
+		Epoch run time in seconds: 4.0237
+	Epoch number: 552
+		Step Number: 25
+		Online accuracy: 0.90
+		Step Number: 50
+		Online accuracy: 0.91
+		Step Number: 75
+		Online accuracy: 0.90
+		train accuracy: 0.9046 (best: 0.9991)
+		test accuracy: 0.7580 (best: 0.8127)
+		validation accuracy: 0.7640 (best: 0.8227)
+		Epoch run time in seconds: 4.1700
+	Epoch number: 553
+		Step Number: 25
+		Online accuracy: 0.92
+		Step Number: 50
+		Online accuracy: 0.92
+		Step Number: 75
+		Online accuracy: 0.90
+		train accuracy: 0.9169 (best: 0.9991)
+		test accuracy: 0.7433 (best: 0.8127)
+		validation accuracy: 0.7467 (best: 0.8227)
+		Epoch run time in seconds: 4.1086
+	Epoch number: 554
+		Step Number: 25
+		Online accuracy: 0.92
+		Step Number: 50
+		Online accuracy: 0.93
+		Step Number: 75
+		Online accuracy: 0.96
+		train accuracy: 0.9342 (best: 0.9991)
+		test accuracy: 0.7920 (best: 0.8127)
+		validation accuracy: 0.8000 (best: 0.8227)
+		Epoch run time in seconds: 4.1541
+	Epoch number: 555
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		Step Number: 75
+		Online accuracy: 0.97
+		train accuracy: 0.9748 (best: 0.9991)
+		test accuracy: 0.7960 (best: 0.8127)
+		validation accuracy: 0.8227 (best: 0.8227)
+		Epoch run time in seconds: 4.0908
+	Epoch number: 556
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9852 (best: 0.9991)
+		test accuracy: 0.8013 (best: 0.8127)
+		validation accuracy: 0.8133 (best: 0.8227)
+		Epoch run time in seconds: 4.2090
+	Epoch number: 557
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9877 (best: 0.9991)
+		test accuracy: 0.8040 (best: 0.8127)
+		validation accuracy: 0.8093 (best: 0.8227)
+		Epoch run time in seconds: 4.0439
+	Epoch number: 558
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9880 (best: 0.9991)
+		test accuracy: 0.8093 (best: 0.8127)
+		validation accuracy: 0.8067 (best: 0.8227)
+		Epoch run time in seconds: 4.1193
+	Epoch number: 559
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9920 (best: 0.9991)
+		test accuracy: 0.8033 (best: 0.8127)
+		validation accuracy: 0.8133 (best: 0.8227)
+		Epoch run time in seconds: 4.0251
+	Epoch number: 560
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9951 (best: 0.9991)
+		test accuracy: 0.8047 (best: 0.8127)
+		validation accuracy: 0.8187 (best: 0.8227)
+		Epoch run time in seconds: 4.3553
+	Epoch number: 561
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9941 (best: 0.9991)
+		test accuracy: 0.8133 (best: 0.8133)
+		validation accuracy: 0.8067 (best: 0.8227)
+		Epoch run time in seconds: 4.0424
+	Epoch number: 562
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9939 (best: 0.9991)
+		test accuracy: 0.8073 (best: 0.8133)
+		validation accuracy: 0.8133 (best: 0.8227)
+		Epoch run time in seconds: 4.0784
+	Epoch number: 563
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9947 (best: 0.9991)
+		test accuracy: 0.8193 (best: 0.8193)
+		validation accuracy: 0.8053 (best: 0.8227)
+		Epoch run time in seconds: 4.0429
+	Epoch number: 564
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9948 (best: 0.9991)
+		test accuracy: 0.8113 (best: 0.8193)
+		validation accuracy: 0.8080 (best: 0.8227)
+		Epoch run time in seconds: 4.4681
+	Epoch number: 565
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9956 (best: 0.9991)
+		test accuracy: 0.8073 (best: 0.8193)
+		validation accuracy: 0.8187 (best: 0.8227)
+		Epoch run time in seconds: 4.0540
+	Epoch number: 566
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9951 (best: 0.9991)
+		test accuracy: 0.8093 (best: 0.8193)
+		validation accuracy: 0.8160 (best: 0.8227)
+		Epoch run time in seconds: 3.9945
+	Epoch number: 567
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9991)
+		test accuracy: 0.8133 (best: 0.8193)
+		validation accuracy: 0.8160 (best: 0.8227)
+		Epoch run time in seconds: 4.1682
+	Epoch number: 568
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9991)
+		test accuracy: 0.8233 (best: 0.8233)
+		validation accuracy: 0.8133 (best: 0.8227)
+		Epoch run time in seconds: 4.0959
+	Epoch number: 569
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9964 (best: 0.9991)
+		test accuracy: 0.8053 (best: 0.8233)
+		validation accuracy: 0.8240 (best: 0.8240)
+		Epoch run time in seconds: 4.1013
+	Epoch number: 570
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9981 (best: 0.9991)
+		test accuracy: 0.8033 (best: 0.8233)
+		validation accuracy: 0.8173 (best: 0.8240)
+		Epoch run time in seconds: 4.1616
+	Epoch number: 571
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9961 (best: 0.9991)
+		test accuracy: 0.8087 (best: 0.8233)
+		validation accuracy: 0.8307 (best: 0.8307)
+		Epoch run time in seconds: 4.1507
+	Epoch number: 572
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		train accuracy: 0.9960 (best: 0.9991)
+		test accuracy: 0.8093 (best: 0.8233)
+		validation accuracy: 0.8387 (best: 0.8387)
+		Epoch run time in seconds: 4.2518
+	Epoch number: 573
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9972 (best: 0.9991)
+		test accuracy: 0.7987 (best: 0.8233)
+		validation accuracy: 0.8360 (best: 0.8387)
+		Epoch run time in seconds: 4.1200
+	Epoch number: 574
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9979 (best: 0.9991)
+		test accuracy: 0.8107 (best: 0.8233)
+		validation accuracy: 0.8320 (best: 0.8387)
+		Epoch run time in seconds: 4.1543
+	Epoch number: 575
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9984 (best: 0.9991)
+		test accuracy: 0.8133 (best: 0.8233)
+		validation accuracy: 0.8293 (best: 0.8387)
+		Epoch run time in seconds: 4.1085
+	Epoch number: 576
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9981 (best: 0.9991)
+		test accuracy: 0.8160 (best: 0.8233)
+		validation accuracy: 0.8347 (best: 0.8387)
+		Epoch run time in seconds: 4.1597
+	Epoch number: 577
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9991)
+		test accuracy: 0.8100 (best: 0.8233)
+		validation accuracy: 0.8307 (best: 0.8387)
+		Epoch run time in seconds: 4.1169
+	Epoch number: 578
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9979 (best: 0.9991)
+		test accuracy: 0.8113 (best: 0.8233)
+		validation accuracy: 0.8253 (best: 0.8387)
+		Epoch run time in seconds: 4.1028
+	Epoch number: 579
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9978 (best: 0.9991)
+		test accuracy: 0.8220 (best: 0.8233)
+		validation accuracy: 0.8307 (best: 0.8387)
+		Epoch run time in seconds: 4.1355
+	Epoch number: 580
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9985 (best: 0.9991)
+		test accuracy: 0.8140 (best: 0.8233)
+		validation accuracy: 0.8333 (best: 0.8387)
+		Epoch run time in seconds: 4.2163
+	Epoch number: 581
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9990 (best: 0.9991)
+		test accuracy: 0.8067 (best: 0.8233)
+		validation accuracy: 0.8240 (best: 0.8387)
+		Epoch run time in seconds: 4.0573
+	Epoch number: 582
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9987 (best: 0.9991)
+		test accuracy: 0.8140 (best: 0.8233)
+		validation accuracy: 0.8213 (best: 0.8387)
+		Epoch run time in seconds: 4.0607
+	Epoch number: 583
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9985 (best: 0.9991)
+		test accuracy: 0.8160 (best: 0.8233)
+		validation accuracy: 0.8307 (best: 0.8387)
+		Epoch run time in seconds: 4.4429
+	Epoch number: 584
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9988 (best: 0.9991)
+		test accuracy: 0.8107 (best: 0.8233)
+		validation accuracy: 0.8413 (best: 0.8413)
+		Epoch run time in seconds: 4.2302
+	Epoch number: 585
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9993 (best: 0.9993)
+		test accuracy: 0.8147 (best: 0.8233)
+		validation accuracy: 0.8360 (best: 0.8413)
+		Epoch run time in seconds: 4.1196
+	Epoch number: 586
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9982 (best: 0.9993)
+		test accuracy: 0.8153 (best: 0.8233)
+		validation accuracy: 0.8253 (best: 0.8413)
+		Epoch run time in seconds: 4.2022
+	Epoch number: 587
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9970 (best: 0.9993)
+		test accuracy: 0.8247 (best: 0.8247)
+		validation accuracy: 0.8293 (best: 0.8413)
+		Epoch run time in seconds: 4.1854
+	Epoch number: 588
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9990 (best: 0.9993)
+		test accuracy: 0.8213 (best: 0.8247)
+		validation accuracy: 0.8213 (best: 0.8413)
+		Epoch run time in seconds: 4.0506
+	Epoch number: 589
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9993)
+		test accuracy: 0.8127 (best: 0.8247)
+		validation accuracy: 0.8280 (best: 0.8413)
+		Epoch run time in seconds: 4.1744
+	Epoch number: 590
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9994 (best: 0.9994)
+		test accuracy: 0.8247 (best: 0.8247)
+		validation accuracy: 0.8240 (best: 0.8413)
+		Epoch run time in seconds: 4.0863
+	Epoch number: 591
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9994)
+		test accuracy: 0.8080 (best: 0.8247)
+		validation accuracy: 0.8200 (best: 0.8413)
+		Epoch run time in seconds: 4.1257
+	Epoch number: 592
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9988 (best: 0.9994)
+		test accuracy: 0.8127 (best: 0.8247)
+		validation accuracy: 0.8280 (best: 0.8413)
+		Epoch run time in seconds: 4.1275
+	Epoch number: 593
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9988 (best: 0.9994)
+		test accuracy: 0.8093 (best: 0.8247)
+		validation accuracy: 0.8160 (best: 0.8413)
+		Epoch run time in seconds: 4.1044
+	Epoch number: 594
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9994 (best: 0.9994)
+		test accuracy: 0.8133 (best: 0.8247)
+		validation accuracy: 0.8427 (best: 0.8427)
+		Epoch run time in seconds: 4.0811
+	Epoch number: 595
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9994)
+		test accuracy: 0.8247 (best: 0.8247)
+		validation accuracy: 0.8280 (best: 0.8427)
+		Epoch run time in seconds: 4.1327
+	Epoch number: 596
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9991 (best: 0.9994)
+		test accuracy: 0.8127 (best: 0.8247)
+		validation accuracy: 0.8347 (best: 0.8427)
+		Epoch run time in seconds: 4.0691
+	Epoch number: 597
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9994 (best: 0.9994)
+		test accuracy: 0.8107 (best: 0.8247)
+		validation accuracy: 0.8280 (best: 0.8427)
+		Epoch run time in seconds: 4.1679
+	Epoch number: 598
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9985 (best: 0.9994)
+		test accuracy: 0.8233 (best: 0.8247)
+		validation accuracy: 0.8333 (best: 0.8427)
+		Epoch run time in seconds: 4.3422
+	Epoch number: 599
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9985 (best: 0.9994)
+		test accuracy: 0.8233 (best: 0.8247)
+		validation accuracy: 0.8333 (best: 0.8427)
+		Epoch run time in seconds: 4.0752
+	Epoch number: 600
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		train accuracy: 0.9990 (best: 0.9994)
+		test accuracy: 0.8073 (best: 0.8247)
+		validation accuracy: 0.8227 (best: 0.8427)
+		Epoch run time in seconds: 4.0845
+	New classes added... (resetting best accuracies)
+	Epoch number: 601
+		Step Number: 25
+		Online accuracy: 0.66
+		Step Number: 50
+		Online accuracy: 0.66
+		Step Number: 75
+		Online accuracy: 0.71
+		Step Number: 100
+		Online accuracy: 0.72
+		train accuracy: 0.6862 (best: 0.6862)
+		test accuracy: 0.6455 (best: 0.6455)
+		validation accuracy: 0.6410 (best: 0.6410)
+		Epoch run time in seconds: 14.8235
+	Epoch number: 602
+		Step Number: 25
+		Online accuracy: 0.74
+		Step Number: 50
+		Online accuracy: 0.75
+		Step Number: 75
+		Online accuracy: 0.75
+		Step Number: 100
+		Online accuracy: 0.73
+		train accuracy: 0.7439 (best: 0.7439)
+		test accuracy: 0.6765 (best: 0.6765)
+		validation accuracy: 0.6880 (best: 0.6880)
+		Epoch run time in seconds: 5.1879
+	Epoch number: 603
+		Step Number: 25
+		Online accuracy: 0.78
+		Step Number: 50
+		Online accuracy: 0.79
+		Step Number: 75
+		Online accuracy: 0.77
+		Step Number: 100
+		Online accuracy: 0.77
+		train accuracy: 0.7754 (best: 0.7754)
+		test accuracy: 0.6975 (best: 0.6975)
+		validation accuracy: 0.6960 (best: 0.6960)
+		Epoch run time in seconds: 4.9627
+	Epoch number: 604
+		Step Number: 25
+		Online accuracy: 0.80
+		Step Number: 50
+		Online accuracy: 0.79
+		Step Number: 75
+		Online accuracy: 0.79
+		Step Number: 100
+		Online accuracy: 0.79
+		train accuracy: 0.7909 (best: 0.7909)
+		test accuracy: 0.6845 (best: 0.6975)
+		validation accuracy: 0.6920 (best: 0.6960)
+		Epoch run time in seconds: 5.1208
+	Epoch number: 605
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.79
+		Step Number: 75
+		Online accuracy: 0.80
+		Step Number: 100
+		Online accuracy: 0.79
+		train accuracy: 0.7998 (best: 0.7998)
+		test accuracy: 0.7085 (best: 0.7085)
+		validation accuracy: 0.7180 (best: 0.7180)
+		Epoch run time in seconds: 4.9028
+	Epoch number: 606
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.80
+		Step Number: 75
+		Online accuracy: 0.83
+		Step Number: 100
+		Online accuracy: 0.81
+		train accuracy: 0.8120 (best: 0.8120)
+		test accuracy: 0.6990 (best: 0.7085)
+		validation accuracy: 0.7300 (best: 0.7300)
+		Epoch run time in seconds: 4.9742
+	Epoch number: 607
+		Step Number: 25
+		Online accuracy: 0.82
+		Step Number: 50
+		Online accuracy: 0.82
+		Step Number: 75
+		Online accuracy: 0.81
+		Step Number: 100
+		Online accuracy: 0.81
+		train accuracy: 0.8151 (best: 0.8151)
+		test accuracy: 0.6940 (best: 0.7085)
+		validation accuracy: 0.7230 (best: 0.7300)
+		Epoch run time in seconds: 4.9680
+	Epoch number: 608
+		Step Number: 25
+		Online accuracy: 0.83
+		Step Number: 50
+		Online accuracy: 0.80
+		Step Number: 75
+		Online accuracy: 0.81
+		Step Number: 100
+		Online accuracy: 0.82
+		train accuracy: 0.8157 (best: 0.8157)
+		test accuracy: 0.7050 (best: 0.7085)
+		validation accuracy: 0.7320 (best: 0.7320)
+		Epoch run time in seconds: 5.0177
+	Epoch number: 609
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.83
+		Step Number: 75
+		Online accuracy: 0.82
+		Step Number: 100
+		Online accuracy: 0.83
+		train accuracy: 0.8292 (best: 0.8292)
+		test accuracy: 0.7140 (best: 0.7140)
+		validation accuracy: 0.7100 (best: 0.7320)
+		Epoch run time in seconds: 4.9067
+	Epoch number: 610
+		Step Number: 25
+		Online accuracy: 0.85
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.82
+		Step Number: 100
+		Online accuracy: 0.81
+		train accuracy: 0.8307 (best: 0.8307)
+		test accuracy: 0.6985 (best: 0.7140)
+		validation accuracy: 0.7270 (best: 0.7320)
+		Epoch run time in seconds: 5.0585
+	Epoch number: 611
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.85
+		Step Number: 100
+		Online accuracy: 0.81
+		train accuracy: 0.8388 (best: 0.8388)
+		test accuracy: 0.7140 (best: 0.7140)
+		validation accuracy: 0.7320 (best: 0.7320)
+		Epoch run time in seconds: 4.9033
+	Epoch number: 612
+		Step Number: 25
+		Online accuracy: 0.83
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.83
+		Step Number: 100
+		Online accuracy: 0.82
+		train accuracy: 0.8352 (best: 0.8388)
+		test accuracy: 0.6980 (best: 0.7140)
+		validation accuracy: 0.7360 (best: 0.7360)
+		Epoch run time in seconds: 4.9281
+	Epoch number: 613
+		Step Number: 25
+		Online accuracy: 0.86
+		Step Number: 50
+		Online accuracy: 0.84
+		Step Number: 75
+		Online accuracy: 0.84
+		Step Number: 100
+		Online accuracy: 0.84
+		train accuracy: 0.8448 (best: 0.8448)
+		test accuracy: 0.6995 (best: 0.7140)
+		validation accuracy: 0.7220 (best: 0.7360)
+		Epoch run time in seconds: 5.0074
+	Epoch number: 614
+		Step Number: 25
+		Online accuracy: 0.85
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.82
+		Step Number: 100
+		Online accuracy: 0.83
+		train accuracy: 0.8388 (best: 0.8448)
+		test accuracy: 0.7105 (best: 0.7140)
+		validation accuracy: 0.7090 (best: 0.7360)
+		Epoch run time in seconds: 4.9531
+	Epoch number: 615
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.86
+		Step Number: 75
+		Online accuracy: 0.84
+		Step Number: 100
+		Online accuracy: 0.85
+		train accuracy: 0.8483 (best: 0.8483)
+		test accuracy: 0.7070 (best: 0.7140)
+		validation accuracy: 0.7300 (best: 0.7360)
+		Epoch run time in seconds: 5.2589
+	Epoch number: 616
+		Step Number: 25
+		Online accuracy: 0.89
+		Step Number: 50
+		Online accuracy: 0.92
+		Step Number: 75
+		Online accuracy: 0.93
+		Step Number: 100
+		Online accuracy: 0.94
+		train accuracy: 0.9217 (best: 0.9217)
+		test accuracy: 0.7710 (best: 0.7710)
+		validation accuracy: 0.7880 (best: 0.7880)
+		Epoch run time in seconds: 4.9191
+	Epoch number: 617
+		Step Number: 25
+		Online accuracy: 0.95
+		Step Number: 50
+		Online accuracy: 0.95
+		Step Number: 75
+		Online accuracy: 0.95
+		Step Number: 100
+		Online accuracy: 0.96
+		train accuracy: 0.9544 (best: 0.9544)
+		test accuracy: 0.7740 (best: 0.7740)
+		validation accuracy: 0.8020 (best: 0.8020)
+		Epoch run time in seconds: 5.0850
+	Epoch number: 618
+		Step Number: 25
+		Online accuracy: 0.96
+		Step Number: 50
+		Online accuracy: 0.96
+		Step Number: 75
+		Online accuracy: 0.96
+		Step Number: 100
+		Online accuracy: 0.96
+		train accuracy: 0.9589 (best: 0.9589)
+		test accuracy: 0.7835 (best: 0.7835)
+		validation accuracy: 0.8070 (best: 0.8070)
+		Epoch run time in seconds: 4.9351
+	Epoch number: 619
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.96
+		Step Number: 75
+		Online accuracy: 0.96
+		Step Number: 100
+		Online accuracy: 0.96
+		train accuracy: 0.9646 (best: 0.9646)
+		test accuracy: 0.7815 (best: 0.7835)
+		validation accuracy: 0.7920 (best: 0.8070)
+		Epoch run time in seconds: 4.9339
+	Epoch number: 620
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.97
+		Step Number: 100
+		Online accuracy: 0.97
+		train accuracy: 0.9738 (best: 0.9738)
+		test accuracy: 0.7740 (best: 0.7835)
+		validation accuracy: 0.8030 (best: 0.8070)
+		Epoch run time in seconds: 4.9344
+	Epoch number: 621
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		Step Number: 100
+		Online accuracy: 0.97
+		train accuracy: 0.9762 (best: 0.9762)
+		test accuracy: 0.7905 (best: 0.7905)
+		validation accuracy: 0.8030 (best: 0.8070)
+		Epoch run time in seconds: 4.8845
+	Epoch number: 622
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.97
+		Step Number: 75
+		Online accuracy: 0.97
+		Step Number: 100
+		Online accuracy: 0.98
+		train accuracy: 0.9744 (best: 0.9762)
+		test accuracy: 0.7905 (best: 0.7905)
+		validation accuracy: 0.8020 (best: 0.8070)
+		Epoch run time in seconds: 4.8672
+	Epoch number: 623
+		Step Number: 25
+		Online accuracy: 0.98
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		Step Number: 100
+		Online accuracy: 0.98
+		train accuracy: 0.9807 (best: 0.9807)
+		test accuracy: 0.7760 (best: 0.7905)
+		validation accuracy: 0.8110 (best: 0.8110)
+		Epoch run time in seconds: 5.0124
+	Epoch number: 624
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		Step Number: 100
+		Online accuracy: 0.98
+		train accuracy: 0.9816 (best: 0.9816)
+		test accuracy: 0.7755 (best: 0.7905)
+		validation accuracy: 0.8100 (best: 0.8110)
+		Epoch run time in seconds: 4.9724
+	Epoch number: 625
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.98
+		Step Number: 75
+		Online accuracy: 0.98
+		Step Number: 100
+		Online accuracy: 0.98
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	validation accuracy: 0.8130 (best: 0.8200)
+		Epoch run time in seconds: 5.0319
+	Epoch number: 628
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9884 (best: 0.9884)
+		test accuracy: 0.7955 (best: 0.7955)
+		validation accuracy: 0.8170 (best: 0.8200)
+		Epoch run time in seconds: 4.9116
+	Epoch number: 629
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9882 (best: 0.9884)
+		test accuracy: 0.7685 (best: 0.7955)
+		validation accuracy: 0.8200 (best: 0.8200)
+		Epoch run time in seconds: 5.1936
+	Epoch number: 630
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9889 (best: 0.9889)
+		test accuracy: 0.7745 (best: 0.7955)
+		validation accuracy: 0.8120 (best: 0.8200)
+		Epoch run time in seconds: 5.0031
+	Epoch number: 631
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9922 (best: 0.9922)
+		test accuracy: 0.7915 (best: 0.7955)
+		validation accuracy: 0.8240 (best: 0.8240)
+		Epoch run time in seconds: 4.8500
+	Epoch number: 632
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9952 (best: 0.9952)
+		test accuracy: 0.7940 (best: 0.7955)
+		validation accuracy: 0.8300 (best: 0.8300)
+		Epoch run time in seconds: 4.9023
+	Epoch number: 633
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9949 (best: 0.9952)
+		test accuracy: 0.7915 (best: 0.7955)
+		validation accuracy: 0.8130 (best: 0.8300)
+		Epoch run time in seconds: 4.8581
+	Epoch number: 634
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 0.99
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9941 (best: 0.9952)
+		test accuracy: 0.7905 (best: 0.7955)
+		validation accuracy: 0.8230 (best: 0.8300)
+		Epoch run time in seconds: 4.9379
+	Epoch number: 635
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9960 (best: 0.9960)
+		test accuracy: 0.7950 (best: 0.7955)
+		validation accuracy: 0.8200 (best: 0.8300)
+		Epoch run time in seconds: 4.9420
+	Epoch number: 636
+		Step Number: 25
+		Online accuracy: 0.99
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9953 (best: 0.9960)
+		test accuracy: 0.7915 (best: 0.7955)
+		validation accuracy: 0.8110 (best: 0.8300)
+		Epoch run time in seconds: 5.0724
+	Epoch number: 637
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9958 (best: 0.9960)
+		test accuracy: 0.8070 (best: 0.8070)
+		validation accuracy: 0.8150 (best: 0.8300)
+		Epoch run time in seconds: 4.9152
+	Epoch number: 638
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 0.99
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9952 (best: 0.9960)
+		test accuracy: 0.7905 (best: 0.8070)
+		validation accuracy: 0.8150 (best: 0.8300)
+		Epoch run time in seconds: 5.0220
+	Epoch number: 639
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9956 (best: 0.9960)
+		test accuracy: 0.7935 (best: 0.8070)
+		validation accuracy: 0.8150 (best: 0.8300)
+		Epoch run time in seconds: 4.9543
+	Epoch number: 640
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9971 (best: 0.9971)
+		test accuracy: 0.7980 (best: 0.8070)
+		validation accuracy: 0.8300 (best: 0.8300)
+		Epoch run time in seconds: 5.0282
+	Epoch number: 641
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 0.99
+		train accuracy: 0.9971 (best: 0.9971)
+		test accuracy: 0.7930 (best: 0.8070)
+		validation accuracy: 0.8120 (best: 0.8300)
+		Epoch run time in seconds: 4.9404
+	Epoch number: 642
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9968 (best: 0.9971)
+		test accuracy: 0.7865 (best: 0.8070)
+		validation accuracy: 0.8180 (best: 0.8300)
+		Epoch run time in seconds: 5.0256
+	Epoch number: 643
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9966 (best: 0.9971)
+		test accuracy: 0.7940 (best: 0.8070)
+		validation accuracy: 0.8110 (best: 0.8300)
+		Epoch run time in seconds: 4.9105
+	Epoch number: 644
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9967 (best: 0.9971)
+		test accuracy: 0.7990 (best: 0.8070)
+		validation accuracy: 0.8190 (best: 0.8300)
+		Epoch run time in seconds: 4.9775
+	Epoch number: 645
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9974 (best: 0.9974)
+		test accuracy: 0.8005 (best: 0.8070)
+		validation accuracy: 0.8060 (best: 0.8300)
+		Epoch run time in seconds: 4.9562
+	Epoch number: 646
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9974 (best: 0.9974)
+		test accuracy: 0.7940 (best: 0.8070)
+		validation accuracy: 0.8240 (best: 0.8300)
+		Epoch run time in seconds: 5.0001
+	Epoch number: 647
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9971 (best: 0.9974)
+		test accuracy: 0.7905 (best: 0.8070)
+		validation accuracy: 0.8120 (best: 0.8300)
+		Epoch run time in seconds: 5.2272
+	Epoch number: 648
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9981 (best: 0.9981)
+		test accuracy: 0.7880 (best: 0.8070)
+		validation accuracy: 0.8290 (best: 0.8300)
+		Epoch run time in seconds: 4.9548
+	Epoch number: 649
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 0.99
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9963 (best: 0.9981)
+		test accuracy: 0.7950 (best: 0.8070)
+		validation accuracy: 0.8220 (best: 0.8300)
+		Epoch run time in seconds: 4.9295
+	Epoch number: 650
+		Step Number: 25
+		Online accuracy: 1.00
+		Step Number: 50
+		Online accuracy: 1.00
+		Step Number: 75
+		Online accuracy: 1.00
+		Step Number: 100
+		Online accuracy: 1.00
+		train accuracy: 0.9963 (best: 0.9981)
+		test accuracy: 0.7940 (best: 0.8070)
+		validation accuracy: 0.8110 (best: 0.8300)
+		Epoch run time in seconds: 4.9714
+	Epoch number: 651
+		Step Number: 25
+		Online accuracy: 0.97
+		Step Number: 50
+		Online accuracy: 0.81
+		Step Number: 75
+		Online accuracy: 0.72
+		Step Number: 100
+		Online accuracy: 0.72
+		train accuracy: 0.8058 (best: 0.9981)
+		test accuracy: 0.6840 (best: 0.8070)
+		validation accuracy: 0.6830 (best: 0.8300)
+		Epoch run time in seconds: 4.9228
+	Epoch number: 652
+		Step Number: 25
+		Online accuracy: 0.79
+		Step Number: 50
+		Online accuracy: 0.82
+		Step Number: 75
+		Online accuracy: 0.80
+		Step Number: 100
+		Online accuracy: 0.76
+		train accuracy: 0.7949 (best: 0.9981)
+		test accuracy: 0.6910 (best: 0.8070)
+		validation accuracy: 0.7080 (best: 0.8300)
+		Epoch run time in seconds: 4.9418
+	Epoch number: 653
+		Step Number: 25
+		Online accuracy: 0.81
+		Step Number: 50
+		Online accuracy: 0.81
+		Step Number: 75
+		Online accuracy: 0.81
+		Step Number: 100
+		Online accuracy: 0.81
+		train accuracy: 0.8118 (best: 0.9981)
+		test accuracy: 0.7070 (best: 0.8070)
+		validation accuracy: 0.7230 (best: 0.8300)
+		Epoch run time in seconds: 4.9245
+	Epoch number: 654
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.86
+		Step Number: 75
+		Online accuracy: 0.85
+		Step Number: 100
+		Online accuracy: 0.84
+		train accuracy: 0.8482 (best: 0.9981)
+		test accuracy: 0.6920 (best: 0.8070)
+		validation accuracy: 0.7170 (best: 0.8300)
+		Epoch run time in seconds: 4.9215
+	Epoch number: 655
+		Step Number: 25
+		Online accuracy: 0.85
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.82
+		Step Number: 100
+		Online accuracy: 0.82
+		train accuracy: 0.8349 (best: 0.9981)
+		test accuracy: 0.6975 (best: 0.8070)
+		validation accuracy: 0.7120 (best: 0.8300)
+		Epoch run time in seconds: 4.9292
+	Epoch number: 656
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.85
+		Step Number: 100
+		Online accuracy: 0.83
+		train accuracy: 0.8410 (best: 0.9981)
+		test accuracy: 0.7265 (best: 0.8070)
+		validation accuracy: 0.7360 (best: 0.8300)
+		Epoch run time in seconds: 5.0050
+	Epoch number: 657
+		Step Number: 25
+		Online accuracy: 0.84
+		Step Number: 50
+		Online accuracy: 0.85
+		Step Number: 75
+		Online accuracy: 0.86
+		Step Number: 100
+		Online accuracy: 0.83
+		train accuracy: 0.8447 (best: 0.9981)
+		test accuracy: 0.7060 (best: 0.8070)
+		validation accuracy: 0.7390 (best: 0.8300)
+		Epoch run time in seconds: 5.1424
+	Epoch number: 658
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.86
+		Step Number: 75
+		Online accuracy: 0.84
+		Step Number: 100
+		Online accuracy: 0.83
+		train accuracy: 0.8503 (best: 0.9981)
+		test accuracy: 0.7075 (best: 0.8070)
+		validation accuracy: 0.7320 (best: 0.8300)
+		Epoch run time in seconds: 4.9497
+	Epoch number: 659
+		Step Number: 25
+		Online accuracy: 0.87
+		Step Number: 50
+		Online accuracy: 0.88
+		Step Number: 75
+		Online accuracy: 0.86
+		Step Number: 100
+		Online accuracy: 0.85
