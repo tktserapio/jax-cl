@@ -7,6 +7,7 @@ impl_linen/slurm_logs_bdl/
 impl_linen/results/
 
 impl_nnx/slurm_logs/
+impl_nnx/slurm_logs_bdl_l2/
 impl_nnx/slurm_logs_sap/
 impl_nnx/data/
 impl_nnx/results/base_deep_learning_system/

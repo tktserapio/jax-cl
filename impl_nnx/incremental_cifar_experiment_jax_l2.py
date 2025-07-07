@@ -220,30 +220,9 @@ def main():
     model = build_resnet18(num_classes=num_classes_total, rngs=nnx.Rngs(random_seed))
 
     # Initialize optimizer with optax
-    def get_learning_rate(step):
-        steps_per_epoch = 25
-        epoch = step // steps_per_epoch 
-        task_epoch = epoch % class_increase_frequency
-
-        lr = jnp.where(
-            task_epoch >= 160,
-            stepsize * 0.008,
-            jnp.where(
-                task_epoch >= 120,
-                stepsize * 0.04,
-                jnp.where(
-                    task_epoch >= 60,
-                    stepsize * 0.2,
-                    stepsize
-                )
-            )
-        )
-        return lr
-
     tx = optax.chain(
-        optax.add_decayed_weights(weight_decay),
-        optax.trace(decay=momentum, nesterov=False),
-        optax.scale_by_schedule(lambda step: -get_learning_rate(step)),
+        optax.add_decayed_weights(config['weight_decay']), 
+        optax.sgd(learning_rate=config['stepsize'], momentum=config['momentum'], nesterov=False)
     )
 
     from flax.training import train_state 
@@ -446,6 +425,27 @@ def run_incremental_experiment(model, state, data_path, all_classes, current_num
         training_data.select_new_partition(current_classes_list)
         val_data.select_new_partition(current_classes_list)
         test_data.select_new_partition(current_classes_list)
+
+        task_epoch = epoch % class_increase_frequency
+
+        current_lr = None # initialize to None
+        if task_epoch == 0:
+            current_lr = config['stepsize']
+        elif task_epoch == 60:
+            current_lr = round(config['stepsize'] * 0.2, 5)
+        elif task_epoch == 120:
+            current_lr = round(config['stepsize'] * 0.04, 5)
+        elif task_epoch == 160:
+            current_lr = round(config['stepsize'] * 0.008, 5)
+
+        if current_lr is not None:
+            tx = optax.chain(
+                optax.add_decayed_weights(config['weight_decay']), 
+                optax.sgd(learning_rate=current_lr, momentum=config['momentum'], nesterov=False)
+            )
+            current_state = current_state.replace(tx=tx)
+            if verbose:
+                print(f"\t\tLearning rate updated to: {current_lr:.5f}")
         
         epoch_start_time = time.perf_counter()
         
