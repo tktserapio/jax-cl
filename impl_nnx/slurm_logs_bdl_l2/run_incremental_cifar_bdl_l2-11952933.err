@@ -2,3 +2,4 @@
   warnings.warn(
 /oscar/runtime/software/external/python/3.11.0/lib/python3.11/multiprocessing/popen_fork.py:66: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.
   self.pid = os.fork()
+slurmstepd: error: *** JOB 11952933 ON gpu2264 CANCELLED AT 2025-07-07T11:07:17 ***

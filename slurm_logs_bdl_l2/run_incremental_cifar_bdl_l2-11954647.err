@@ -1,0 +1,2 @@
+/var/spool/slurmd/job11954647/slurm_script: line 16: ../.venv/bin/activate: No such file or directory
+python3: can't open file '/oscar/home/tserapio/jax_cl/incremental_cifar_experiment_jax_l2.py': [Errno 2] No such file or directory

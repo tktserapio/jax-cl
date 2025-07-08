@@ -7,7 +7,7 @@
  "num_workers": 12,
  "_comment_2_": "Learner Parameters",
  "stepsize": 0.1,
- "weight_decay": 0.0005,
+ "weight_decay": 0.0,
  "momentum": 0.9,
  "_comment_3_": "Shrink and perturb parameters",
  "noise_std": 0.0,

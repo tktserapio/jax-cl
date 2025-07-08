@@ -1,59 +1,49 @@
+# built-in libraries
+import time
+import os
+import pickle
+from copy import deepcopy
+import json
+import argparse
+from functools import partialmethod
+
+# third party libraries
+from tqdm import tqdm
 import numpy as np
 import jax
 import jax.numpy as jnp
 from flax import nnx
-import optax 
-from torch.utils.data import DataLoader 
-import time 
-from tqdm import tqdm 
+import optax
+from torch.utils.data import DataLoader
+from flax.training import train_state
+from torchvision import transforms
 
-import json
-import os
-import argparse
-
-# CifarDataSet imports (replacing torchvision CIFAR100)
+# from ml project manager
 from mlproj_manager.problems import CifarDataSet
+from mlproj_manager.experiments import Experiment
+from mlproj_manager.util import turn_off_debugging_processes, get_random_seeds
 from mlproj_manager.util.data_preprocessing_and_transformations import ToTensor, Normalize, RandomCrop, RandomHorizontalFlip, RandomRotator
+from mlproj_manager.file_management.file_and_directory_management import store_object_with_several_attempts
 
-# Add this helper function after the imports
-def access_dict(dictionary, key, default=None, val_type=None):
+from modified_resnet_nnx import build_resnet18
+from res_gnt_jax import ResGnT
+
+# implemented it instead of mlproj-manager
+def access_dict(exp_params, key, default=None, val_type=None, choices=None):
     """Helper function to access dictionary values with defaults and type checking"""
-    if key in dictionary:
-        value = dictionary[key]
+    if key in exp_params:
+        value = exp_params[key]
         if val_type is not None:
             try:
-                return val_type(value)
+                value = val_type(value)
             except (ValueError, TypeError):
                 print(f"Warning: Could not convert {key}={value} to {val_type}, using default {default}")
                 return default
+        if choices is not None and value not in choices:
+            print(f"Warning: {key}={value} not in {choices}, using default {default}")
+            return default
         return value
     return default
-
-# Modify the initialization section (around line 130)
-def load_config(config_path="base_deep_learning_system.json"):
-    """Load experiment configuration from JSON file"""
-    if os.path.exists(config_path):
-        with open(config_path, 'r') as f:
-            config = json.load(f)
-        print(f"Loaded config from {config_path}")
-        
-        # Filter out comment fields (keys starting with _comment_ or _model_description_)
-        filtered_config = {k: v for k, v in config.items() 
-                          if not k.startswith('_comment_') and not k.startswith('_model_description_')}
-        return filtered_config
-    else:
-        print(f"Config file {config_path} not found, using defaults")
-        config = {}
-    return config
-
-class JAXCompose:
-    def __init__(self, transforms):
-        self.transforms = transforms
-    
-    def __call__(self, x):
-        for transform in self.transforms:
-            x = transform(x)
-        return x
 
 def subsample_cifar_data_set(sub_sample_indices, cifar_data: CifarDataSet):
     """
@@ -67,501 +57,566 @@ def subsample_cifar_data_set(sub_sample_indices, cifar_data: CifarDataSet):
     cifar_data.integer_labels = jnp.array(cifar_data.integer_labels)[np.asarray(sub_sample_indices)].tolist()
     cifar_data.current_data = cifar_data.partition_data()
 
-def get_data(data_path, train=True, validation=False, batch_sizes=None, num_workers=0):
-    """
-    Loads CIFAR data set - adapted from incremental_cifar_experiment_jax.py
-    """
-    if batch_sizes is None:
-        batch_sizes = {"train": 90, "test": 100, "validation": 50}
-    
-    # Load CIFAR-100 with CifarDataSet (one-hot labels)
-    cifar_data = CifarDataSet(root_dir=data_path,
-                              train=train,
-                              cifar_type=100,
-                              device=None,
-                              image_normalization="max",
-                              label_preprocessing="one-hot",
-                              use_torch=False)
-
-    mean = (0.5071, 0.4865, 0.4409)
-    std = (0.2673, 0.2564, 0.2762)
-
-    transformations = [
-        ToTensor(swap_color_axis=True),  # reshape to (C x H x W)
-        Normalize(mean=mean, std=std),  # center by mean and divide by std
-    ]
-
-    if not validation:
-        transformations.append(RandomHorizontalFlip(p=0.5))
-        transformations.append(RandomCrop(size=32, padding=4, padding_mode="reflect"))
-        transformations.append(RandomRotator(degrees=(0,15)))
-
-    cifar_data.set_transformation(JAXCompose(transformations))
-
-    if not train:
-        batch_size = batch_sizes["test"]
-        dataloader = DataLoader(cifar_data, batch_size=batch_size, shuffle=True, num_workers=num_workers)
-        return cifar_data, dataloader
-
-    train_indices, validation_indices = get_validation_and_train_indices(cifar_data)
-    indices = validation_indices if validation else train_indices
-    subsample_cifar_data_set(sub_sample_indices=indices, cifar_data=cifar_data)
-    batch_size = batch_sizes["validation"] if validation else batch_sizes["train"]
-    return cifar_data, DataLoader(cifar_data, batch_size=batch_size, shuffle=True, num_workers=num_workers)
-
-def get_validation_and_train_indices(cifar_data: CifarDataSet):
-    """
-    Splits the cifar data into validation and train set and returns the indices of each set with respect to the
-    original dataset
-    :param cifar_data: and instance of CifarDataSet
-    :return: train and validation indices
-    """
-    num_val_samples_per_class = 50
-    num_train_samples_per_class = 450
-    validation_set_size = 5000
-    train_set_size = 45000
-
-    # Use numpy arrays for indices - no need for JAX here
-    validation_indices = np.zeros(validation_set_size, dtype=np.int32)
-    train_indices = np.zeros(train_set_size, dtype=np.int32)
-    current_val_samples = 0
-    current_train_samples = 0
-    for i in range(100):  # 100 classes in CIFAR-100
-        # Use numpy operations for index manipulation
-        class_indices = np.where(cifar_data.data["labels"][:, i] == 1)[0]
-        validation_indices[current_val_samples:(current_val_samples + num_val_samples_per_class)] = class_indices[:num_val_samples_per_class]
-        train_indices[current_train_samples:(current_train_samples + num_train_samples_per_class)] = class_indices[num_val_samples_per_class:]
-        current_val_samples += num_val_samples_per_class
-        current_train_samples += num_train_samples_per_class
-
-    return train_indices, validation_indices
-
-from modified_resnet_nnx import build_resnet18
-
-def main():
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(description='JAX Incremental CIFAR Experiment')
-    parser.add_argument('--config', type=str, required=True,
-                       help='Path to config file (e.g., ./cfg/base_deep_learning_system.json)')
-    parser.add_argument('--verbose', action='store_true',
-                       help='Enable verbose output')
-    parser.add_argument('--experiment-index', type=int, default=0,
-                       help='Experiment index for multiple runs')
-    args = parser.parse_args()
-
-    # Load configuration from file
-    config = load_config(args.config)
-    
-    if args.verbose:
-        print(f"Running experiment {args.experiment_index}")
-        print(f"Config loaded from: {args.config}")
-
-    # Extract hyperparameters from config (using actual config keys)
-    stepsize = access_dict(config, "stepsize", default=0.1, val_type=float)
-    momentum = access_dict(config, "momentum", default=0.9, val_type=float)
-    weight_decay = access_dict(config, "weight_decay", default=0.0005, val_type=float)
-    noise_std = access_dict(config, "noise_std", default=0.0, val_type=float)
-    data_path = access_dict(config, "data_path", default="./data", val_type=str)
-    results_dir = access_dict(config, "results_dir", default="./results", val_type=str)
-    experiment_name = access_dict(config, "experiment_name", default="base_deep_learning_system", val_type=str)
-    num_workers = access_dict(config, "num_workers", default=1, val_type=int)
-    
-    # CBP parameters (for future use)
-    use_cbp = access_dict(config, "use_cbp", default=False, val_type=bool)
-    
-    # Network reset parameters (for future use)
-    reset_head = access_dict(config, "reset_head", default=False, val_type=bool)
-    reset_network = access_dict(config, "reset_network", default=False, val_type=bool)
-    early_stopping = access_dict(config, "early_stopping", default=True, val_type=bool)
-    
-    # Hessian computation parameters (for future use)
-    compute_hessian = access_dict(config, "compute_hessian", default=False, val_type=bool)
-    compute_hessian_size = access_dict(config, "compute_hessian_size", default=100, val_type=int)
-    compute_hessian_interval = access_dict(config, "compute_hessian_interval", default=1, val_type=int)
-    
-    # Fixed experiment parameters (not in config file)
-    num_epochs = 4000
-    class_increase_frequency = 200
-    running_avg_window = 25
-    batch_size_train = 90
-    batch_size_test = 100
-    batch_size_validation = 50
-    num_classes_start = 5
-    num_classes_total = 100
-    num_classes_increment = 5
-    random_seed = 0
-
-    # Use empty string as current directory if data_path is empty
-    if data_path == "":
-        data_path = "./data"
-    if results_dir == "":
-        results_dir = "./results"
-
-    if args.verbose:
-        print("Experiment Configuration:")
-        print(f"  Learning rate (stepsize): {stepsize}")
-        print(f"  Momentum: {momentum}")
-        print(f"  Weight decay: {weight_decay}")
-        print(f"  Noise std: {noise_std}")
-        print(f"  Data path: {data_path}")
-        print(f"  Results dir: {results_dir}")
-        print(f"  Experiment name: {experiment_name}")
-        print(f"  Use CBP: {use_cbp}")
-        print(f"  Compute Hessian: {compute_hessian}")
-        if compute_hessian:
-            print(f"    Hessian size: {compute_hessian_size}")
-            print(f"    Hessian interval: {compute_hessian_interval}")
-
-    # Set random seed
-    np.random.seed(random_seed)
-    jax.config.update('jax_default_prng_impl', 'rbg')
-
-    # Initialize model
-    model = build_resnet18(num_classes=num_classes_total, rngs=nnx.Rngs(random_seed))
-
-    # Initialize optimizer with optax
-    tx = optax.chain(
-        optax.add_decayed_weights(config['weight_decay']), 
-        optax.sgd(learning_rate=config['stepsize'], momentum=config['momentum'], nesterov=False)
-    )
-
-    from flax.training import train_state 
-
-    variables = nnx.state(model)
-    params = variables['params'] if 'params' in variables else variables 
-
-    def apply_fn(variables, x, **kwargs):
-        nnx.update(model, variables)
-        return model(x)
-
-    state = train_state.TrainState.create(
-        apply_fn=apply_fn, 
-        params=params, 
-        tx=tx,
-    )
-
-    # Initialize dataset using CifarDataSet pipeline
-    batch_sizes = {
-        "train": batch_size_train,
-        "test": batch_size_test,
-        "validation": batch_size_validation
-    }
-    
-    # Set random seed for class ordering
-    np.random.seed(random_seed)
-    all_classes = np.random.permutation(100)  # Random class order for incremental learning
-    current_num_classes = num_classes_start
-
-    # Run the experiment
-    results = run_incremental_experiment(
-        model=model,
-        state=state,
-        data_path=data_path,
-        all_classes=all_classes,
-        current_num_classes=current_num_classes,
-        batch_sizes=batch_sizes,
-        num_workers=num_workers,  # Force to 0 for JAX compatibility
-        config={
-            'num_epochs': num_epochs,
-            'class_increase_frequency': class_increase_frequency,
-            'running_avg_window': running_avg_window,
-            'noise_std': noise_std,
-            'stepsize': stepsize,
-            'momentum': momentum,
-            'weight_decay': weight_decay,
-            'num_classes_increment': num_classes_increment,
-            'num_classes_total': num_classes_total,
-            'verbose': args.verbose,
-            # Future features
-            'use_cbp': use_cbp,
-            'reset_head': reset_head,
-            'reset_network': reset_network,
-            'early_stopping': early_stopping,
-            'compute_hessian': compute_hessian,
-            'compute_hessian_size': compute_hessian_size,
-            'compute_hessian_interval': compute_hessian_interval,
-        }
-    )
-
-    # Save results
-    os.makedirs(results_dir, exist_ok=True)
-    results_filename = f"{experiment_name}_exp{args.experiment_index}_results.json"
-    results_path = os.path.join(results_dir, results_filename)
-    
-    # Add config and experiment info to results
-    results['config'] = config
-    results['experiment_index'] = args.experiment_index
-    results['command_line_args'] = vars(args)
-    
-    with open(results_path, 'w') as f:
-        # Convert numpy arrays to lists for JSON serialization
-        json_results = {}
-        for key, value in results.items():
-            if isinstance(value, list) and len(value) > 0 and hasattr(value[0], 'item'):
-                json_results[key] = [v.item() if hasattr(v, 'item') else v for v in value]
-            else:
-                json_results[key] = value
-        json.dump(json_results, f, indent=2)
-    
-    if args.verbose:
-        print(f"Results saved to {results_path}")
-    
-    return results
-
-# Loss function for TrainState (matches PyTorch exactly with one-hot labels)
 @jax.jit
-def train_step(state, images, labels, current_classes):
-    """Train for a single step using TrainState with one-hot labels"""
-    # Convert from NCHW to NHWC format if needed
-    if len(images.shape) == 4 and images.shape[1] == 3:
-        images = jnp.transpose(images, (0, 2, 3, 1))
-    
+def train_step_jit(state, images, labels, current_classes):
+    """JIT-compiled training step"""
     def loss_fn(params):
         logits_full = state.apply_fn(params, images)
         logits = logits_full[:, current_classes]
-        
-        # Convert one-hot labels to integer labels
-        labels_int = jnp.argmax(labels, axis=1)
+
+        labels_subset = labels[:, current_classes]
+        labels_int = jnp.argmax(labels_subset, axis=1)
         
         loss = optax.softmax_cross_entropy_with_integer_labels(
             logits=logits, labels=labels_int
         ).mean()
         return loss, logits
-    
+
     (loss, logits), grads = jax.value_and_grad(loss_fn, has_aux=True)(state.params)
     new_state = state.apply_gradients(grads=grads)
     
     # Compute accuracy
-    labels_int = jnp.argmax(labels, axis=1)
+    labels_subset = labels[:, current_classes]
+    labels_int = jnp.argmax(labels_subset, axis=1)
     accuracy = jnp.mean(jnp.argmax(logits, axis=1) == labels_int)
     
     return new_state, loss, accuracy
 
 @jax.jit
-def eval_step(state, images, labels, current_classes):
-    """Evaluate on current classes only using TrainState with one-hot labels"""
-    # Convert from NCHW to NHWC format if needed
-    if len(images.shape) == 4 and images.shape[1] == 3:
-        images = jnp.transpose(images, (0, 2, 3, 1))
+def eval_step_jit(state, images, labels, current_classes):
+    """JIT-compiled evaluation step - standalone function"""
     
     logits_full = state.apply_fn(state.params, images)
     logits = logits_full[:, current_classes]
     
-    # Convert one-hot labels to integer labels
-    labels_int = jnp.argmax(labels, axis=1)
+    # Convert one-hot labels to integer labels for current classes only
+    labels_subset = labels[:, current_classes]
+    labels_int = jnp.argmax(labels_subset, axis=1)
     
     loss = optax.softmax_cross_entropy_with_integer_labels(
         logits=logits, labels=labels_int
     ).mean()
+    
+    # Match PyTorch accuracy calculation exactly
     accuracy = jnp.mean(jnp.argmax(logits, axis=1) == labels_int)
     
     return loss, accuracy
 
-def inject_noise(params, noise_std=0.0):
-    """Add Gaussian noise to model parameters (shrink & perturb)"""
-    if noise_std <= 0.0:
-        return params
-    
-    def add_noise_to_param(param):
-        if isinstance(param, jnp.ndarray):
-            key = jax.random.PRNGKey(np.random.randint(0, 10000))
-            noise = jax.random.normal(key, param.shape) * noise_std
-            return param + noise
-        return param
-    
-    # Apply noise to all parameters
-    return jax.tree_util.tree_map(add_noise_to_param, params)
+class IncrementalCIFARExperimentJAX(Experiment):
 
-def run_incremental_experiment(model, state, data_path, all_classes, current_num_classes, batch_sizes, num_workers, config):
-    # Extract config parameters
-    num_epochs = config['num_epochs']
-    class_increase_frequency = config['class_increase_frequency']
-    running_avg_window = config['running_avg_window']
-    noise_std = config['noise_std']
-    num_classes_increment = config['num_classes_increment']
-    num_classes_total = config['num_classes_total']
-    verbose = config['verbose']
-    
-    # Results tracking
-    results = {
-        "train_loss": [],
-        "train_accuracy": [],
-        "test_loss": [],
-        "test_accuracy": [],
-        "validation_loss": [],
-        "validation_accuracy": [],
-        "best_train_accuracy": [],
-        "best_test_accuracy": [],
-        "best_validation_accuracy": [],
-    }
+    def __init__(self, exp_params: dict, results_dir: str, run_index: int, verbose=True):
+        # set debugging options
+        debug = access_dict(exp_params, key="debug", default=True, val_type=bool)
+        turn_off_debugging_processes(debug)
 
-    # Track best accuracies per task
-    best_train_acc = 0.0
-    best_test_acc = 0.0
-    best_val_acc = 0.0
-    
-    current_epoch = 0
-    running_loss = 0.0
-    running_accuracy = 0.0
-    current_state = state
-    
-    for epoch in range(num_epochs):
-        if verbose:
-            print(f"\tEpoch number: {epoch + 1}")
+        self.verbose = verbose
+
+        # disable tqdm if verbose is enabled
+        tqdm.__init__ = partialmethod(tqdm.__init__, disable=self.verbose)
+
+        """ For reproducibility """
+        random_seeds = get_random_seeds()
+        self.random_seed = int(random_seeds[run_index])
+        np.random.seed(self.random_seed)
+        jax.config.update('jax_default_prng_impl', 'rbg')
+
+        """ Experiment parameters """
+        self.data_path = exp_params["data_path"]
+        self.num_workers = access_dict(exp_params, key="num_workers", default=0, val_type=int)  # set to 0 for JAX
+
+        # optimization parameters
+        self.stepsize = exp_params["stepsize"]
+        self.weight_decay = exp_params["weight_decay"]
+        self.momentum = exp_params["momentum"]
+
+        # network resetting parameters
+        self.reset_head = access_dict(exp_params, "reset_head", default=False, val_type=bool)
+        self.reset_network = access_dict(exp_params, "reset_network", default=False, val_type=bool)
+        if self.reset_head and self.reset_network:
+            print("Warning: Resetting the whole network supersedes resetting the head of the network. There's no need to set both to True.")
+        self.early_stopping = access_dict(exp_params, "early_stopping", default=False, val_type=bool)
+
+        # cbp parameters
+        self.use_cbp = access_dict(exp_params, "use_cbp", default=False, val_type=bool)
+        self.replacement_rate = access_dict(exp_params, "replacement_rate", default=0.0, val_type=float)
+        assert (not self.use_cbp) or (self.replacement_rate > 0.0), "Replacement rate should be greater than 0."
+        self.utility_function = access_dict(exp_params, "utility_function", default="weight", val_type=str,
+                                            choices=["weight", "contribution"])
+        self.maturity_threshold = access_dict(exp_params, "maturity_threshold", default=0, val_type=int)
+        assert (not self.use_cbp) or (self.maturity_threshold > 0), "Maturity threshold should be greater than 0."
+
+        # shrink and perturb parameters
+        self.noise_std = access_dict(exp_params, "noise_std", default=0.0, val_type=float)
+        self.perturb_weights_indicator = self.noise_std > 0.0
+
+        """ Training constants """
+        self.num_epochs = 4000
+        self.current_num_classes = 5
+        self.batch_sizes = {"train": 90, "test": 100, "validation": 50}
+        self.num_classes = 100
+        self.image_dims = (32, 32, 3)
+        self.num_images_per_class = 450
+
+        """ Network set up """
+        # initialize network
+        self.net = build_resnet18(num_classes=self.num_classes, rngs=nnx.Rngs(self.random_seed))
+
+        # initialize optimizer using TrainState
+        tx = optax.chain(
+            optax.add_decayed_weights(self.weight_decay), 
+            optax.sgd(learning_rate=self.stepsize, momentum=self.momentum, nesterov=False)
+        )
+
+        variables = nnx.state(self.net)
+        params = variables['params'] if 'params' in variables else variables 
+
+        def apply_fn(variables, x, **kwargs):
+            nnx.update(self.net, variables)
+            return self.net(x)
+
+        self.state = train_state.TrainState.create(
+            apply_fn=apply_fn, 
+            params=params, 
+            tx=tx,
+        )
+
+        # define loss function (handled in JAX functions)
+        self.current_epoch = 0
+
+        # for cbp (placeholder for future implementation)
+        self.resgnt = None
+        if self.use_cbp:
+            print("Warning: CBP not yet implemented in JAX version")
+        self.current_features = [] if self.use_cbp else None
+
+        """ For data partitioning """
+        self.class_increase_frequency = 200
+        self.all_classes = np.random.permutation(self.num_classes)
+        self.best_accuracy = 0.0
+        self.best_accuracy_model_parameters = {}
+
+        """ For creating experiment checkpoints """
+        self.experiment_checkpoints_dir_path = os.path.join(results_dir, "experiment_checkpoints")
+        self.checkpoint_identifier_name = "current_epoch"
+        self.checkpoint_save_frequency = self.class_increase_frequency  # save every time a new class is added
+        self.delete_old_checkpoints = True
+
+        """ For summaries """
+        self.running_avg_window = 25
+        self.current_running_avg_step, self.running_loss, self.running_accuracy = (0, 0.0, 0.0)
+        self._initialize_summaries()
+
+        self.loss = optax.softmax_cross_entropy_with_integer_labels
+
+    # ------------------------------ Methods for initializing the experiment ------------------------------#
+    def _initialize_summaries(self):
+        """
+        Initializes the summaries for the experiment
+        """
+        number_of_tasks = np.arange(self.num_epochs // self.class_increase_frequency) + 1
+        class_increase = 5
+        number_of_image_per_task = self.num_images_per_class * class_increase
+        bin_size = (self.running_avg_window * self.batch_sizes["train"])
+        total_checkpoints = int(np.sum(number_of_tasks * self.class_increase_frequency * number_of_image_per_task // bin_size))
+
+        train_prototype_array = np.zeros(total_checkpoints, dtype=np.float32)
+        self.results_dict = {}
+        self.results_dict["train_loss_per_checkpoint"] = np.zeros_like(train_prototype_array)
+        self.results_dict["train_accuracy_per_checkpoint"] = np.zeros_like(train_prototype_array)
+
+        prototype_array = np.zeros(self.num_epochs, dtype=np.float32)
+        self.results_dict["epoch_runtime"] = np.zeros_like(prototype_array)
+        # test and validation summaries
+        for set_type in ["test", "validation"]:
+            self.results_dict[set_type + "_loss_per_epoch"] = np.zeros_like(prototype_array)
+            self.results_dict[set_type + "_accuracy_per_epoch"] = np.zeros_like(prototype_array)
+            self.results_dict[set_type + "_evaluation_runtime"] = np.zeros_like(prototype_array)
+        self.results_dict["class_order"] = self.all_classes
+
+    def _print(self, message):
+        """Print message if verbose is enabled"""
+        if self.verbose:
+            print(message)
+
+    # ----------------------------- For saving and loading experiment checkpoints ----------------------------- #
+    def get_experiment_checkpoint(self):
+        """ Creates a dictionary with all the necessary information to pause and resume the experiment """
+        # Convert JAX arrays to numpy for saving
+        partial_results = {}
+        for k, v in self.results_dict.items():
+            partial_results[k] = v if not isinstance(v, jnp.ndarray) else np.array(v)
+
+        checkpoint = {
+            "model_state": nnx.state(self.net),
+            "optimizer_state": self.state,
+            "numpy_rng_state": np.random.get_state(),
+            "epoch_number": self.current_epoch,
+            "current_num_classes": self.current_num_classes,
+            "all_classes": self.all_classes,
+            "current_running_avg_step": self.current_running_avg_step,
+            "partial_results": partial_results
+        }
+
+        if self.use_cbp:
+            checkpoint["resgnt"] = self.resgnt
+
+        return checkpoint
+
+    def load_checkpoint_data_and_update_experiment_variables(self, file_path):
+        """
+        Loads the checkpoint and assigns the experiment variables the recovered values
+        :param file_path: path to the experiment checkpoint
+        :return: (bool) if the variables were successfully loaded
+        """
+        with open(file_path, mode="rb") as experiment_checkpoint_file:
+            checkpoint = pickle.load(experiment_checkpoint_file)
+
+        nnx.update(self.net, checkpoint["model_state"])
+        self.state = checkpoint["optimizer_state"]
+        np.random.set_state(checkpoint["numpy_rng_state"])
+        self.current_epoch = checkpoint["epoch_number"]
+        self.current_num_classes = checkpoint["current_num_classes"]
+        self.all_classes = checkpoint["all_classes"]
+        self.current_running_avg_step = checkpoint["current_running_avg_step"]
+
+        partial_results = checkpoint["partial_results"]
+        for k, v in self.results_dict.items():
+            self.results_dict[k] = partial_results[k]
+
+        if self.use_cbp:
+            self.resgnt = checkpoint["resgnt"]
+
+    # --------------------------------------- For storing summaries --------------------------------------- #
+    def _store_training_summaries(self):
+        # store train data
+        self.results_dict["train_loss_per_checkpoint"][self.current_running_avg_step] = self.running_loss / self.running_avg_window
+        self.results_dict["train_accuracy_per_checkpoint"][self.current_running_avg_step] = self.running_accuracy / self.running_avg_window
+
+        self._print("\t\tOnline accuracy: {0:.2f}".format(self.running_accuracy / self.running_avg_window))
+        self.running_loss = 0.0
+        self.running_accuracy = 0.0
+        self.current_running_avg_step += 1
+
+    def _store_test_summaries(self, test_data: DataLoader, val_data: DataLoader, epoch_number: int, epoch_runtime: float):
+        """ Computes test summaries and stores them in results dir """
+
+        self.results_dict["epoch_runtime"][epoch_number] = epoch_runtime
+
+        for data_name, data_loader, compare_to_best in [("test", test_data, False), ("validation", val_data, True)]:
+            # evaluate on data
+            evaluation_start_time = time.perf_counter()
+            loss, accuracy = self.evaluate_network(data_loader)
+            evaluation_time = time.perf_counter() - evaluation_start_time
+
+            if compare_to_best:
+                if accuracy > self.best_accuracy:
+                    self.best_accuracy = accuracy
+                    self.best_accuracy_model_parameters = nnx.state(self.net)
+
+            # store summaries
+            self.results_dict[data_name + "_evaluation_runtime"][epoch_number] = evaluation_time
+            self.results_dict[data_name + "_loss_per_epoch"][epoch_number] = loss
+            self.results_dict[data_name + "_accuracy_per_epoch"][epoch_number] = accuracy
+
+            # print progress
+            self._print("\t\t{0} accuracy: {1:.4f}".format(data_name, accuracy))
+
+        self._print("\t\tEpoch run time in seconds: {0:.4f}".format(epoch_runtime))
+
+    def evaluate_network(self, test_data: DataLoader):
+        """
+        Evaluates the network on the test data
+        :param test_data: a pytorch DataLoader object
+        :return: (float) test loss, (float) test accuracy
+        """
+        avg_loss = 0.0
+        avg_acc = 0.0
+        num_test_batches = 0
         
-        # Get current classes 
-        current_classes_list = all_classes[:current_num_classes]
-        current_classes = jnp.array(current_classes_list)
+        current_classes = jnp.array(self.all_classes[:self.current_num_classes])
         
-        # Get data loaders for current classes using CifarDataSet pipeline
-        training_data, train_loader = get_data(data_path, train=True, validation=False, 
-                                               batch_sizes=batch_sizes, num_workers=num_workers)
-        val_data, val_loader = get_data(data_path, train=True, validation=True, 
-                                        batch_sizes=batch_sizes, num_workers=num_workers)
-        test_data, test_loader = get_data(data_path, train=False, validation=False, 
-                                          batch_sizes=batch_sizes, num_workers=num_workers)
-        
-        # Filter data to current classes (matches PyTorch exactly)
-        training_data.select_new_partition(current_classes_list)
-        val_data.select_new_partition(current_classes_list)
-        test_data.select_new_partition(current_classes_list)
-
-        task_epoch = epoch % class_increase_frequency
-
-        current_lr = None # initialize to None
-        if task_epoch == 0:
-            current_lr = config['stepsize']
-        elif task_epoch == 60:
-            current_lr = round(config['stepsize'] * 0.2, 5)
-        elif task_epoch == 120:
-            current_lr = round(config['stepsize'] * 0.04, 5)
-        elif task_epoch == 160:
-            current_lr = round(config['stepsize'] * 0.008, 5)
-
-        if current_lr is not None:
-            tx = optax.chain(
-                optax.add_decayed_weights(config['weight_decay']), 
-                optax.sgd(learning_rate=current_lr, momentum=config['momentum'], nesterov=False)
-            )
-            current_state = current_state.replace(tx=tx)
-            if verbose:
-                print(f"\t\tLearning rate updated to: {current_lr:.5f}")
-        
-        epoch_start_time = time.perf_counter()
-        
-        # Training phase
-        epoch_train_loss = 0.0
-        epoch_train_acc = 0.0
-        num_train_steps = 0
-
-        for step, sample in enumerate(train_loader):
+        for _, sample in enumerate(test_data):
             # Convert PyTorch tensors to JAX arrays OUTSIDE the JIT function
             images = jnp.array(sample["image"].numpy())
             labels = jnp.array(sample["label"].numpy())
-            
-            current_state, loss, accuracy = train_step(current_state, images, labels, current_classes)
-            
-            # Add noise (shrink & perturb)
-            if noise_std > 0.0:
-                noisy_params = inject_noise(current_state.params, noise_std)
-                current_state = current_state.replace(params=noisy_params)
-            
-            # Running averages
-            running_loss += loss.item()
-            running_accuracy += accuracy.item()
-            epoch_train_loss += loss.item()
-            epoch_train_acc += accuracy.item()
-            num_train_steps += 1
-            
-            if verbose and (step + 1) % running_avg_window == 0:
-                avg_loss = running_loss / running_avg_window
-                avg_acc = running_accuracy / running_avg_window
-                print(f"\t\tStep Number: {step + 1}")
-                print(f"\t\tOnline accuracy: {avg_acc:.2f}")
+
+            loss, accuracy = eval_step_jit(self.state, images, labels, current_classes)
+
+            avg_loss += loss.item()
+            avg_acc += accuracy.item()
+            num_test_batches += 1
+
+        return avg_loss / num_test_batches, avg_acc / num_test_batches
+
+    # ------------------------------------- For running the experiment ------------------------------------- #
+    def run(self):
+        # load data
+        training_data, training_dataloader = self.get_data(train=True, validation=False)
+        val_data, val_dataloader = self.get_data(train=True, validation=True)
+        test_data, test_dataloader = self.get_data(train=False)
+        # load checkpoint if one is available
+        # self.load_experiment_checkpoint()
+        # train network
+        self.train(train_dataloader=training_dataloader, test_dataloader=test_dataloader, val_dataloader=val_dataloader,
+                   test_data=test_data, training_data=training_data, val_data=val_data)
+
+    def get_data(self, train: bool = True, validation: bool = False):
+        """
+        Loads the data set
+        :param train: (bool) indicates whether to load the train (True) or the test (False) data
+        :param validation: (bool) indicates whether to return the validation set. The validation set is made up of
+                           50 examples of each class of whichever set was loaded
+        :return: data set, data loader
+        """
+
+        """ Loads CIFAR data set """
+        cifar_data = CifarDataSet(root_dir=self.data_path,
+                                  train=train,
+                                  cifar_type=100,
+                                  device=None,
+                                  image_normalization="max",
+                                  label_preprocessing="one-hot",
+                                  use_torch=True)  # Use PyTorch backend for consistency
+
+        mean = (0.5071, 0.4865, 0.4409)
+        std = (0.2673, 0.2564, 0.2762)
+
+        transformations = [
+            ToTensor(swap_color_axis=True),  # reshape to (C x H x W)
+            Normalize(mean=mean, std=std),  # center by mean and divide by std
+        ]
+
+        if not validation:
+            transformations.append(RandomHorizontalFlip(p=0.5))
+            transformations.append(RandomCrop(size=32, padding=4, padding_mode="reflect"))
+            transformations.append(RandomRotator(degrees=(0,15)))
+
+        cifar_data.set_transformation(transforms.Compose(transformations))
+
+        if not train:
+            batch_size = self.batch_sizes["test"]
+            dataloader = DataLoader(cifar_data, batch_size=batch_size, shuffle=True, num_workers=self.num_workers)
+            return cifar_data, dataloader
+
+        train_indices, validation_indices = self.get_validation_and_train_indices(cifar_data)
+        indices = validation_indices if validation else train_indices
+        subsample_cifar_data_set(sub_sample_indices=indices, cifar_data=cifar_data)
+        batch_size = self.batch_sizes["validation"] if validation else self.batch_sizes["train"]
+        return cifar_data, DataLoader(cifar_data, batch_size=batch_size, shuffle=True, num_workers=self.num_workers)
+
+    def get_validation_and_train_indices(self, cifar_data: CifarDataSet):
+        """
+        Splits the cifar data into validation and train set and returns the indices of each set with respect to the
+        original dataset
+        :param cifar_data: and instance of CifarDataSet
+        :return: train and validation indices
+        """
+        num_val_samples_per_class = 50
+        num_train_samples_per_class = 450
+        validation_set_size = 5000
+        train_set_size = 45000
+
+        validation_indices = np.zeros(validation_set_size, dtype=np.int32)
+        train_indices = np.zeros(train_set_size, dtype=np.int32)
+        current_val_samples = 0
+        current_train_samples = 0
+        for i in range(self.num_classes):
+            class_indices = np.where(cifar_data.data["labels"][:, i] == 1)[0]
+            validation_indices[current_val_samples:(current_val_samples + num_val_samples_per_class)] = class_indices[:num_val_samples_per_class]
+            train_indices[current_train_samples:(current_train_samples + num_train_samples_per_class)] = class_indices[num_val_samples_per_class:]
+            current_val_samples += num_val_samples_per_class
+            current_train_samples += num_train_samples_per_class
+
+        return train_indices, validation_indices
+
+    def train(self, train_dataloader: DataLoader, test_dataloader: DataLoader, val_dataloader: DataLoader,
+              test_data: CifarDataSet, training_data: CifarDataSet, val_data: CifarDataSet):
+        print(f"BEFORE filtering - Train classes: {np.sum(training_data.data['labels'], axis=0)}") 
+        training_data.select_new_partition(self.all_classes[:self.current_num_classes])
+        print(f"AFTER filtering - Train classes: {np.sum(training_data.data['labels'], axis=0)}")
+
+        test_data.select_new_partition(self.all_classes[:self.current_num_classes])
+        val_data.select_new_partition(self.all_classes[:self.current_num_classes])
+        self._save_model_parameters()
+
+        for e in tqdm(range(self.current_epoch, self.num_epochs)):
+            self._print("\tEpoch number: {0}".format(e + 1))
+            self.set_lr()
+
+            epoch_start_time = time.perf_counter()
+            current_classes = jnp.array(self.all_classes[:self.current_num_classes])
+
+            for step_number, sample in enumerate(train_dataloader):
+                # Convert PyTorch tensors to JAX arrays OUTSIDE the JIT function
+                image = jnp.array(sample["image"].numpy())
+                label = jnp.array(sample["label"].numpy())
+
+                if len(image.shape) == 4 and image.shape[1] == 3:
+                    image = jnp.transpose(image, (0, 2, 3, 1))
+
+                # compute prediction and loss
+                current_features = [] if self.use_cbp else None
+                self.state, current_reg_loss, accuracy = train_step_jit(self.state, image, label, current_classes)
+
+                # Debug CBP feature extraction (only on first step to avoid spam)
+                if self.use_cbp and step_number == 0 and e == self.current_epoch:
+                    print(f"DEBUG JAX CBP: CBP not yet implemented")
                 
-                running_loss = 0.0
-                running_accuracy = 0.0
-        
-        # Calculate epoch averages
-        if num_train_steps > 0:
-            epoch_train_loss /= num_train_steps
-            epoch_train_acc /= num_train_steps
-        
-        # Evaluation phase
+                current_loss = current_reg_loss.item()
 
-        test_losses, test_accs = [], []
-        for sample in test_loader:
-            # Convert PyTorch tensors to JAX arrays OUTSIDE the JIT function
-            images = jnp.array(sample["image"].numpy())
-            labels = jnp.array(sample["label"].numpy())
-            
-            loss, acc = eval_step(current_state, images, labels, current_classes)
-            test_losses.append(loss.item())
-            test_accs.append(acc.item())
-        
-        test_loss = np.mean(test_losses) if test_losses else 0.0
-        test_acc = np.mean(test_accs) if test_accs else 0.0
-        
-        # Validation evaluation
+                # Apply CBP (placeholder for future implementation)
+                if self.use_cbp: 
+                    print("Warning: CBP not yet implemented in JAX version")
+                    
+                self.inject_noise()
 
-        val_losses, val_accs = [], []
-        for sample in val_loader:
-            # Convert PyTorch tensors to JAX arrays OUTSIDE the JIT function
-            images = jnp.array(sample["image"].numpy())
-            labels = jnp.array(sample["label"].numpy())
-            
-            loss, acc = eval_step(current_state, images, labels, current_classes)
-            val_losses.append(loss.item())
-            val_accs.append(acc.item())
-        
-        val_loss = np.mean(val_losses) if val_losses else 0.0
-        val_acc = np.mean(val_accs) if val_accs else 0.0
-        
-        epoch_time = time.perf_counter() - epoch_start_time
+                # store summaries
+                current_accuracy = accuracy.item()
+                self.running_loss += float(current_loss)
+                self.running_accuracy += float(current_accuracy)
+                
+                if (step_number + 1) % self.running_avg_window == 0:
+                    self._print("\t\tStep Number: {0}".format(step_number + 1))
+                    self._store_training_summaries()
 
-        # Update best accuracies
-        if epoch_train_acc > best_train_acc:
-            best_train_acc = epoch_train_acc
-        if test_acc > best_test_acc:
-            best_test_acc = test_acc
-        if val_acc > best_val_acc:
-            best_val_acc = val_acc
-        
-        # Store results
-        results["train_loss"].append(epoch_train_loss)
-        results["train_accuracy"].append(epoch_train_acc)
-        results["test_loss"].append(test_loss)
-        results["test_accuracy"].append(test_acc)
-        results["validation_loss"].append(val_loss)
-        results["validation_accuracy"].append(val_acc)
+            epoch_end_time = time.perf_counter()
+            self._store_test_summaries(test_dataloader, val_dataloader, epoch_number=e,
+                                       epoch_runtime=epoch_end_time - epoch_start_time)
 
-        # Store best accuracies
-        results["best_train_accuracy"].append(best_train_acc)
-        results["best_test_accuracy"].append(best_test_acc)
-        results["best_validation_accuracy"].append(best_val_acc)
-        
-        # Print results
-        if verbose:
-            print(f"\t\ttrain accuracy: {epoch_train_acc:.4f} (best: {best_train_acc:.4f})")
-            print(f"\t\ttest accuracy: {test_acc:.4f} (best: {best_test_acc:.4f})")
-            print(f"\t\tvalidation accuracy: {val_acc:.4f} (best: {best_val_acc:.4f})")
-            print(f"\t\tEpoch run time in seconds: {epoch_time:.4f}")
-        
-        current_epoch += 1
-        
-        # Add new classes every class_increase_frequency epochs
-        if current_epoch % class_increase_frequency == 0:
-            if current_num_classes < num_classes_total:
-                current_num_classes = min(num_classes_total, current_num_classes + num_classes_increment)
-                # Reset best accuracies for new task
-                best_train_acc = 0.0
-                best_test_acc = 0.0
-                best_val_acc = 0.0
-                if verbose:
-                    print("\tNew classes added... (resetting best accuracies)")
-    
-    return results
+            self.current_epoch += 1
+            self.extend_classes(training_data, test_data, val_data)
 
-# Run the experiment
+            if self.current_epoch % self.checkpoint_save_frequency == 0:
+                self.save_experiment_checkpoint()
+
+    def set_lr(self):
+        """ Changes the learning rate of the optimizer according to the current epoch of the task """
+        current_stepsize = None
+        if (self.current_epoch % self.class_increase_frequency) == 0:
+            current_stepsize = self.stepsize
+        elif (self.current_epoch % self.class_increase_frequency) == 60:
+            current_stepsize = round(self.stepsize * 0.2, 5)
+        elif (self.current_epoch % self.class_increase_frequency) == 120:
+            current_stepsize = round(self.stepsize * (0.2 ** 2), 5)
+        elif (self.current_epoch % self.class_increase_frequency) == 160:
+            current_stepsize = round(self.stepsize * (0.2 ** 3), 5)
+
+        if current_stepsize is not None:
+            # Update optimizer with new learning rate
+            tx = optax.chain(
+                optax.add_decayed_weights(self.weight_decay), 
+                optax.sgd(learning_rate=current_stepsize, momentum=self.momentum, nesterov=False)
+            )
+            self.state = self.state.replace(tx=tx)
+            self._print("\tCurrent stepsize: {0:.5f}".format(current_stepsize))
+
+    def inject_noise(self):
+        """
+        Adds a small amount of random noise to the parameters of the network
+        """
+        if not self.perturb_weights_indicator: 
+            return
+
+        def add_noise_to_param(param):
+            if isinstance(param, jnp.ndarray):
+                key = jax.random.PRNGKey(np.random.randint(0, 10000))
+                noise = jax.random.normal(key, param.shape) * self.noise_std
+                return param + noise
+            return param
+        
+        # Apply noise to all parameters
+        noisy_params = jax.tree_util.tree_map(add_noise_to_param, self.state.params)
+        self.state = self.state.replace(params=noisy_params)
+
+    def extend_classes(self, training_data: CifarDataSet, test_data: CifarDataSet, val_data: CifarDataSet):
+        """
+        Adds one new class to the data set with certain frequency
+        """
+        if (self.current_epoch % self.class_increase_frequency) == 0:
+            self._print("Best accuracy in the task: {0:.4f}".format(self.best_accuracy))
+            if self.early_stopping:
+                nnx.update(self.net, self.best_accuracy_model_parameters)
+                # Update state params to match the restored model
+                self.state = self.state.replace(params=nnx.state(self.net)['params'] if 'params' in nnx.state(self.net) else nnx.state(self.net))
+            self.best_accuracy = 0.0
+            self.best_accuracy_model_parameters = {}
+            self._save_model_parameters()
+
+            if self.current_num_classes == self.num_classes: 
+                return
+
+            increase = 5
+            self.current_num_classes += increase
+            training_data.select_new_partition(self.all_classes[:self.current_num_classes])
+            test_data.select_new_partition(self.all_classes[:self.current_num_classes])
+            val_data.select_new_partition(self.all_classes[:self.current_num_classes])
+
+            self._print("\tNew class added...")
+            if self.reset_head:
+                # Reinitialize the final layer (placeholder for JAX equivalent of kaiming_init)
+                print("Warning: reset_head not yet implemented in JAX version")
+            if self.reset_network:
+                # Reinitialize the entire network (placeholder for JAX equivalent)
+                print("Warning: reset_network not yet implemented in JAX version")
+
+    def _save_model_parameters(self):
+        """ Stores the parameters of the model, so it can be evaluated after the experiment is over """
+        # Placeholder for saving model parameters in JAX format
+        pass
+
+    def save_experiment_checkpoint(self):
+        """Save experiment checkpoint"""
+        os.makedirs(self.experiment_checkpoints_dir_path, exist_ok=True)
+        checkpoint = self.get_experiment_checkpoint()
+        
+        file_name = f"checkpoint_epoch_{self.current_epoch}.pkl"
+        file_path = os.path.join(self.experiment_checkpoints_dir_path, file_name)
+        
+        with open(file_path, 'wb') as f:
+            pickle.dump(checkpoint, f)
+        
+        self._print(f"Checkpoint saved: {file_path}")
+
+    def store_results(self):
+        """Store experiment results"""
+        # Placeholder for storing results
+        pass
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--config', action="store", type=str,
+                        default='./incremental_cifar/cfg/base_deep_learning_system.json',
+                        help="Path to the file containing the parameters for the experiment.")
+    parser.add_argument("--experiment-index", action="store", type=int, default=0,
+                        help="Index for the run; this will determine the random seed and the name of the results.")
+    parser.add_argument("--verbose", action="store_true", default=False,
+                        help="Whether to print extra information about the experiment as it's running.")
+    args = parser.parse_args()
+
+    with open(args.config, 'r') as config_file:
+        experiment_parameters = json.load(config_file)
+
+    file_path = os.path.dirname(os.path.abspath(__file__))
+    if "data_path" not in experiment_parameters.keys() or experiment_parameters["data_path"] == "":
+        experiment_parameters["data_path"] = os.path.join(file_path, "data")
+    if "results_dir" not in experiment_parameters.keys() or experiment_parameters["results_dir"] == "":
+        experiment_parameters["results_dir"] = os.path.join(file_path, "results")
+    if "experiment_name" not in experiment_parameters.keys() or experiment_parameters["experiment_name"] == "":
+        experiment_parameters["experiment_name"] = os.path.splitext(os.path.basename(args.config))[0]
+
+    initial_time = time.perf_counter()
+    exp = IncrementalCIFARExperimentJAX(experiment_parameters,
+                                        results_dir=os.path.join(experiment_parameters["results_dir"], experiment_parameters["experiment_name"]),
+                                        run_index=args.experiment_index,
+                                        verbose=args.verbose)
+    exp.run()
+    exp.store_results()
+    final_time = time.perf_counter()
+    print("The running time in minutes is: {0:.2f}".format((final_time - initial_time) / 60))
+
+
 if __name__ == "__main__":
     main()
+
+# python3 ./jax_cl/impl_nnx/incremental_cifar_experiment_jax_l2.py --config ./loss-of-plasticity/lop/incremental_cifar/cfg/base_deep_learning_system.json --verbose --experiment-index 0

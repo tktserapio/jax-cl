@@ -15,4 +15,4 @@ module load cuda cudnn
 module load python/3.11.0s-ixrhc3q
 source ../.venv/bin/activate
 # run
-python3 incremental_cifar_experiment_jax_l2.py --config ./cfg/base_deep_learning_system_no_l2.json --verbose --experiment-index 0
+python3 incremental_cifar_experiment_jax.py --config ./cfg/base_deep_learning_system_no_l2.json --verbose --experiment-index 0

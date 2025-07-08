@@ -24,7 +24,7 @@
   "early_stopping": true,
 
   "_comment_6_": "Hessian computation parameters",
-  "compute_hessian": false, 
+  "compute_hessian": true, 
   "compute_hessian_size": 100,
   "compute_hessian_interval": 1
 }

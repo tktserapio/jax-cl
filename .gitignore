@@ -13,3 +13,4 @@ impl_nnx/data/
 impl_nnx/results/base_deep_learning_system/
 impl_nnx/slurm_logs_sap/
 impl_nnx/results_archive/
+impl_nnx/hessian/
