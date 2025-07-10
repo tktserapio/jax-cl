@@ -27,7 +27,8 @@ from mlproj_manager.util.data_preprocessing_and_transformations import ToTensor,
 from mlproj_manager.file_management.file_and_directory_management import store_object_with_several_attempts
 
 # updated imports with jax implementations
-from modified_resnet_nnx import build_resnet18
+# from modified_resnet_nnx import build_resnet18
+from modified_resnet_nnx_cbp import build_resnet18
 from res_gnt_jax import ResGnT
 
 # for hessian computation at the start and end of each task 
@@ -74,7 +75,7 @@ class IncrementalCIFARExperiment(Experiment):
             gpu_devices = jax.devices("gpu")
             if gpu_devices:
                 self.device = gpu_devices[0]
-                print(f"✅ JAX is using GPU: {self.device}")
+                print(f"JAX is using GPU: {self.device}")
                 print(f"   Available GPU devices: {len(gpu_devices)}")
                 for i, device in enumerate(gpu_devices):
                     print(f"   GPU {i}: {device}")
@@ -138,13 +139,13 @@ class IncrementalCIFARExperiment(Experiment):
         # initialize network with proper JAX rngs
         rngs = nnx.Rngs(self.random_seed)
         self.net = build_resnet18(num_classes=self.num_classes, rngs=rngs)
+
         tx = optax.chain(
             optax.add_decayed_weights(self.weight_decay),
             optax.sgd(learning_rate=self.stepsize, momentum=self.momentum, nesterov=False)
         )
-        self.optim = nnx.Optimizer(self.net, tx)
 
-        self.model_state = nnx.state(self.net)
+        self.optim = nnx.Optimizer(self.net, tx)
 
         # JAX doesn't need explicit device movement like PyTorch
         self.current_epoch = 0
@@ -219,13 +220,16 @@ class IncrementalCIFARExperiment(Experiment):
                 partial_results[k] = v 
 
         checkpoint = {
-            "model_state": self.model_state,  # JAX model state
+            "model_state": nnx.state(self.net),  # JAX model state
+            "optimizer_state": nnx.state(self.optim), # optimizer state
             "jax_rng_state": self.rng_key,       # JAX random state
             "numpy_rng_state": np.random.get_state(),
             "epoch_number": self.current_epoch,
             "current_num_classes": self.current_num_classes,
             "all_classes": self.all_classes,
             "current_running_avg_step": self.current_running_avg_step,
+            "best_accuracy": float(self.best_accuracy), 
+            "best_accuracy_model_parameters": self.best_accuracy_model_parameters,
             "partial_results": partial_results
         }
 
@@ -246,6 +250,8 @@ class IncrementalCIFARExperiment(Experiment):
 
         # Restore JAX model and optimizer state
         nnx.update(self.net, checkpoint["model_state"])
+        nnx.update(self.optim, checkpoint["optimizer_state"])
+
         self.rng_key = checkpoint["jax_rng_state"]
         np.random.set_state(checkpoint["numpy_rng_state"])
         
@@ -253,6 +259,9 @@ class IncrementalCIFARExperiment(Experiment):
         self.current_num_classes = checkpoint["current_num_classes"]
         self.all_classes = checkpoint["all_classes"]
         self.current_running_avg_step = checkpoint["current_running_avg_step"]
+
+        self.best_accuracy = jnp.array(checkpoint["best_accuracy"], dtype=jnp.float32)
+        self.best_accuracy_model_parameters = checkpoint["best_accuracy_model_parameters"]
 
         partial_results = checkpoint["partial_results"]
         for k, v in self.results_dict.items():
@@ -277,6 +286,7 @@ class IncrementalCIFARExperiment(Experiment):
 
         self.results_dict["epoch_runtime"][epoch_number] = epoch_runtime
 
+        self.net.eval()
         for data_name, data_loader, compare_to_best in [("test", test_data, False), ("validation", val_data, True)]:
             # evaluate on data
             evaluation_start_time = time.perf_counter()
@@ -296,6 +306,7 @@ class IncrementalCIFARExperiment(Experiment):
             # print progress
             self._print("\t\t{0} accuracy: {1:.4f}".format(data_name, accuracy))
 
+        self.net.train()
         self._print("\t\tEpoch run time in seconds: {0:.4f}".format(epoch_runtime))
 
     def evaluate_network(self, test_data):
@@ -316,9 +327,16 @@ class IncrementalCIFARExperiment(Experiment):
         avg_acc = 0.0
         num_test_batches = 0
         current_classes = self.all_classes[:self.current_num_classes]
+
+        # self._print(f"🔍 EVAL DEBUG - current_num_classes: {self.current_num_classes}")
+        # self._print(f"🔍 EVAL DEBUG - current_classes shape: {current_classes.shape}")
+        # self._print(f"🔍 EVAL DEBUG - active_classes: {current_classes}")
+
+        # all_labels_seen = []
         
+        # self.net.eval()
         # JAX doesn't need no_grad context
-        for _, sample in enumerate(test_data):
+        for batch_idx, sample in enumerate(test_data):
             images = jnp.asarray(sample["image"].numpy())
             test_labels = jnp.asarray(sample["label"].numpy())
 
@@ -344,10 +362,13 @@ class IncrementalCIFARExperiment(Experiment):
         val_data, val_dataloader = self.get_data(train=True, validation=True)
         test_data, test_dataloader = self.get_data(train=False)
         # load checkpoint if one is available
-        # self.load_experiment_checkpoint()
+        
+        self.load_experiment_checkpoint()
+        
         # train network
         self.train(train_dataloader=training_dataloader, test_dataloader=test_dataloader, val_dataloader=val_dataloader,
                    test_data=test_data, training_data=training_data, val_data=val_data)
+        
         # store results using exp.store_results()
 
     def get_data(self, train: bool = True, validation: bool = False):
@@ -448,12 +469,19 @@ class IncrementalCIFARExperiment(Experiment):
         @nnx.jit
         def train_step_jit(model, optimizer, images, labels, class_indices):
             def loss_fn(model):
-                return compute_loss_and_logits(model, images, labels, current_classes)
-
+                return compute_loss_and_logits(model, images, labels, class_indices)
+            
             grad_fn = nnx.value_and_grad(loss_fn, has_aux=True)
             (loss, logits), grads = grad_fn(model)
 
-            optimizer.update(grads)
+            # this logic should be alright but not sure if it works with JIT
+            if self.use_cbp:
+                # TODO: fix the self reference since this is JIT-compiled
+                modified_grads = self.resgnt.modify_gradients(grads, model) 
+                optimizer.update(modified_grads)
+            else:
+                optimizer.update(grads)
+
             return loss, logits
 
         for e in tqdm(range(self.current_epoch, self.num_epochs)):
@@ -461,6 +489,7 @@ class IncrementalCIFARExperiment(Experiment):
             self.set_lr()
 
             epoch_start_time = time.perf_counter()
+            # self.net.train()
             for step_number, sample in enumerate(train_dataloader):
                 # Convert data once and efficiently
                 image = jnp.asarray(sample["image"].numpy())
@@ -496,13 +525,15 @@ class IncrementalCIFARExperiment(Experiment):
                                     epoch_runtime=epoch_end_time - epoch_start_time)
 
             # HESSIAN COMPUTATION 
+
+            # compute hessian at end of task
             if ((self.current_epoch + 1) % self.class_increase_frequency == 0 and (self.current_epoch + 1) // self.class_increase_frequency % self.compute_hessian_interval == 0):
                 self._compute_hessian(tag="end",
                                       train_loader=train_dataloader,
                                       eval_loader=test_dataloader,
                                       task_id=(self.current_epoch + 1) // self.class_increase_frequency - 1)
 
-            # Check if we're starting a new task (after incrementing)
+            # do we have a new task?
             is_new_task = ((self.current_epoch + 1) % self.class_increase_frequency) == 0
             
             self.current_epoch += 1
@@ -536,7 +567,7 @@ class IncrementalCIFARExperiment(Experiment):
         if current_stepsize is not None:
             tx = optax.chain(
                 optax.add_decayed_weights(self.weight_decay),
-                optax.sgd(learning_rate=current_stepsize, momentum=self.momentum, nesterov=True)
+                optax.sgd(learning_rate=current_stepsize, momentum=self.momentum, nesterov=False)
             )
             self.optim = nnx.Optimizer(self.net, tx)
             self._print("\tCurrent stepsize: {0:.5f}".format(current_stepsize))
@@ -577,84 +608,62 @@ class IncrementalCIFARExperiment(Experiment):
         noisy_state = add_noise_to_layer(current_state)
         nnx.update(self.net, noisy_state)
 
-    def _compute_hessian(self, tag: str,
-                     train_loader: DataLoader,
-                     eval_loader: DataLoader,
-                     task_id: int):
-        """
-        Compute Hessian spectrum using Lanczos algorithm for loss landscape analysis.
-        This helps analyze loss of plasticity in continual learning.
+    def _compute_hessian(self, tag: str, train_loader: DataLoader, eval_loader: DataLoader, task_id: int):
         
-        Args:
-            tag: "start" or "end" to indicate when in the task this is computed
-            train_loader: Training data loader
-            eval_loader: Evaluation data loader  
-            task_id: Current task ID for logging and seeding
-        """
-
-        if not self.compute_hessian:                  # early-out if disabled
+        if not self.compute_hessian:
             return
 
-        # -------- pick a small batch (train + eval) ----------
         train_sample = next(iter(train_loader))
         eval_sample = next(iter(eval_loader))
 
-        x_train = train_sample["image"]
-        y_train = train_sample["label"]
-        x_eval = eval_sample["image"]
-        y_eval = eval_sample["label"]
+        x_train = jnp.array(train_sample["image"].numpy()[:self.compute_hessian_size])
+        y_train = jnp.array(train_sample["label"].numpy()[:self.compute_hessian_size])
+        x_eval = jnp.array(eval_sample["image"].numpy()[:self.compute_hessian_size])
+        y_eval = jnp.array(eval_sample["label"].numpy()[:self.compute_hessian_size])
 
-        # keep only the first N examples
-        N = self.compute_hessian_size
-        x_train, y_train = x_train[:N], y_train[:N]
-        x_eval, y_eval = x_eval[:N], y_eval[:N]
-
-        # convert to JAX arrays and NHWC
-        x_train = jnp.array(x_train.numpy())
-        y_train = jnp.array(y_train.numpy())
-        x_eval = jnp.array(x_eval.numpy()) 
-        y_eval = jnp.array(y_eval.numpy())
-
-        # Handle NCHW -> NHWC conversion
         if len(x_train.shape) == 4 and x_train.shape[1] == 3:
             x_train = jnp.transpose(x_train, (0, 2, 3, 1))
-        if len(x_eval.shape) == 4 and x_eval.shape[1] == 3:
             x_eval = jnp.transpose(x_eval, (0, 2, 3, 1))
 
-        # Convert one-hot labels to integers for loss function
         y_train_int = jnp.argmax(y_train, axis=1)
         y_eval_int = jnp.argmax(y_eval, axis=1)
 
-        # --------------- build loss function for HVP ----------------
-        # The get_hvp_fn utility expects loss functions with signature: loss(params, x_batch, y_batch)
+        current_classes = self.all_classes[:self.current_num_classes]
+        
+        # Define loss functions
         def loss_fn_train(params, x_batch, y_batch):
             net_tmp = nnx.merge(nnx.graphdef(self.net), params)
-            logits = net_tmp(x_batch)[:, self.all_classes[:self.current_num_classes]]
+            logits = net_tmp(x_batch)[:, current_classes]
             return optax.softmax_cross_entropy_with_integer_labels(logits, y_batch).mean()
 
         def loss_fn_eval(params, x_batch, y_batch):
             net_tmp = nnx.merge(nnx.graphdef(self.net), params)
-            logits = net_tmp(x_batch)[:, self.all_classes[:self.current_num_classes]]
+            logits = net_tmp(x_batch)[:, current_classes]
             return optax.softmax_cross_entropy_with_integer_labels(logits, y_batch).mean()
 
-        # Create HVP functions with correct API
+        # Create HVP functions
+        # self.net.train()
         hvp_fn_train, unravel, num_params = get_hvp_fn(
             loss_fn_train,
-            nnx.state(self.net), 
+            nnx.state(self.net), # pass the params 
             (x_train, y_train_int)
         )
+
+        # self.net.eval()
         hvp_fn_eval, _, _ = get_hvp_fn(
             loss_fn_eval,
-            nnx.state(self.net), 
+            nnx.state(self.net), # pass the params
             (x_eval, y_eval_int)
         )
-
-        # Create pure linear operators for Lanczos
+        
+        # FIXED: Create linear operators that work with current state
+        # self.net.train()
         hvp_train = lambda v: hvp_fn_train(nnx.state(self.net), v)
+
+        # self.net.eval()
         hvp_eval = lambda v: hvp_fn_eval(nnx.state(self.net), v)
 
-        # --------------- Lanczos 100 steps --------------------
-        # Use different random keys for train and eval to avoid identical results
+        # Rest of Lanczos computation remains the same
         rng_key_train = jax.random.PRNGKey(self.random_seed + task_id * 1000)
         rng_key_eval = jax.random.PRNGKey(self.random_seed + task_id * 1000 + 1)
         
@@ -668,34 +677,137 @@ class IncrementalCIFARExperiment(Experiment):
         # Store results and create plots
         at_init = (tag == "start")
         
-        # Use JAX debug callback for plotting (follows MNIST pattern)
         jax.debug.callback(
             plot_hessian_spectrum,
             grid_train, dens_train, grid_eval, dens_eval,
-            task_id, "cifar_jax_july8", at_init=at_init
+            task_id, "cifar_jax_july9.1", at_init=at_init
         )
 
         # Log summary information
-        max_eig_train = grid_train[dens_train.argmax()]
-        max_eig_eval = grid_eval[dens_eval.argmax()]
+        max_eig_train = float(grid_train[dens_train.argmax()])
+        max_eig_eval = float(grid_eval[dens_eval.argmax()])
         
         self._print(f"[Hessian-{tag}] Task {task_id} — "
-                   f"top-eigenvalue(train) ≈ {max_eig_train:.3g}, "
-                   f"top-eigenvalue(eval) ≈ {max_eig_eval:.3g}")
+                f"top-eigenvalue(train) ≈ {max_eig_train:.3g}, "
+                f"top-eigenvalue(eval) ≈ {max_eig_eval:.3g}")
         
-        # Optional: Store results in experiment results for later analysis
+        # Store results
         if not hasattr(self, 'hessian_results'):
             self.hessian_results = {}
         
         key = f"task_{task_id}_{tag}"
         self.hessian_results[key] = {
-            'train_eigenvalues': grid_train,
-            'train_density': dens_train,
-            'eval_eigenvalues': grid_eval,
-            'eval_density': dens_eval,
-            'max_eig_train': float(max_eig_train),
-            'max_eig_eval': float(max_eig_eval)
+            'train_eigenvalues': np.array(grid_train),
+            'train_density': np.array(dens_train),
+            'eval_eigenvalues': np.array(grid_eval), 
+            'eval_density': np.array(dens_eval),
+            'max_eig_train': max_eig_train,
+            'max_eig_eval': max_eig_eval,
+            'num_params': num_params,
+            'current_classes': len(current_classes)
         }
+
+    # def _compute_hessian(self, tag: str, train_loader: DataLoader, eval_loader: DataLoader, task_id: int):
+        
+    #     train_sample = next(iter(train_loader))
+    #     eval_sample = next(iter(eval_loader))
+
+    #     x_train = train_sample["image"]
+    #     y_train = train_sample["label"]
+    #     x_eval = eval_sample["image"]
+    #     y_eval = eval_sample["label"]
+
+    #     # keep only the first N examples
+    #     N = self.compute_hessian_size
+    #     x_train, y_train = x_train[:N], y_train[:N]
+    #     x_eval, y_eval = x_eval[:N], y_eval[:N]
+
+    #     # convert to JAX arrays and NHWC
+    #     x_train = jnp.array(x_train.numpy())
+    #     y_train = jnp.array(y_train.numpy())
+    #     x_eval = jnp.array(x_eval.numpy()) 
+    #     y_eval = jnp.array(y_eval.numpy())
+
+    #     # Handle NCHW -> NHWC conversion
+    #     if len(x_train.shape) == 4 and x_train.shape[1] == 3:
+    #         x_train = jnp.transpose(x_train, (0, 2, 3, 1))
+    #     if len(x_eval.shape) == 4 and x_eval.shape[1] == 3:
+    #         x_eval = jnp.transpose(x_eval, (0, 2, 3, 1))
+
+    #     y_train_int = jnp.argmax(y_train, axis=1)
+    #     y_eval_int = jnp.argmax(y_eval, axis=1)
+
+    #             # --------------- build loss function for HVP ----------------
+    #     # The get_hvp_fn utility expects loss functions with signature: loss(params, x_batch, y_batch)
+    #     def loss_fn_train(params, x_batch, y_batch):
+    #         net_tmp = nnx.merge(nnx.graphdef(self.net), params)
+    #         logits = net_tmp(x_batch)[:, self.all_classes[:self.current_num_classes]]
+    #         return optax.softmax_cross_entropy_with_integer_labels(logits, y_batch).mean()
+
+    #     def loss_fn_eval(params, x_batch, y_batch):
+    #         net_tmp = nnx.merge(nnx.graphdef(self.net), params)
+    #         logits = net_tmp(x_batch)[:, self.all_classes[:self.current_num_classes]]
+    #         return optax.softmax_cross_entropy_with_integer_labels(logits, y_batch).mean()
+
+    #     # Create HVP functions with correct API
+    #     hvp_fn_train, unravel, num_params = get_hvp_fn(
+    #         loss_fn_train,
+    #         nnx.state(self.net), 
+    #         (x_train, y_train_int)
+    #     )
+    #     hvp_fn_eval, _, _ = get_hvp_fn(
+    #         loss_fn_eval,
+    #         nnx.state(self.net), 
+    #         (x_eval, y_eval_int)
+    #     )
+
+    #     # Create pure linear operators for Lanczos
+    #     hvp_train = lambda v: hvp_fn_train(nnx.state(self.net), v)
+    #     hvp_eval = lambda v: hvp_fn_eval(nnx.state(self.net), v)
+
+    #     # --------------- Lanczos 100 steps --------------------
+    #     # Use different random keys for train and eval to avoid identical results
+    #     rng_key_train = jax.random.PRNGKey(self.random_seed + task_id * 1000)
+    #     rng_key_eval = jax.random.PRNGKey(self.random_seed + task_id * 1000 + 1)
+        
+    #     tri_train, _ = lanczos_alg(hvp_train, num_params, order=100, rng_key=rng_key_train)
+    #     tri_eval, _ = lanczos_alg(hvp_eval, num_params, order=100, rng_key=rng_key_eval)
+
+    #     # Convert to spectral density
+    #     dens_train, grid_train = tridiag_to_density([tri_train], grid_len=10_000, sigma_squared=1e-5)
+    #     dens_eval, grid_eval = tridiag_to_density([tri_eval], grid_len=10_000, sigma_squared=1e-5)
+
+    #     # Store results and create plots
+    #     at_init = (tag == "start")
+        
+    #     # Use JAX debug callback for plotting (follows MNIST pattern)
+    #     jax.debug.callback(
+    #         plot_hessian_spectrum,
+    #         grid_train, dens_train, grid_eval, dens_eval,
+    #         task_id, "cifar_jax_july8.2", at_init=at_init
+    #     )
+
+    #     # Log summary information
+    #     max_eig_train = grid_train[dens_train.argmax()]
+    #     max_eig_eval = grid_eval[dens_eval.argmax()]
+        
+    #     self._print(f"[Hessian-{tag}] Task {task_id} — "
+    #                f"top-eigenvalue(train) ≈ {max_eig_train:.3g}, "
+    #                f"top-eigenvalue(eval) ≈ {max_eig_eval:.3g}")
+        
+    #     # Optional: Store results in experiment results for later analysis
+    #     if not hasattr(self, 'hessian_results'):
+    #         self.hessian_results = {}
+        
+    #     key = f"task_{task_id}_{tag}"
+    #     self.hessian_results[key] = {
+    #         'train_eigenvalues': grid_train,
+    #         'train_density': dens_train,
+    #         'eval_eigenvalues': grid_eval,
+    #         'eval_density': dens_eval,
+    #         'max_eig_train': float(max_eig_train),
+    #         'max_eig_eval': float(max_eig_eval)
+    #     }
 
     def extend_classes(self, training_data: CifarDataSet, test_data: CifarDataSet, val_data: CifarDataSet):
         """
@@ -717,16 +829,22 @@ class IncrementalCIFARExperiment(Experiment):
             if self.current_num_classes == self.num_classes: return
 
             increase = 5
+            old_num_classes = self.current_num_classes
             self.current_num_classes += increase
+            
+            # 🔍 DEBUG: Add this debug block
+            # self._print(f"🔍 TASK DEBUG - Adding new classes:")
+            # self._print(f"  old_num_classes: {old_num_classes}")
+            # self._print(f"  new_num_classes: {self.current_num_classes}")
+            # self._print(f"  new_classes_added: {self.all_classes[old_num_classes:self.current_num_classes]}")
+            
             training_data.select_new_partition(self.all_classes[:self.current_num_classes])
             test_data.select_new_partition(self.all_classes[:self.current_num_classes])
             val_data.select_new_partition(self.all_classes[:self.current_num_classes])
 
             self._print("\tNew class added...")
             self._print(f"\tCurrent classes: {self.current_num_classes}/{self.num_classes}")
-            
-            # Note: Optimizer state reset is handled in set_lr() for task boundaries
-                
+        
             if self.reset_head:
                 self._reset_head()
             if self.reset_network:
@@ -742,36 +860,51 @@ class IncrementalCIFARExperiment(Experiment):
         file_path = os.path.join(model_parameters_dir_path, file_name)
 
         # Extract and save only pure parameter arrays (compatible with post-analysis)
-        model_state = nnx.state(self.net)
+        model_snapshot = {
+            "model_state": nnx.state(self.net),
+            "current_num_classes": self.current_num_classes,
+            "all_classes": self.all_classes[:self.current_num_classes],  # Only active classes
+            "epoch": self.current_epoch,
+            "accuracy": float(self.best_accuracy),
+            "model_config": {
+                "num_classes": self.num_classes,
+                "image_dims": self.image_dims,
+            }
+        }
         
-        def extract_pure_arrays(obj):
-            """Convert NNX state to pure numpy/JAX arrays"""
+        # Convert JAX arrays to numpy for reliable serialization
+        def jax_to_numpy(obj):
             if isinstance(obj, dict):
-                return {key: extract_pure_arrays(value) for key, value in obj.items()}
-            elif hasattr(obj, 'shape') and hasattr(obj, '__array__'):  # JAX array
-                return np.array(obj)  # Convert to numpy for reliable saving/loading
+                return {key: jax_to_numpy(value) for key, value in obj.items()}
+            elif hasattr(obj, 'shape') and hasattr(obj, '__array__'):
+                return np.array(obj)
             else:
                 return obj
         
-        pure_params = extract_pure_arrays(model_state)
-        store_object_with_several_attempts(pure_params, file_path, storing_format="pickle", num_attempts=10)
+        serializable_snapshot = jax_to_numpy(model_snapshot)
+        store_object_with_several_attempts(serializable_snapshot, file_path, storing_format="pickle", num_attempts=10)
 
     def _reset_head(self):
         """Reset only the final classification layer (fc) with proper random initialization"""
-        # Generate new random key for head initialization
+        # new random key for the head layer 
         head_key = jax.random.PRNGKey(self.random_seed + self.current_num_classes)
         
-        # Reinitialize the final linear layer with kaiming initialization
+        # update the final layer
         self.net.fc = nnx.Linear(
-            self.net.fc.in_features,
-            self.net.fc.out_features,
+            in_features=self.net.fc.in_features,
+            out_features=self.net.fc.out_features,
             kernel_init=nnx.initializers.kaiming_normal(),
+            bias_init=nnx.initializers.constant(0.0),
             rngs=nnx.Rngs(head_key)
         )
         
-        # Reinitialize optimizer state for the new parameters
-        self.optim_state = self.optim.init(nnx.state(self.net))
-        
+        # update state via nnx.Optimizer
+        tx = optax.chain(
+            optax.add_decayed_weights(self.weight_decay),
+            optax.sgd(learning_rate=self.stepsize, momentum=self.momentum, nesterov=False)
+        )
+        self.optim = nnx.Optimizer(self.net, tx)
+
         if self.verbose:
             print(f"Reset head layer with new random key")
 
@@ -780,14 +913,17 @@ class IncrementalCIFARExperiment(Experiment):
         # Generate new random key for full network initialization
         network_key = jax.random.PRNGKey(self.random_seed + self.current_num_classes + 1000)
         
-        # Rebuild the entire network with new random keys
+        # reset the entire network - already with kaiming normal initialization
         self.net = build_resnet18(
             num_classes=self.num_classes,
-            rngs=nnx.Rngs(network_key)
+            rngs=nnx.Rngs(network_key) # new random key
         )
-        
-        # Reinitialize optimizer state for the new network
-        self.optim_state = self.optim.init(nnx.state(self.net))
+
+        tx = optax.chain(
+            optax.add_decayed_weights(self.weight_decay),
+            optax.sgd(learning_rate=self.stepsize, momentum=self.momentum, nesterov=False)
+        )
+        self.optim = nnx.Optimizer(self.net, tx)
         
         if self.verbose:
             print(f"Reset entire network with new random key")

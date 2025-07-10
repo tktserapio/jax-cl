@@ -40,7 +40,7 @@ class ResGnT(object):
     there is no pooling at the end
     """
     def __init__(self, net, hidden_activation, decay_rate=0.99, replacement_rate=1e-4, util_type='weight',
-                 maturity_threshold=1000, device=jax.devices("cpu")):
+                 maturity_threshold=1000, device=jax.devices("cpu"), random_seed=42):
         super(ResGnT, self).__init__()
 
         self.net = net
@@ -67,6 +67,8 @@ class ResGnT(object):
         self.accumulated_num_features_to_replace = []  # Will be initialized later
         # Note: jax.nn.softmax is a function, not a stored operation
         self.m = jax.nn.softmax  # Remove dim parameter as it's not used the same way
+
+        self.rng_key = jax.random(random_seed)
 
         """
         Calculate uniform distribution's bound for random feature initialization
@@ -162,28 +164,22 @@ class ResGnT(object):
         Returns:
             Features to replace in each layer, Number of features to replace in each layer
         """
-        # Initialize on first call with actual feature shapes
-        if not self.initialized:
-            self.initialize_from_features(features)
-            
-        features_to_replace = [jnp.array([], dtype=jnp.int32) for _ in range(self.num_hidden_layers)]
+        features_to_replace = [empty(0, dtype=long) for _ in range(self.num_hidden_layers)]
         num_features_to_replace = [0 for _ in range(self.num_hidden_layers)]
         if self.replacement_rate == 0:
             return features_to_replace, num_features_to_replace
 
-        # Only process features that we have tracking arrays for
-        num_features_to_process = min(len(features), self.num_hidden_layers)
-        
-        for i in range(num_features_to_process):
-            self.ages[i] = self.ages[i] + 1  # JAX arrays are immutable, create new array
+        for i in range(self.num_hidden_layers):
+            self.ages[i] = self.ages[i].at[:].add(1)
             """
             Update feature stats
             """
-            # jax no need for no_grad context: it's opt-in rather than opt-in for torch
             if len(features[i].shape) == 2:
-                self.mean_feature_mag[i] = self.mean_feature_mag[i] + (1 - self.decay_rate) * jnp.abs(features[i]).mean(axis=0)
+                decay_update = (1 - self.decay_rate) * jnp.abs(features[i]).mean(axis=0)
             elif len(features[i].shape) == 4:
-                self.mean_feature_mag[i] = self.mean_feature_mag[i] + (1 - self.decay_rate) * jnp.abs(features[i]).mean(axis=(0, 2, 3))
+                decay_update = (1 - self.decay_rate) * jnp.abs(features[i]).mean(axis=(0, 1, 2))
+
+            self.mean_feature_mag[i] = self.decay_rate * self.mean_feature_mag[i] + decay_update
             """
             Find the no. of features to replace
             """
@@ -203,7 +199,6 @@ class ResGnT(object):
             """
             Calculate utility
             """
-            # JAX doesn't need no_grad context
             next_layer = self.weight_layers[i + 1]
             if isinstance(next_layer, nnx.Linear):
                 output_wight_mag = jnp.abs(next_layer.kernel.value).mean(axis=0)
@@ -218,7 +213,7 @@ class ResGnT(object):
             """
             Find features to replace in the current layer
             """
-            new_features_to_replace = jnp.argsort(-self.util[i][eligible_feature_indices])[:num_new_features_to_replace] # topk
+            new_features_to_replace = jax.lax.top_k(jnp.argsort(-self.util[i][eligible_feature_indices]), num_new_features_to_replace)[1]
             new_features_to_replace = eligible_feature_indices[new_features_to_replace]
 
             """
@@ -235,32 +230,15 @@ class ResGnT(object):
         """
         Generate new features: Reset input and output weights for low utility features
         """
-        # removed no_grad
         for i in range(self.num_hidden_layers):
             if num_features_to_replace[i] == 0:
                 continue
             current_layer, next_layer = self.weight_layers[i], self.weight_layers[i+1]
+            
+            self.rng_key, subkey = jax.random.split(self.rng_key)
 
-            # since jax is functional, we need to create new arrs instead of in-place modif
-            key = jax.random.key(0)  # You might want to make this configurable
-            new_weights_shape = [num_features_to_replace[i]] + list(current_layer.kernel.value.shape[1:])
-            new_weights = jax.random.normal(key, new_weights_shape) * self.stds[i]
-            
-            current_layer.kernel.value = current_layer.kernel.value.at[features_to_replace[i], :].set(new_weights)
-            
-            if hasattr(current_layer, 'bias') and current_layer.bias is not None:
-                current_layer.bias.value = current_layer.bias.value.at[features_to_replace[i]].set(0.0)
-            
-            """
-            Set the outgoing weights and ages to zero
-            """
-            if isinstance(next_layer, nnx.Linear):
-                next_layer.kernel.value = next_layer.kernel.value.at[:, features_to_replace[i]].set(0)
-            elif isinstance(next_layer, nnx.Conv):
-                next_layer.kernel.value = next_layer.kernel.value.at[:, features_to_replace[i]].set(0)
-                
-            self.ages[i] = self.ages[i].at[features_to_replace[i]].set(0)
-            
+            if isinstance(current_layer, nnx.Linear):
+                continue 
             """
             Reset the corresponding batchnorm layers
             """

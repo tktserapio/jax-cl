@@ -170,7 +170,43 @@ def numpyify(leaf):
         return np.array(leaf)
     return leaf
 
-def plot_hessian_spectrum(grids_train, density_train, grids_test, density_test, task_num, agent_name, at_init: bool = True,save_data: bool = False):
+# def plot_hessian_spectrum(grids_train, density_train, grids_test, density_test, task_num, agent_name, at_init: bool = True,save_data: bool = False):
+#     grids_np_train = np.array(grids_train)
+#     density_np_train = np.array(density_train)
+#     grids_np_test = np.array(grids_test)
+#     density_np_test = np.array(density_test)
+
+#     out_dir = Path("hessian", agent_name)
+#     out_dir.mkdir(parents=True, exist_ok=True)
+#     if at_init:
+#         fname   = out_dir / f"hessian_task_{task_num}_at_init.png"
+#     else:
+#         fname   = out_dir / f"hessian_task_{task_num}_end.png"
+                    
+#     plt.figure(figsize=(8, 6))
+#     plt.semilogy(grids_np_train, density_np_train, label=f'Task {task_num} train', color='blue')
+#     plt.semilogy(grids_np_test, density_np_test, label=f'Task {task_num} test', color='orange')
+#     plt.ylim(1e-10, 1e2)
+#     plt.xlim(-10, 50)
+#     plt.ylabel("Density")
+#     plt.xlabel("Eigenvalue")
+#     plt.title(f"Hessian Spectrum {agent_name} - Task {task_num}_{'init' if at_init else 'end'}")
+#     plt.legend()
+#     plt.grid(True, alpha=0.3)
+#     plt.savefig(fname)
+#     print(f"Saved Hessian spectrum to {fname}")
+#     plt.close()
+
+#     if save_data:
+#         #add subfolder for data
+#         out_dir = Path("hessian", "data", agent_name) 
+#         out_dir.mkdir(exist_ok=True)
+#         fname   = out_dir / f"hessian_task_{task_num}.npy"
+#         np.save(fname, {'grids_train': grids_np_train, 'density_train': density_np_train, 'grids_test': grids_np_test, 'density_test': density_np_test})
+#         print(f"Saved Hessian data to {fname}")
+
+def plot_hessian_spectrum(grids_train, density_train, grids_test, density_test, task_num, agent_name, at_init: bool = True, save_data: bool = False):
+    """Create separate plots for train and test Hessian spectra"""
     grids_np_train = np.array(grids_train)
     density_np_train = np.array(density_train)
     grids_np_test = np.array(grids_test)
@@ -178,29 +214,37 @@ def plot_hessian_spectrum(grids_train, density_train, grids_test, density_test, 
 
     out_dir = Path("hessian", agent_name)
     out_dir.mkdir(parents=True, exist_ok=True)
-    if at_init:
-        fname   = out_dir / f"hessian_task_{task_num}_at_init.png"
-    else:
-        fname   = out_dir / f"hessian_task_{task_num}_end.png"
-                    
+    
+    stage = "init" if at_init else "end"
+    
+    # ✅ Create separate train plot
     plt.figure(figsize=(8, 6))
     plt.semilogy(grids_np_train, density_np_train, label=f'Task {task_num} train', color='blue')
+    plt.ylim(1e-10, 1e2)
+    plt.xlim(-10, 50)
+    plt.ylabel("Density")
+    plt.xlabel("Eigenvalue")
+    plt.title(f"Training Hessian Spectrum {agent_name} - Task {task_num}_{stage}")
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    train_fname = out_dir / f"hessian_task_{task_num}_{stage}_train.png"
+    plt.savefig(train_fname)
+    print(f"Saved Training Hessian spectrum to {train_fname}")
+    plt.close()
+    
+    # ✅ Create separate test plot
+    plt.figure(figsize=(8, 6))
     plt.semilogy(grids_np_test, density_np_test, label=f'Task {task_num} test', color='orange')
     plt.ylim(1e-10, 1e2)
     plt.xlim(-10, 50)
     plt.ylabel("Density")
     plt.xlabel("Eigenvalue")
-    plt.title(f"Hessian Spectrum {agent_name} - Task {task_num}_{'init' if at_init else 'end'}")
+    plt.title(f"Test Hessian Spectrum {agent_name} - Task {task_num}_{stage}")
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(fname)
-    print(f"Saved Hessian spectrum to {fname}")
+    
+    test_fname = out_dir / f"hessian_task_{task_num}_{stage}_test.png"
+    plt.savefig(test_fname)
+    print(f"Saved Test Hessian spectrum to {test_fname}")
     plt.close()
-
-    if save_data:
-        #add subfolder for data
-        out_dir = Path("hessian", "data", agent_name) 
-        out_dir.mkdir(exist_ok=True)
-        fname   = out_dir / f"hessian_task_{task_num}.npy"
-        np.save(fname, {'grids_train': grids_np_train, 'density_train': density_np_train, 'grids_test': grids_np_test, 'density_test': density_np_test})
-        print(f"Saved Hessian data to {fname}")
